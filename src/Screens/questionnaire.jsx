@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import * as Survey from "survey-react";
 import styles from '../Styles/Questionnaire.module.css';
+import '../Styles/Survey.css'
 import classnames from 'classnames';
 import {addProfile} from "../Utils/API";
+import Footer from "../Footer";
 
 
 
@@ -189,7 +191,7 @@ export default class Questionnaire extends Component {
 				" beslissing.'","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"},
 				{"type":"rating","name":"question14","title":"Je geeft aan welke stappen nodig zijn voor een selectie in de" +
 				" toekomst.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"}
-			],"title":"Je merkt dat een sporter niet tevreden is dat hij niet in de wedstrijdselectie werd opgenomen. Hoe reageer je hierop?"},
+			],"title":"1/15 Je merkt dat een sporter niet tevreden is dat hij niet in de wedstrijdselectie werd opgenomen. Hoe reageer je hierop?"},
 			{"name":"page2","elements":[
 				{"type":"rating","name":"question21","title":"Je overloopt met hem nog eens de stappen om zijn taken goed uit" +
 				" te voeren.",
@@ -200,7 +202,7 @@ export default class Questionnaire extends Component {
 				" te praten.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"},
 				{"type":"rating","name":"question24","title":"Je zegt: ‘Je moet leren omgaan met stress. Zo niet, wordt de" +
 				" wedstrijd een flop.’","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"}
-			],"title":"Een sporter lijkt in de aanloop naar een wedstrijd last te hebben van faalangst. Hoe reageer je?"},
+			],"title":"2/15 Een sporter lijkt in de aanloop naar een wedstrijd last te hebben van faalangst. Hoe reageer je?"},
 			{"name":"page3","elements":[
 				{"type":"rating","name":"question31","title":"Je laat je niet in met de opwarming. Ze kennen genoeg" +
 				" oefeningen uit de training.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"},
@@ -210,7 +212,7 @@ export default class Questionnaire extends Component {
 				" voor een deel van de opwarmingsoefeningen en laat ruimte voor persoonlijke accenten.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"},
 				{"type":"rating","name":"question34","title":"Je waarschuwt de sporters dat ze scherp moeten opwarmen anders" +
 				" wordt de wedstrijd een afgang.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"}
-			],"title":"De opwarming voor de wedstrijd verloopt op de volgende manier:"},
+			],"title":"3/15 De opwarming voor de wedstrijd verloopt op de volgende manier:"},
 			{"name":"page4","elements":[
 				{"type":"rating","name":"question41","title":"...zeg je niet veel, want ze weten zelf wat ze moeten doen om" +
 				" zich te herpakken.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"},
@@ -220,7 +222,7 @@ export default class Questionnaire extends Component {
 				" rest van de wedstrijd toelichtte.'","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"},
 				{"type":"rating","name":"question44","title":"...kom je nog eens terug op de opdrachten die je voor de" +
 				" wedstrijd meegaf.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"}
-			],"title":"Het eerste deel van de wedstrijd was niet van het niveau dat jij verwacht van je sporters. Tijdens de pauze..."},
+			],"title":"4/15 Het eerste deel van de wedstrijd was niet van het niveau dat jij verwacht van je sporters. Tijdens de pauze..."},
 			{"name":"page5","elements":[
 				{"type":"rating","name":"question51","title":"Je zegt: ‘We kunnen ons dan wel goed voorbereiden, maar als" +
 				" jij niet doet wat ik je zeg dan wordt het natuurlijk een fiasco.’","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"},
@@ -230,7 +232,7 @@ export default class Questionnaire extends Component {
 				" veerkrachtig reageert.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"},
 				{"type":"rating","name":"question54","title":"Je geeft aan wat er volgens jou fout liep en geeft aanwijzingen" +
 				" voor hoe dit in de toekomst voorkomen kan worden.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"}
-			],"title":"In de aanloop naar een belangrijke wedstrijd bereiden jij en jouw sporter samen de wedstrijd voor. Hoewel deze voorbereiding naar wens verliep, draait de wedstrijd helemaal niet uit zoals verwacht. Het gewenste eindresultaat wordt dan ook helemaal niet behaald."},
+			],"title":"6/15 In de aanloop naar een belangrijke wedstrijd bereiden jij en jouw sporter samen de wedstrijd voor. Hoewel deze voorbereiding naar wens verliep, draait de wedstrijd helemaal niet uit zoals verwacht. Het gewenste eindresultaat wordt dan ook helemaal niet behaald."},
 			{"name":"page6","elements":[
 				{"type":"rating","name":"question61","title":"...plant niet te veel. Je wacht af en neemt de dingen zoals ze" +
 				" komen","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"},
@@ -240,7 +242,7 @@ export default class Questionnaire extends Component {
 				" bijbrengt. Het is jouw plicht om de training te geven en hun plicht om hard hun best te doen.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"},
 				{"type":"rating","name":"question64","title":"......zorgt voor een duidelijke en gemakkelijk te volgen" +
 				" indeling en communiceert de trainingsdoelstellingen.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"}
-			],"title":"De training begint. Jij..."},
+			],"title":"6/15 De training begint. Jij..."},
 			{"name":"page7","elements":[
 				{"type":"rating","name":"question71","title":"Je geeft aan wat jouw verwachtingen zijn wat betreft inzet op" +
 				" de training.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"},
@@ -250,7 +252,7 @@ export default class Questionnaire extends Component {
 				" vanzelf overgaat.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"},
 				{"type":"rating","name":"question74","title":"Je maakt hen duidelijk dat je ontgoocheld bent en zegt dat" +
 				" goede sporters ook iets tegen hun zin kunnen doen.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"}
-			],"title":"Een aantal sporters stellen zich gemakzuchtig op tijdens het uitvoeren van een vrij eenvoudige oefening op training en brengen hierbij anderen uit concentratie. Wat doe je in deze situatie om van hen een extra inspanning te verkrijgen?"},
+			],"title":"7/15 Een aantal sporters stellen zich gemakzuchtig op tijdens het uitvoeren van een vrij eenvoudige oefening op training en brengen hierbij anderen uit concentratie. Wat doe je in deze situatie om van hen een extra inspanning te verkrijgen?"},
 			{"name":"page8","elements":[
 				{"type":"rating","name":"question81","title":"Je geeft aan dat het dringend tijd wordt dat hij/zij eindelijk" +
 				" oppikt wat je al weken uitlegt, want dat hij/zij het anders nooit ver zal schoppen.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"},
@@ -259,7 +261,7 @@ export default class Questionnaire extends Component {
 				" te trainen en zegt dat het stap per stap wel zal lukken.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"},
 				{"type":"rating","name":"question84","title":"Je besteedt er geen tijd meer aan. Er is al genoeg energie" +
 				" verloren gegaan.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"}
-			],"title":"Ondanks herhaaldelijke bijsturingen de voorbije weken, krijgt één van je sporters een nieuwe techniek maar niet onder de knie. Op training begaat hij steeds opnieuw dezelfde technische fout."},
+			],"title":"9/15 Ondanks herhaaldelijke bijsturingen de voorbije weken, krijgt één van je sporters een nieuwe techniek maar niet onder de knie. Op training begaat hij steeds opnieuw dezelfde technische fout."},
 			{"name":"page9","elements":[
 				{"type":"rating","name":"question91","title":"Je zoekt nieuwe manieren om deze oefening interessanter en" +
 				" aangenamer te brengen voor de sporters.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"},
@@ -269,7 +271,7 @@ export default class Questionnaire extends Component {
 				" van werken. Nu is het tijd om te bewijzen wat je waard bent!’","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"},
 				{"type":"rating","name":"question94","title":"Je maakt de sporter via feedback en extra tips duidelijk hoe ze" +
 				" de oefening tot een goed einde kunnen brengen.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"}
-			],"title":"Je geeft een moeilijke en lastige oefening die een extra inspanning van de sporters vraagt."},
+			],"title":"9/15 Je geeft een moeilijke en lastige oefening die een extra inspanning van de sporters vraagt."},
 			{"name":"page10","elements":[
 				{"type":"rating","name":"question101","title":"...je verzekert hem dat je openstaat voor zijn input en" +
 				" suggesties.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"},
@@ -279,7 +281,7 @@ export default class Questionnaire extends Component {
 				" aan de hand is.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"},
 				{"type":"rating","name":"question104","title":"...staat er op dat hij aandachtig en geconcentreerd blijft." +
 				" Hij moet de oefeningen afwerken voor zijn eigen bestwil.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"}
-			],"title":"Tijdens een moeilijker moment van jouw training begint een sporter te klagen. Jij..."},
+			],"title":"10/15 Tijdens een moeilijker moment van jouw training begint een sporter te klagen. Jij..."},
 			{"name":"page11","elements":[
 				{"type":"rating","name":"question111","title":"...doet dit door je sporters een lijst met gedragsregels en" +
 				" sancties te geven.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"},
@@ -289,7 +291,7 @@ export default class Questionnaire extends Component {
 				" voor een goede samenwerking aan.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"},
 				{"type":"rating","name":"question114","title":"...vraagt de sporters om suggesties en ideeën voor" +
 				" richtlijnen","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"}
-			],"title":"Er staat een nieuw seizoen voor de deur. Je denkt na over het opstellen van een aantal richtlijnen voor goede samenwerking. Je..."},
+			],"title":"11/15 Er staat een nieuw seizoen voor de deur. Je denkt na over het opstellen van een aantal richtlijnen voor goede samenwerking. Je..."},
 			{"name":"page12","elements":[
 				{"type":"rating","name":"question121","title":"Je geeft aan dat terugkeren na een blessure in stappen" +
 				" verloopt" +
@@ -298,7 +300,7 @@ export default class Questionnaire extends Component {
 				" revalideren met ups en downs verloopt. .","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"},
 				{"type":"rating","name":"question123","title":"Je eist in het vervolg een ijzeren discipline.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"},
 				{"type":"rating","name":"question124","title":"Je geeft de sporter inspraak in zijn revalidatieschema","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"}
-			],"title":"Een sporter heeft een blessure opgelopen en is bezig met zijn revalidatie, die moeizaam verloopt. Ondanks dat je hem al eens aangemoedigd hebt, blijkt hij zijn revalidatieschema niet zo nauw te volgen. Hoe ga je hier mee om?"},
+			],"title":"12/15 Een sporter heeft een blessure opgelopen en is bezig met zijn revalidatie, die moeizaam verloopt. Ondanks dat je hem al eens aangemoedigd hebt, blijkt hij zijn revalidatieschema niet zo nauw te volgen. Hoe ga je hier mee om?"},
 			{"name":"page13","elements":[
 				{"type":"rating","name":"question131","title":"Je grijpt niet in. De sporters in kwestie moeten hier zelf mee" +
 				" leren omgaan.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"},
@@ -309,7 +311,7 @@ export default class Questionnaire extends Component {
 				" tips om eruit te geraken.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"},
 				{"type":"rating","name":"question134","title":"Je maakt duidelijk dat het hun plicht is zich te gedragen," +
 				" zoals het jouw plicht is om hen te coachen.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"}
-			],"title":"Je merkt dat er wrevel bestaat tussen een aantal van jouw sporters."},
+			],"title":"13/15 Je merkt dat er wrevel bestaat tussen een aantal van jouw sporters."},
 			{"name":"page14","elements":[
 				{"type":"rating","name":"question141","title":"....wijs je erop dat een nieuwe ondermaatse prestatie voor" +
 				" jou\n" +
@@ -321,7 +323,7 @@ export default class Questionnaire extends Component {
 				" vertrouwen te hebben dat hij zich kan verbeteren.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"},
 				{"type":"rating","name":"question144","title":"...luister je naar hoe de sporter zijn eigen prestatie ziet en" +
 				" wat hij zelf denkt te doen om zich te verbeteren.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"}
-			],"title":"Een sporter presteert al een aantal weken ondermaats. Je besprak dit reeds met hem. Na een nieuwe ondermaatse prestatie..."},
+			],"title":"14/15 Een sporter presteert al een aantal weken ondermaats. Je besprak dit reeds met hem. Na een nieuwe ondermaatse prestatie..."},
 			{"name":"page15","elements":[
 				{"type":"rating","name":"question151","title":"Na de training neem je de sporter apart en je vraagt of er hem" +
 				" iets dwars zit.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"},
@@ -331,21 +333,25 @@ export default class Questionnaire extends Component {
 				" want" +
 				" dat hij nu al twee trainingen na elkaar te laat komt.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"},
 				{"type":"rating","name":"question154","title":"Je geeft aan dat op tijd komen voor jou belangrijk is.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"}
-			],"title":"Een sporter is voor de tweede maal op rij te laat op de training en geeft een afwezige indruk. Wat doe je?"},
+			],"title":"15/15 Een sporter is voor de tweede maal op rij te laat op de training en geeft een afwezige indruk. Wat doe je?"},
 		]}
 			
 			
 			
 			return (
-			<div
-				className={styleContainer}
-			>
-				<div
-					className={styleDivSurvey}
-				>
-					<Survey.Survey json={surveyJSON} onComplete={this.calculateProfile}/>
-				</div>
-			</div>
+				<>
+					<div
+						className={styleContainer}
+					>
+						<div
+							className={styleDivSurvey}
+						>
+							<Survey.Survey json={surveyJSON} onComplete={this.calculateProfile}/>
+						</div>
+					</div>
+					<Footer/>
+				</>
+
 		
 		);
 	}

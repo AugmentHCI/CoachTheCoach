@@ -24,3 +24,54 @@ export async function addProfile(participatief, afstemmend, begeleidend, verduid
 	const res = await axios.post(request, data);
 	return res
 }
+
+export async function addDemographics(id,age,gender,sport,ageSporters,experience,level,nbHours,diploma){
+	const data = {
+		id: id,
+		age: age,
+		gender: gender,
+		sport: sport,
+		ageSporters: ageSporters,
+		experience: experience,
+		level: level,
+		nbHours: nbHours,
+		diploma: diploma
+	};
+	const request = [
+		"http://picasso.experiments.cs.kuleuven.be:3038/api/demographics",
+	].join('');
+	// const request = [
+	// 	"http://localhost:5000/api/demographics",
+	// ].join('');
+	const res = await axios.post(request, data);
+	return res
+}
+
+
+export async function addPersonality(id,extravert,kritisch,grondig, angstig, fantasie, gereserveerd, sympathiek, lui, kalm, creatief){
+	const data = {
+		id: id,
+		extravert: extravert,
+		kritisch: kritisch,
+		grondig: grondig,
+		angstig: angstig,
+		fantasie: fantasie,
+		gereserveerd: gereserveerd,
+		sympathiek: sympathiek,
+		lui: lui,
+		kalm: kalm,
+		creatief: creatief
+
+
+	};
+	const request = [
+		"http://picasso.experiments.cs.kuleuven.be:3038/api/demographics",
+	].join('');
+	// const request = [
+	// 	"http://localhost:5000/api/demographics",
+	// ].join('');
+	const res = await axios.post(request, data);
+	return res
+}
+
+

@@ -4,6 +4,7 @@ import * as d3 from 'd3'
 import { arc as d3Arc, pie as d3Pie } from 'd3-shape';
 import styles from '../Styles/Profile.module.css';
 import classnames from 'classnames';
+import Footer from "../Footer";
 
 
 export default class Profile extends Component {
@@ -77,14 +78,14 @@ export default class Profile extends Component {
 		let height = window.screen.availHeight * 0.6;
 		
 		const color = d3.scaleOrdinal().range([
-			'#b3d7cd',
-			'#b3f0cd',
-			'#f5cdac',
-			'#ffcdac',
-			'#cbd5dc',
-			'#cbd5f5',
-			'#f4cae4',
-			'#fad2e6',
+			'#146094',
+			'#1E82CA',
+			'#3BAD4F',
+			'#257435',
+			'#FAB97E',
+			'#A85C23',
+			'#A52624',
+			'#E96E6A',
 		
 		]);
 		
@@ -199,6 +200,7 @@ export default class Profile extends Component {
 				</div>
 				
 			</div>
+				<Footer/>
 			
 			</>
 		)

@@ -11,7 +11,7 @@ export default class Welcome extends Component{
 
     goToNext(){
         this.props.history.push({
-            pathname: '/Questionnaire',
+            pathname: '/Demographics',
         })
     }
 
