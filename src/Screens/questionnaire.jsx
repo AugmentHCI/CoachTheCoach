@@ -3,7 +3,7 @@ import * as Survey from "survey-react";
 import styles from '../Styles/Questionnaire.module.css';
 import '../Styles/Survey.css'
 import classnames from 'classnames';
-import {addProfile} from "../Utils/API";
+import {addProfile, addDataProfile} from "../Utils/API";
 import Footer from "../Footer";
 
 
@@ -14,6 +14,7 @@ export default class Questionnaire extends Component {
 	constructor(props) {
 		super(props);
 		this.calculateProfile = this.calculateProfile.bind(this)
+		this.addRawData = this.addRawData.bind(this)
 		this.goToProfile = this.goToProfile.bind(this)
 	}
 	
@@ -22,9 +23,85 @@ export default class Questionnaire extends Component {
 			pathname: '/Profile',
 		})
 	}
+
+	addRawData(data){
+		let id = localStorage.getItem('id');
+		let q1 = data['question11'];
+		let q2 = data['question12'];
+		let q3 = data['question13'];
+		let q4 = data['question14'];
+		let q5 = data['question21'];
+		let q6 = data['question22'];
+		let q7 = data['question23'];
+		let q8 = data['question24'];
+		let q9 = data['question31'];
+		let q10 = data['question32'];
+		let q11 = data['question33'];
+		let q12 = data['question34'];
+		let q13 = data['question41'];
+		let q14 = data['question42'];
+		let q15 = data['question43'];
+		let q16 = data['question44'];
+		let q17 = data['question51'];
+		let q18 = data['question52'];
+		let q19 = data['question53'];
+		let q20 = data['question54'];
+		let q21 = data['question61'];
+		let q22 = data['question62'];
+		let q23 = data['question63'];
+		let q24 = data['question64'];
+		let q25 = data['question71'];
+		let q26 = data['question72'];
+		let q27 = data['question73'];
+		let q28 = data['question74'];
+		let q29 = data['question81'];
+		let q30 = data['question82'];
+		let q31 = data['question83'];
+		let q32 = data['question84'];
+		let q33 = data['question91'];
+		let q34 = data['question92'];
+		let q35 = data['question93'];
+		let q36 = data['question94'];
+		let q37 = data['question101'];
+		let q38 = data['question102'];
+		let q39 = data['question103'];
+		let q40 = data['question104'];
+		let q41 = data['question111'];
+		let q42 = data['question112'];
+		let q43 = data['question113'];
+		let q44 = data['question114'];
+		let q45 = data['question112'];
+		let q46 = data['question122'];
+		let q47 = data['question123'];
+		let q48 = data['question124'];
+		let q49 = data['question131'];
+		let q50 = data['question132'];
+		let q51 = data['question133'];
+		let q52 = data['question134'];
+		let q53 = data['question141'];
+		let q54 = data['question142'];
+		let q55 = data['question143'];
+		let q56 = data['question144'];
+		let q57 = data['question151'];
+		let q58 = data['question152'];
+		let q59 = data['question153'];
+		let q60 = data['question154'];
+
+		let promiseAddProfileData = addDataProfile(id,q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,
+			q11,q12,q13,q14,q15,q16,q17,q18,q19,q20,
+			q21,q22,q23,q24,q25,q26,q27,q28,q29,q30,
+			q31,q32,q33,q34,q35,q36,q37,q38,q39,q40,
+			q41,q42,q43,q44,q45,q46,q47,q48,q49,q50,
+			q51,q52,q53,q54,q55,q56,q57,q58,q59,q60)
+
+		promiseAddProfileData.then(
+			this.goToProfile()
+		);
+	}
 	
 	calculateProfile(survey){
 		const data = survey.data;
+		let id = localStorage.getItem('id');
 		let participatief = this.calculateParticipatief(data);
 		let afstemmend = this.calculateAfstemmend(data);
 		let begeleidend = this.calculateBegeleidend(data);
@@ -43,11 +120,11 @@ export default class Questionnaire extends Component {
 		localStorage.setItem('opgevend', opgevend );
 		localStorage.setItem('afwachtend', afwachtend );
 		
-		let promiseAddProfile = addProfile(participatief, afstemmend, begeleidend, verduidelijkend,
+		let promiseAddProfile = addProfile(id, participatief, afstemmend, begeleidend, verduidelijkend,
 			eisend, dominerend, opgevend, afwachtend);
 		
 		promiseAddProfile.then(
-			this.goToProfile()
+			this.addRawData(data)
 		);
 		
 		

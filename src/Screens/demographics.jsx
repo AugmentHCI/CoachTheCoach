@@ -28,7 +28,7 @@ export default class Demographics extends Component {
         let sport = data['question3']
         let ageSporters = data['question4']
         let experience = data['question5']
-        let level = data['questions6']
+        let level = data['question6']
         let nbHours = data['question7']
         let diploma = data['question8']
 
@@ -57,7 +57,12 @@ export default class Demographics extends Component {
                     {"type":"text","name":"question3","title":"Binnen welke sport ben je actief als coach?","isRequired":true},
                     {"type":"checkbox","name":"question4","title":"Wat is de leeftijd van jouw sporter(s)?","isRequired":true,"choices":[{"value":"2","text":"2-5"},{"value":"5","text":"5-10"},{"value":"10","text":"10-15"},{"value":"15","text":"15-18"},{"value":"18","text":"18-23"},{"value":"23","text":"Senioren"}]},
                     {"type":"text","name":"question5","title":"Hoeveel jaren ervaring heb je als coach?","isRequired":true,"inputType":"number"},
-                    {"type":"checkbox","name":"question6","title":"Wat is het niveau waarop je coacht?","isRequired":true,"choices":[{"value":"item1","text":"Regionaal"},{"value":"item2","text":"Provinciaal"},{"value":"item3","text":"Nationaal"},{"value":"item4","text":"Nationaal (Hoogste klasse)"},{"value":"item5","text":"Internationaal"}]},
+                    {"type":"checkbox","name":"question6","title":"Wat is het niveau waarop je coacht?","isRequired":true,"choices":[
+                        {"value":"regionaal","text":"Regionaal"},
+                            {"value":"provinciaal","text":"Provinciaal"},
+                            {"value":"nationaal","text":"Nationaal"},
+                            {"value":"nationaal_hoogste","text":"Nationaal (Hoogste klasse)"},
+                            {"value":"internationaal","text":"Internationaal"}]},
                     {"type":"text","name":"question7","title":"Hoeveel uren training geef je per week?","isRequired":true,"inputType":"number"},
                     {"type":"text","name":"question8","title":"Wat is het hoogst behaalde diploma als coach?","isRequired":true}
                     ]}
