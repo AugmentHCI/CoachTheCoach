@@ -5,6 +5,11 @@ import { arc as d3Arc, pie as d3Pie } from 'd3-shape';
 import styles from '../Styles/Profile.module.css';
 import classnames from 'classnames';
 import Footer from "../Footer";
+import { jsPDF } from "jspdf";
+// import 'svg2pdf.js'
+import Canvg from "canvg";
+import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+import ReactPDF from '@react-pdf/renderer';
 
 
 export default class Profile extends Component {
@@ -16,6 +21,13 @@ export default class Profile extends Component {
 		};
 		this.handleHover = this.handleHover.bind(this);
 		this.handleLeave = this.handleLeave.bind(this);
+		this.handleDownload = this.handleDownload.bind(this)
+	}
+
+	handleDownload(){
+		this.props.history.push({
+			pathname: '/PreviewA4',
+		})
 	}
 	
 	createTitle(){
@@ -129,13 +141,17 @@ export default class Profile extends Component {
 		return(
 			<>
 			<div
+				id="ProfileContainer"
 				className={styleContainer}
 			>
 				<div
 					className={styleContainerProfile}
 				>
 					<h1>{this.createTitle()}  </h1>
-					<svg width={widthSVG} height={heightSVG}>
+					<svg
+						id="svgProfile"
+						width={widthSVG}
+						height={heightSVG}>
 						<text
 							transform={`translate(${widthSVG / 2}, ${(heightSVG / 2) + (fontSize/2.2)})`}
 							className={styleText}
@@ -164,7 +180,7 @@ export default class Profile extends Component {
 								<g
 									className="arc"
 									pointerEvents="all"
-									key={d.index + "arcPath"}
+									key={d.index + "arcPathGroup"}
 									id={d.index + "arc"}
 								>
 									<path
@@ -200,6 +216,7 @@ export default class Profile extends Component {
 				</div>
 				
 			</div>
+				<button onClick={this.handleDownload}>Download</button>
 				<Footer/>
 			
 			</>

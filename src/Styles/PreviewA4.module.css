@@ -1,0 +1,54 @@
+.styleOuter{
+    fill-opacity: 0;
+    stroke: #c4c4c4;
+}
+
+.styleArc{
+    fill-opacity: 0.8;
+}
+
+.styleArcHover{
+    fill-opacity: 1;
+}
+
+.styleText{
+    text-anchor: middle;
+    font-weight: bold;
+}
+
+.styleContainer{
+    width: 25cm;
+    height: 15cm;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.styleContainerProfile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.styleContainerText{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.styleButton{
+    width: 100px;
+    height: 50px;
+    margin-left: 40%;
+    margin-top:20px;
+}
+
+
+
+

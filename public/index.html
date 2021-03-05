@@ -10,8 +10,19 @@
       content="Web site created using create-react-app"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-<!--    <link href="https://unpkg.com/survey-react@1.8.26/survey.css" type="text/css" rel="stylesheet" />-->
     <script src="https://unpkg.com/survey-react@1.8.26/survey.react.min.js"></script>
+    <style type="text/css" media="print">
+      #printbutton {
+        display :  none;
+      }
+      #printtitle {
+        display: none;
+      }
+      @page { size: landscape;
+        margin: 10%
+
+      }
+    </style>
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
