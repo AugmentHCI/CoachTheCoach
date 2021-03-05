@@ -96,12 +96,12 @@ export async function addDataProfile(id,q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,
 		q59: q59,
 		q60: q60,
 	}
-	// const request = [
-	// 	"http://picasso.experiments.cs.kuleuven.be:3038/api/profile/data",
-	// ].join('');
 	const request = [
-		"http://localhost:5000/api/profile/data",
+		"http://picasso.experiments.cs.kuleuven.be:3038/api/profile/data",
 	].join('');
+	// const request = [
+	// 	"http://localhost:5000/api/profile/data",
+	// ].join('');
 	const res = await axios.post(request, data);
 	return res
 }
@@ -119,13 +119,12 @@ export async function addDemographics(id,age,gender,sport,ageSporters,experience
 		nbHours: nbHours,
 		diploma: diploma
 	};
-	console.log(data)
-	// const request = [
-	// 	"http://picasso.experiments.cs.kuleuven.be:3038/api/demographics",
-	// ].join('');
 	const request = [
-		"http://localhost:5000/api/demographics",
+		"http://picasso.experiments.cs.kuleuven.be:3038/api/demographics",
 	].join('');
+	// const request = [
+	// 	"http://localhost:5000/api/demographics",
+	// ].join('');
 	const res = await axios.post(request, data);
 	return res
 }
@@ -145,12 +144,12 @@ export async function addPersonality(id,extravert,kritisch,grondig, angstig, fan
 		kalm: kalm,
 		creatief: creatief
 	};
-	// const request = [
-	// 	"http://picasso.experiments.cs.kuleuven.be:3038/api/personality",
-	// ].join('');
 	const request = [
-		"http://localhost:5000/api/personality",
+		"http://picasso.experiments.cs.kuleuven.be:3038/api/personality",
 	].join('');
+	// const request = [
+	// 	"http://localhost:5000/api/personality",
+	// ].join('');
 	const res = await axios.post(request, data);
 	return res
 }
