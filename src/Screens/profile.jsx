@@ -4,7 +4,7 @@ import * as d3 from 'd3'
 import { arc as d3Arc, pie as d3Pie } from 'd3-shape';
 import styles from '../Styles/Profile.module.css';
 import classnames from 'classnames';
-import Footer from "../Footer";
+import Footer from "../Components/Footer";
 import Bouwsteen from "../Components/Bouwsteen";
 
 

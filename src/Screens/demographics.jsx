@@ -4,7 +4,8 @@ import styles from '../Styles/Demographics.module.css';
 import '../Styles/Survey.css'
 import classnames from 'classnames';
 import {addDemographics} from "../Utils/API";
-import Footer from "../Footer";
+import Footer from "../Components/Footer";
+import Title from "../Components/Title";
 
 
 
@@ -72,6 +73,7 @@ export default class Demographics extends Component {
 
         return (
             <>
+                <Title title={'Basisgegevens'} />
                 <div
                     className={styleContainer}
                 >

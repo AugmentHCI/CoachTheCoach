@@ -4,7 +4,8 @@ import styles from '../Styles/Personality.module.css';
 import classnames from 'classnames';
 import '../Styles/Survey.css'
 import {addPersonality} from "../Utils/API";
-import Footer from "../Footer";
+import Footer from "../Components/Footer";
+import Title from "../Components/Title";
 
 
 
@@ -70,6 +71,8 @@ export default class Personality extends Component {
 
         return (
             <>
+                <Title title={'Persoonlijkheid'} />
+
                 <div
                 className={styleContainer}
                 >

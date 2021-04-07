@@ -6,9 +6,13 @@
     overflow: auto;
 }
 
-.button{
-    width: 100px;
-    margin-right: 10%;
-    float: right;
-    text-align: center;
+.buttonContainer{
+    margin-left: 10%;
+    margin-top:5%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
+

@@ -4,7 +4,8 @@ import styles from '../Styles/Questionnaire.module.css';
 import '../Styles/Survey.css'
 import classnames from 'classnames';
 import {addProfile, addDataProfile} from "../Utils/API";
-import Footer from "../Footer";
+import Footer from "../Components/Footer";
+import Title from "../Components/Title";
 
 
 
@@ -417,6 +418,8 @@ export default class Questionnaire extends Component {
 			
 			return (
 				<>
+					<Title title={'Situaties'} />
+
 					<div
 						className={styleContainer}
 					>

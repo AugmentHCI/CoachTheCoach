@@ -1,0 +1,15 @@
+.container{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.title{
+    padding-left: 20px;
+    padding-right: 20px;
+    color: white;
+    box-shadow: 4px 4px 2px grey;
+    background: #3c3b40;
+
+}

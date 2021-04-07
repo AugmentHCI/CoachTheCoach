@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import styles from '../Styles/Welcome.module.css';
-import Footer from "../Footer";
+import Footer from "../Components/Footer";
+import Title from "../Components/Title";
+import ButtonNext from "../Components/ButtonNext";
 
 
 export default class Welcome extends Component{
@@ -17,11 +19,11 @@ export default class Welcome extends Component{
 
     render(){
         const styleContainer = styles.container;
-        const styleButton = styles.button;
-
+        const styleButtonContainer = styles.buttonContainer
         return(
             <>
                 <div className={styleContainer}>
+                    <Title title={"Inleiding"} />
                     <h1>Welcome</h1>
                     <p>
                         Iedere coach heeft zijn kenmerkende coachstijl, zijn eigen identiteit als coach. In wat volgt willen we jouw gedrag als coach in kaart brengen en hiervan een profiel opstellen. Dit is in geen geval een evaluatie of oordeel. Het is in de eerste plaats de bedoeling dat je jezelf bewust bent van je eigen gedrag. Met deze tool hopen we samen met jou die stap te zetten naar meer bewustwording rond motiverend coachen.
@@ -41,11 +43,9 @@ export default class Welcome extends Component{
                     </p>
 
                 </div>
-                <button
-                    onClick={this.goToNext}
-                    className={styleButton}
-
-                >Next</button>
+                <div className={styleButtonContainer}>
+                    <ButtonNext handleClick={this.goToNext}  />
+                </div>
                 <Footer/>
 
             </>

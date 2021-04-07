@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Footer from "../Footer";
+import Footer from "./Footer";
 import classnames from 'classnames';
 import styles from '../Styles/Bouwsteen.module.css';
 

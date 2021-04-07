@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import styles from './Styles/Footer.module.css'
-import vts from './Images/Logo_VlaamseTrainersschool.jpg'
-import KUL from './Images/KU Leuven.png'
+import styles from '../Styles/Footer.module.css'
+import vts from '../Images/Logo_VlaamseTrainersschool.jpg'
+import KUL from '../Images/KU Leuven.png'
 
 export default class Footer extends Component {
     render() {
