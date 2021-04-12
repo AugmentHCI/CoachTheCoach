@@ -6,6 +6,7 @@ import styles from '../Styles/Profile.module.css';
 import classnames from 'classnames';
 import Footer from "../Components/Footer";
 import Bouwsteen from "../Components/Bouwsteen";
+import Title from "../Components/Title";
 
 
 
@@ -24,8 +25,6 @@ export default class Profile extends Component {
 		this.handleDownload = this.handleDownload.bind(this);
 		this.handleClick = this.handleClick.bind(this);
 		this.handleGoBackToProfile = this.handleGoBackToProfile.bind(this);
-		// this.renderDetails = this.renderDetails.bind(this)
-		// this.renderProfile = this.renderProfile.bind(this)
 	}
 
 	handleGoBackToProfile(){
@@ -59,7 +58,11 @@ export default class Profile extends Component {
 			'Eisend': '#FAB97E',
 			'Dominerend': '#A85C23',
 			'Opgevend': '#A52624',
-			'Afwachtend': '#E96E6A'
+			'Afwachtend': '#E96E6A',
+			'Autonomie': '#006FB7',
+			'Structuur': '#009639',
+			'Controle': '#FF8200',
+			'Chaos': '#E6332A',
 		}
 		return colors[bouwsteen]
 	}
@@ -258,6 +261,15 @@ export default class Profile extends Component {
 		return data
 	}
 
+	createDataKwadrant(){
+		return  [
+			{ "number": 90, "name": "Autonomie", "rotate": 45},
+			{ "number": 90, "name": "Structuur","rotate": -45},
+			{ "number": 90, "name": "Controle","rotate": 45},
+			{ "number": 90, "name": "Chaos","rotate": -45}
+		];
+	}
+
 	checkHover(name) {
 		return name === this.state.hoverElement
 	}
@@ -284,8 +296,26 @@ export default class Profile extends Component {
 		})
 	}
 
+	calculateLocationLabelOctant(d, maxRadius){
+		let middleAngle = (d.startAngle + d.endAngle) / 2
+		let x = Math.sin(middleAngle) * maxRadius * 0.8
+		let y = -Math.cos(middleAngle) * maxRadius * 0.8
+		let translate = "translate(" + x.toString() + "," + y.toString() + ")"
+		return translate
+	}
+
+	calculateLocationLabelkwadrant(d, maxRadius){
+		let middleAngle = (d.startAngle + d.endAngle) / 2
+		let x = Math.sin(middleAngle) * maxRadius * 0.95
+		let y = -Math.cos(middleAngle) * maxRadius * 0.95
+		let translate = "translate(" + x.toString() + "," + y.toString() + ") rotate(" + d.data.rotate + ")"
+		return translate
+	}
+
+
 	renderProfile() {
 		let data = this.createData();
+		let dataKwadrant = this.createDataKwadrant()
 		let width = window.screen.availWidth;
 		let height = window.screen.availHeight * 0.6;
 
@@ -301,10 +331,11 @@ export default class Profile extends Component {
 
 		]);
 
-		let maxRadius = Math.min(width, height) / 2 - 1;
-		let widthSVG = 2 * maxRadius + 10;
-		let heightSVG = 2 * maxRadius + 10;
-		let innerRadius = maxRadius * 0.15;
+		let maxRadiusTotal = Math.min(width, height) / 2 - 1;
+		let widthSVG = 2 * maxRadiusTotal + 10;
+		let heightSVG = 2 * maxRadiusTotal + 10;
+		let innerRadius = maxRadiusTotal * 0.15;
+		let maxRadius = 0.88 * maxRadiusTotal
 		let fontSize = innerRadius / 1.2
 		let radius = d3.scaleLinear()
 			.domain([0, 7])
@@ -321,6 +352,10 @@ export default class Profile extends Component {
 			.innerRadius(innerRadius)
 			.outerRadius(maxRadius);
 
+		let arcKwadrant = d3Arc()
+			.innerRadius(maxRadius)
+			.outerRadius(maxRadiusTotal);
+
 		const pie = d3Pie()
 			.sort(null)
 			.value(function (d) {
@@ -328,7 +363,7 @@ export default class Profile extends Component {
 			});
 
 		const dataPie = pie(data);
-
+		const dataPieKwadrant = pie(dataKwadrant)
 		let styleOuter = classnames(styles.styleOuter);
 		let styleArc = classnames(styles.styleArc);
 		let styleArcHover = classnames(styles.styleArcHover);
@@ -336,6 +371,8 @@ export default class Profile extends Component {
 		let styleContainer = classnames(styles.styleContainer);
 		let styleContainerProfile = classnames(styles.styleContainerProfile);
 		let styleContainerText = classnames(styles.styleContainerText);
+		let styleLabel = classnames(styles.styleLabel)
+		let styleLabelKwadrant = classnames(styles.styleLabelKwadrant)
 
 
 		return (
@@ -347,7 +384,8 @@ export default class Profile extends Component {
 					<div
 						className={styleContainerProfile}
 					>
-						<h1>{this.createTitle()}  </h1>
+						<Title title={"Persoonlijk Coachprofiel"} />
+						<p>Klik op een zone voor jouw score en voor meer informatie</p>
 						<svg
 							id="svgProfile"
 							width={widthSVG}
@@ -356,7 +394,6 @@ export default class Profile extends Component {
 								transform={`translate(${widthSVG / 2}, ${(heightSVG / 2) + (fontSize / 2.2)})`}
 								className={styleText}
 								style={{fontSize: fontSize}}
-
 							>
 								{this.state.hoverValue}
 							</text>
@@ -367,7 +404,6 @@ export default class Profile extends Component {
 											className="arcOuter"
 											key={d.index + "arcOuter"}
 											id={d.index + "arcOuter"}
-
 										>
 											<path
 												d={arcOuter(d)}
@@ -396,45 +432,75 @@ export default class Profile extends Component {
 
 											/>
 										</g>
+									</>
+								))}
+							</g>
+							<g transform={`translate(${widthSVG / 2}, ${(heightSVG / 2)} )`}>
+								{dataPie.map(d => (
+									<text
+										transform={this.calculateLocationLabelOctant(d, maxRadius)}
+										className={styleLabel}
+									>{d.data.name}</text>
+								))}
+							</g>
+							<g transform={`translate(${widthSVG / 2}, ${(heightSVG / 2)} )`}>
+								{dataPieKwadrant.map(d => (
+									<>
+										<g
+											className="arcKwadrant"
+											key={d.index + "arcOuter"}
+											id={d.index + "arcOuter"}
+										>
+											<path
+												d={arcKwadrant(d)}
+												className={styleArc}
+												key={d.index + "arcKwadrantPath"}
+												fill={this.getColor(d.data.name)}
+											/>
+										</g>
+										<text
+											transform={this.calculateLocationLabelkwadrant(d, maxRadiusTotal)}
+											className={styleLabelKwadrant}
+										>{d.data.name}</text>
 
 									</>
 								))}
 							</g>
 						</svg>
 					</div>
-					<div
-						className={styleContainerText}
-					>
-						<h1>Details</h1>
-						<ul>
-							<li
-								key='participatief'
-							>
-								Participatief: {Math.round(data[0].value * 10) / 10}
-							</li>
-							<li
-								key='afstemmend'
-							>Afstemmend: {Math.round(data[1].value * 10) / 10}</li>
-							<li
-								key='beleidend'
-							>Begeleidend: {Math.round(data[2].value * 10) / 10}</li>
-							<li
-								key='verduidelijkend'
-							>Verduidelijkend: {Math.round(data[3].value * 10) / 10}</li>
-							<li
-								key='eisend'
-							>Eisend: {Math.round(data[4].value * 10) / 10}</li>
-							<li
-								key='dominerend'
-							>Dominerend: {Math.round(data[5].value * 10) / 10}</li>
-							<li
-								key='opgevend'
-							>Opgevend: {Math.round(data[6].value * 10) / 10}</li>
-							<li
-								key='afwachtend'
-							>Afwachtend: {Math.round(data[7].value * 10) / 10}</li>
-						</ul>
-					</div>
+					{/*<div*/}
+					{/*	className={styleContainerText}*/}
+					{/*>*/}
+					{/*	<h1>Details</h1>*/}
+					{/*	<ul>*/}
+					{/*		<li*/}
+					{/*			key='participatief'*/}
+					{/*		>*/}
+					{/*			Participatief: {Math.round(data[0].value * 10) / 10}*/}
+					{/*		</li>*/}
+					{/*		<li*/}
+					{/*			key='afstemmend'*/}
+					{/*		>Afstemmend: {Math.round(data[1].value * 10) / 10}</li>*/}
+					{/*		<li*/}
+					{/*			key='beleidend'*/}
+					{/*		>Begeleidend: {Math.round(data[2].value * 10) / 10}</li>*/}
+					{/*		<li*/}
+					{/*			key='verduidelijkend'*/}
+					{/*		>Verduidelijkend: {Math.round(data[3].value * 10) / 10}</li>*/}
+					{/*		<li*/}
+					{/*			key='eisend'*/}
+					{/*		>Eisend: {Math.round(data[4].value * 10) / 10}</li>*/}
+					{/*		<li*/}
+					{/*			key='dominerend'*/}
+					{/*		>Dominerend: {Math.round(data[5].value * 10) / 10}</li>*/}
+					{/*		<li*/}
+					{/*			key='opgevend'*/}
+					{/*		>Opgevend: {Math.round(data[6].value * 10) / 10}</li>*/}
+					{/*		<li*/}
+					{/*			key='afwachtend'*/}
+					{/*		>Afwachtend: {Math.round(data[7].value * 10) / 10}</li>*/}
+					{/*	</ul>*/}
+					{/*</div>*/}
 				</div>
 				<button onClick={this.handleDownload}>Download</button>
 

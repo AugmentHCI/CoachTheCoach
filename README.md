@@ -11,3 +11,10 @@ This project tries to create a profile of a coach based on a questionnaire of 60
 6. podman stop/rm coachthechoach   
 7. podman run -dit --name coachthecoach -p 3039:3000 coachthecoach:dev
 8. test on picasso.experiments.cs.kuleuven.be:3039
+
+## Prerequisites
+1: mongodb
+2: nodeserver
+
+## mongodb deployment
+podman run –d -–name mongoCoachTheCoach –p 3037:27017 –v ./data:/data/db –e MONGO_INITDB_ROOT_USERNAME=admin –e MONGO_INITDB_ROOT_PASSWORD=bart mongo:4.4

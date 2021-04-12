@@ -1,5 +1,5 @@
 .container{
-    margin-left: 10%;
+    margin-left: 5%;
     margin-top:5%;
     width: 80%;
     max-height: 90vh;
@@ -9,14 +9,14 @@
 .buttonContainer{
     margin-left: 10%;
     margin-top:2%;
+    margin-bottom: 50px;
     width: 80%;
+    min-height: 10vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-@media screen and (max-height: 992px) {
 
-}
 

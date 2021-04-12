@@ -41,6 +41,48 @@
     flex-wrap: wrap;
 }
 
+.styleLabel{
+    text-anchor: middle;
+    font-size: 15px;
+}
+
+.styleLabelKwadrant{
+    color: white;
+    font-weight: bold;
+    text-anchor: middle;
+    font-size: 20px;
+    alignment-baseline: middle;
+}
+
+@media screen and (max-height: 1000px) {
+    .styleLabelKwadrant{
+        color: white;
+        font-weight: bold;
+        text-anchor: middle;
+        font-size: 10px;
+        alignment-baseline: middle;
+    }
+
+    .styleLabel{
+        text-anchor: middle;
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .styleLabelKwadrant{
+        color: white;
+        font-weight: bold;
+        text-anchor: middle;
+        font-size: 10px;
+        alignment-baseline: middle;
+    }
+    .styleLabel{
+        text-anchor: middle;
+        font-size: 10px;
+    }
+}
+
 
 
 
