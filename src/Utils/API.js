@@ -154,4 +154,56 @@ export async function addPersonality(id,extravert,kritisch,grondig, angstig, fan
 	return res
 }
 
+export async function getPersonalities(){
+	const request = [
+		"http://picasso.experiments.cs.kuleuven.be:3038/api/personality/135792468",
+	].join('');
+	const res = await axios.get(request);
+	return res.data
+}
+
+export async function getProfiles(){
+	const request = [
+		"http://picasso.experiments.cs.kuleuven.be:3038/api/profile/135792468",
+	].join('');
+	const res = await axios.get(request);
+	return res.data
+}
+
+export async function getProfilesRaw(){
+	const request = [
+		"http://picasso.experiments.cs.kuleuven.be:3038/api/profile/Data/135792468",
+	].join('');
+	const res = await axios.get(request);
+	return res.data
+}
+
+export async function getDemographics(){
+	const request = [
+		"http://picasso.experiments.cs.kuleuven.be:3038/api/demographics/135792468",
+	].join('');
+	const res = await axios.get(request);
+	return res.data
+}
+
+export async function checkCredentials(user, password){
+	const data = {
+		user: user,
+		password: password
+	};
+	const request = [
+		"http://picasso.experiments.cs.kuleuven.be:3038/api/admin/password",
+	].join('');
+	// const request = [
+	// 	"http://localhost:5000/api/admin/password",
+	// ].join('');
+
+	let res = await axios.post(request, data)
+	return res
+}
+
+
+
+
+
 

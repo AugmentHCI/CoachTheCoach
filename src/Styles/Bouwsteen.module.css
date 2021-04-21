@@ -19,6 +19,20 @@
     box-shadow: 4px 4px 2px grey;
 }
 
+.title{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+.contentPrint{
+    height: 100%;
+    overflow: auto;
+    white-space:pre-wrap;
+    font-size: 10px;
+}
+
+
 .score{
     width: 100%;
 }

@@ -5,36 +5,41 @@ import { arc as d3Arc, pie as d3Pie } from 'd3-shape';
 import styles from '../Styles/PreviewA4.module.css';
 import classnames from 'classnames';
 import Footer from "../Components/Footer";
+import Title from "../Components/Title";
 
 
 
-export default class Profile extends Component {
+export default class ProfileA4 extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            hoverElement: null,
-            hoverValue: ''
-        };
-        this.handleHover = this.handleHover.bind(this);
-        this.handleLeave = this.handleLeave.bind(this);
+
+
         this.handleDownload = this.handleDownload.bind(this)
     }
 
     handleDownload(){
         window.print()
     }
-
-    createTitle(){
-        if (this.state.hoverElement !== null){
-            return this.state.hoverElement + ':' + this.state.hoverValue
+    getColor(bouwsteen){
+        let colors = {
+            'Participatief': '#146094',
+            'Afstemmend': '#1E82CA',
+            'Begeleidend': '#3BAD4F',
+            'Verduidelijkend': '#257435',
+            'Eisend': '#FAB97E',
+            'Dominerend': '#A85C23',
+            'Opgevend': '#A52624',
+            'Afwachtend': '#E96E6A',
+            'Autonomie': '#006FB7',
+            'Structuur': '#009639',
+            'Controle': '#FF8200',
+            'Chaos': '#E6332A',
         }
-        else{
-            return "Your profile"
-        }
+        return colors[bouwsteen]
     }
 
 
-    createData(){
+    createData() {
         let participatief = localStorage.getItem('participatief');
         let afstemmend = localStorage.getItem('afstemmend');
         let begeleidend = localStorage.getItem('begeleidend');
@@ -45,43 +50,50 @@ export default class Profile extends Component {
         let afwachtend = localStorage.getItem('afwachtend');
 
 
-
         let data = [
-            {"value": participatief, "number": 45 , "name": "Participatief"},
-            {"value": afstemmend, "number": 45 , "name": "Afstemmend"},
-            {"value": begeleidend, "number": 45 , "name": "Begeleidend"},
-            {"value": verduidelijkend, "number": 45 , "name": "Verduidelijkend"},
-            {"value": eisend, "number": 45 , "name": "Eisend"},
-            {"value": dominerend, "number": 45 , "name": "Dominerend"},
-            {"value": opgevend, "number": 45 , "name": "Opgevend"},
-            {"value": afwachtend, "number": 45 , "name": "Afwachtend"},
+            {"value": participatief, "number": 45, "name": "Participatief"},
+            {"value": afstemmend, "number": 45, "name": "Afstemmend"},
+            {"value": begeleidend, "number": 45, "name": "Begeleidend"},
+            {"value": verduidelijkend, "number": 45, "name": "Verduidelijkend"},
+            {"value": eisend, "number": 45, "name": "Eisend"},
+            {"value": dominerend, "number": 45, "name": "Dominerend"},
+            {"value": opgevend, "number": 45, "name": "Opgevend"},
+            {"value": afwachtend, "number": 45, "name": "Afwachtend"},
         ];
 
         return data
     }
 
-    checkHover(name){
-        return name === this.state.hoverElement
+    createDataKwadrant(){
+        return  [
+            { "number": 90, "name": "Autonomie", "rotate": 45},
+            { "number": 90, "name": "Structuur","rotate": -45},
+            { "number": 90, "name": "Controle","rotate": 45},
+            { "number": 90, "name": "Chaos","rotate": -45}
+        ];
     }
 
-    handleHover(d){
-        this.setState({
-            hoverElement: d.data.name,
-            hoverValue: Math.round(d.data.value * 10) / 10
-        })
+    calculateLocationLabelOctant(d, maxRadius){
+        let middleAngle = (d.startAngle + d.endAngle) / 2
+        let x = Math.sin(middleAngle) * maxRadius * 0.6
+        let y = -Math.cos(middleAngle) * maxRadius * 0.6
+        let translate = "translate(" + x.toString() + "," + y.toString() + ")"
+        return translate
     }
 
-    handleLeave(){
-        this.setState({
-            hoverElement: null,
-            hoverValue: ''
-        })
+    calculateLocationLabelkwadrant(d, maxRadius){
+        let middleAngle = (d.startAngle + d.endAngle) / 2
+        let x = Math.sin(middleAngle) * maxRadius * 0.95
+        let y = -Math.cos(middleAngle) * maxRadius * 0.95
+        let translate = "translate(" + x.toString() + "," + y.toString() + ") rotate(" + d.data.rotate + ")"
+        return translate
     }
 
-    render(){
+    renderProfileA4() {
         let data = this.createData();
-        let width = 400;
-        let height = 400;
+        let dataKwadrant = this.createDataKwadrant()
+        let width = 450;
+        let height = 450;
 
         const color = d3.scaleOrdinal().range([
             '#146094',
@@ -95,14 +107,15 @@ export default class Profile extends Component {
 
         ]);
 
-        let maxRadius = Math.min(width, height) / 2 - 1;
-        let widthSVG = 2*maxRadius + 10;
-        let heightSVG = 2*maxRadius + 10;
-        let innerRadius = maxRadius * 0.15;
+        let maxRadiusTotal = Math.min(width, height) / 2 - 1;
+        let widthSVG = 2 * maxRadiusTotal + 10;
+        let heightSVG = 2 * maxRadiusTotal + 10;
+        let innerRadius = maxRadiusTotal * 0.15;
+        let maxRadius = 0.88 * maxRadiusTotal
         let fontSize = innerRadius / 1.2
         let radius = d3.scaleLinear()
-            .domain([0,7])
-            .range([innerRadius,maxRadius]);
+            .domain([0, 7])
+            .range([innerRadius, maxRadius]);
 
 
         let arc = d3Arc()
@@ -115,30 +128,30 @@ export default class Profile extends Component {
             .innerRadius(innerRadius)
             .outerRadius(maxRadius);
 
+        let arcKwadrant = d3Arc()
+            .innerRadius(maxRadius)
+            .outerRadius(maxRadiusTotal);
+
         const pie = d3Pie()
             .sort(null)
-            .value(function(d) {
+            .value(function (d) {
                 return d.number;
             });
 
         const dataPie = pie(data);
-
+        const dataPieKwadrant = pie(dataKwadrant)
         let styleOuter = classnames(styles.styleOuter);
         let styleArc = classnames(styles.styleArc);
         let styleArcHover = classnames(styles.styleArcHover);
         let styleText = classnames(styles.styleText);
         let styleContainer = classnames(styles.styleContainer);
         let styleContainerProfile = classnames(styles.styleContainerProfile);
-        let styleContainerText = classnames(styles.styleContainerText);
-        let styleButton = classnames(styles.styleButton)
+        let styleLabel = classnames(styles.styleLabel)
+        let styleLabelKwadrant = classnames(styles.styleLabelKwadrant)
 
-        return(
+
+        return (
             <>
-                <h1
-                    id='printtitle'
-                >
-                    Download preview
-                </h1>
                 <div
                     id="ProfileContainer"
                     className={styleContainer}
@@ -146,34 +159,23 @@ export default class Profile extends Component {
                     <div
                         className={styleContainerProfile}
                     >
-                        <h1>{this.createTitle()}  </h1>
+                        <h1>Persoonlijk Coach profiel</h1>
                         <svg
-                            id="svgProfile"
+                            id="svgProfileA4"
                             width={widthSVG}
                             height={heightSVG}>
-                            <text
-                                transform={`translate(${widthSVG / 2}, ${(heightSVG / 2) + (fontSize/2.2)})`}
-                                className={styleText}
-                                style={{fontSize: fontSize}}
-
-                            >
-                                {this.state.hoverValue}
-                            </text>
-                            <g transform={`translate(${widthSVG / 2}, ${(heightSVG / 2) } )`}>
+                            <g transform={`translate(${widthSVG / 2}, ${(heightSVG / 2)} )`}>
                                 {dataPie.map(d => (
                                     <>
                                         <g
                                             className="arcOuter"
                                             key={d.index + "arcOuter"}
                                             id={d.index + "arcOuter"}
-
                                         >
                                             <path
                                                 d={arcOuter(d)}
                                                 className={styleOuter}
                                                 key={d.index + "arcOuterPath"}
-                                                onMouseOver={() => this.handleHover(d)}
-                                                onMouseLeave={() => this.handleLeave()}
                                             />
                                         </g>
                                         <g
@@ -184,41 +186,89 @@ export default class Profile extends Component {
                                         >
                                             <path
                                                 d={arc(d)}
-                                                className={this.checkHover(d.data.name) ? styleArcHover : styleArc}
+                                                className={styleArc}
                                                 fill={color(d.data.name)}
                                                 key={d.index + "arcPath"}
                                                 id={d.index + "arcPath"}
-                                                onMouseOver={() => this.handleHover(d)}
-                                                onMouseLeave={() => this.handleLeave()}
+
                                             />
                                         </g>
+                                    </>
+                                ))}
+                            </g>
+                            <g transform={`translate(${widthSVG / 2}, ${(heightSVG / 2)} )`}>
+                                {dataPie.map(d => (
+                                    <text
+                                        transform={this.calculateLocationLabelOctant(d, maxRadius)}
+                                        className={styleLabel}
+                                    >{d.data.name + ": " + Math.round(d.data.value * 10) / 10}</text>
+                                ))}
+                            </g>
+                            <g transform={`translate(${widthSVG / 2}, ${(heightSVG / 2)} )`}>
+                                {dataPieKwadrant.map(d => (
+                                    <>
+                                        <g
+                                            className="arcKwadrant"
+                                            key={d.index + "arcOuter"}
+                                            id={d.index + "arcOuter"}
+                                        >
+                                            <path
+                                                d={arcKwadrant(d)}
+                                                className={styleArc}
+                                                key={d.index + "arcKwadrantPath"}
+                                                fill={this.getColor(d.data.name)}
+                                            />
+                                        </g>
+                                        <text
+                                            transform={this.calculateLocationLabelkwadrant(d, maxRadiusTotal)}
+                                            className={styleLabelKwadrant}
+                                        >{d.data.name}</text>
 
                                     </>
                                 ))}
                             </g>
                         </svg>
                     </div>
-                    <div
-                        className={styleContainerText}
-                    >
-                        <h1>Details</h1>
-                        <ul>
-                            <li>Participatief: {Math.round(data[0].value * 10) / 10}</li>
-                            <li>Afstemmend: {Math.round(data[1].value * 10) / 10}</li>
-                            <li>Begeleidend: {Math.round(data[2].value * 10) / 10}</li>
-                            <li>Verduidelijkend: {Math.round(data[3].value * 10) / 10}</li>
-                            <li>Eisend: {Math.round(data[4].value * 10) / 10}</li>
-                            <li>Dominerend: {Math.round(data[5].value * 10) / 10}</li>
-                            <li>Opgevend: {Math.round(data[6].value * 10) / 10}</li>
-                            <li>Afwachtend: {Math.round(data[7].value * 10) / 10}</li>
-                        </ul>
-                    </div>
 
                 </div>
-                <button
-                    id="printbutton"
-                    className={styleButton}
-                    onClick={this.handleDownload}>Download</button>
+            </>)
+    }
+
+    svg2png(){
+        // https://mybyways.com/blog/convert-svg-to-png-using-your-browser
+        let svg = document.getElementById('svgProfileA4')
+        let canvas = document.getElementById('canvas')
+        canvas.width = 400;
+        canvas.height = 400;
+        let data = new XMLSerializer().serializeToString(svg);
+        let win = window.URL || window.webkitURL || window;
+        let img = new Image();
+        let blob = new Blob([data], { type: 'image/svg+xml' });
+        let url = win.createObjectURL(blob);
+        img.onload = function () {
+            canvas.getContext('2d').drawImage(img, 0, 0);
+            win.revokeObjectURL(url);
+            let uri = canvas.toDataURL('image/png').replace('image/png', 'octet/stream');
+            let a = document.createElement('a');
+            document.body.appendChild(a);
+            a.style = 'display: none';
+            a.href = uri
+            a.download = (svg.id || svg.svg.getAttribute('name') || svg.getAttribute('aria-label') || 'untitled') + '.png';
+            a.click();
+            window.URL.revokeObjectURL(uri);
+            document.body.removeChild(a);
+        };
+        img.src = url;
+
+    }
+
+    render(){
+
+        return(
+            <>
+                {this.renderProfileA4()}
+                <canvas id="canvas"></canvas>
+                <button id="printbutton" onClick={this.handleDownload}>"print"</button>
                 <Footer/>
 
             </>

@@ -26,7 +26,7 @@ export default class Personality extends Component {
         let grondig = data['question3']
         let angstig = data['question4']
         let fantasie = data['question5']
-        let gereserveerd = data['questions6']
+        let gereserveerd = data['question6']
         let sympathiek = data['question7']
         let lui = data['question8']
         let kalm = data['question9']

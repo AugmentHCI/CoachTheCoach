@@ -3,9 +3,25 @@ import styles from '../Styles/ButtonNext.module.css';
 
 
 export default class ButtonNext extends Component {
-    constructor(props) {
-        super(props);
+
+    getDisplayName(){
+        if (this.props.displayName === undefined){
+            return "Next"
+        }
+        else{
+            return this.props.displayName
+        }
     }
+
+    getId(){
+        if (this.props.id === undefined){
+            return "ButtonNext"
+        }
+        else{
+            return this.props.id
+        }
+    }
+
     render() {
         const styleButton = styles.button;
 
@@ -13,8 +29,9 @@ export default class ButtonNext extends Component {
             <button
                 className={styleButton}
                 onClick={this.props.handleClick}
+                id={this.getId()}
             >
-                Next
+                {this.getDisplayName()}
             </button>)
     }
 

@@ -7,6 +7,7 @@ import classnames from 'classnames';
 import Footer from "../Components/Footer";
 import Bouwsteen from "../Components/Bouwsteen";
 import Title from "../Components/Title";
+import ButtonNext from "../Components/ButtonNext";
 
 
 
@@ -18,7 +19,8 @@ export default class Profile extends Component {
 			hoverValue: '',
 			details: false,
 			selectedBouwsteen: null,
-			selectedScore: 0
+			selectedScore: 0,
+			print: false
 		};
 		this.handleHover = this.handleHover.bind(this);
 		this.handleLeave = this.handleLeave.bind(this);
@@ -36,17 +38,16 @@ export default class Profile extends Component {
 	}
 
 	handleDownload() {
-		this.props.history.push({
-			pathname: '/PreviewA4',
-		})
-	}
-
-	createTitle() {
-		if (this.state.hoverElement !== null) {
-			return this.state.hoverElement + ':' + this.state.hoverValue
-		} else {
-			return "Your profile"
-		}
+		this.setState({
+			print: true
+		},
+			function print() {
+				window.print()
+				this.setState({
+					print: false
+				})
+			}.bind(this)
+		)
 	}
 
 	getColor(bouwsteen){
@@ -312,6 +313,15 @@ export default class Profile extends Component {
 		return translate
 	}
 
+	calculateLocationLabelkwadrantPrint(d, maxRadius){
+		let middleAngle = (d.startAngle + d.endAngle) / 2
+		let x = Math.sin(middleAngle) * maxRadius * 0.9
+		let y = -Math.cos(middleAngle) * maxRadius * 0.9
+		let translate = "translate(" + x.toString() + "," + y.toString() + ") rotate(" + d.data.rotate + ")"
+		return translate
+	}
+
+
 
 	renderProfile() {
 		let data = this.createData();
@@ -370,7 +380,6 @@ export default class Profile extends Component {
 		let styleText = classnames(styles.styleText);
 		let styleContainer = classnames(styles.styleContainer);
 		let styleContainerProfile = classnames(styles.styleContainerProfile);
-		let styleContainerText = classnames(styles.styleContainerText);
 		let styleLabel = classnames(styles.styleLabel)
 		let styleLabelKwadrant = classnames(styles.styleLabelKwadrant)
 
@@ -440,6 +449,9 @@ export default class Profile extends Component {
 									<text
 										transform={this.calculateLocationLabelOctant(d, maxRadius)}
 										className={styleLabel}
+										onMouseOver={() => this.handleHover(d)}
+										onMouseLeave={() => this.handleLeave()}
+										onMouseDown={()=> this.handleClick(d)}
 									>{d.data.name}</text>
 								))}
 							</g>
@@ -468,42 +480,8 @@ export default class Profile extends Component {
 							</g>
 						</svg>
 					</div>
-					{/*<div*/}
-					{/*	className={styleContainerText}*/}
-					{/*>*/}
-					{/*	<h1>Details</h1>*/}
-					{/*	<ul>*/}
-					{/*		<li*/}
-					{/*			key='participatief'*/}
-					{/*		>*/}
-					{/*			Participatief: {Math.round(data[0].value * 10) / 10}*/}
-					{/*		</li>*/}
-					{/*		<li*/}
-					{/*			key='afstemmend'*/}
-					{/*		>Afstemmend: {Math.round(data[1].value * 10) / 10}</li>*/}
-					{/*		<li*/}
-					{/*			key='beleidend'*/}
-					{/*		>Begeleidend: {Math.round(data[2].value * 10) / 10}</li>*/}
-					{/*		<li*/}
-					{/*			key='verduidelijkend'*/}
-					{/*		>Verduidelijkend: {Math.round(data[3].value * 10) / 10}</li>*/}
-					{/*		<li*/}
-					{/*			key='eisend'*/}
-					{/*		>Eisend: {Math.round(data[4].value * 10) / 10}</li>*/}
-					{/*		<li*/}
-					{/*			key='dominerend'*/}
-					{/*		>Dominerend: {Math.round(data[5].value * 10) / 10}</li>*/}
-					{/*		<li*/}
-					{/*			key='opgevend'*/}
-					{/*		>Opgevend: {Math.round(data[6].value * 10) / 10}</li>*/}
-					{/*		<li*/}
-					{/*			key='afwachtend'*/}
-					{/*		>Afwachtend: {Math.round(data[7].value * 10) / 10}</li>*/}
-					{/*	</ul>*/}
-					{/*</div>*/}
-				</div>
-				<button onClick={this.handleDownload}>Download</button>
 
+				</div>
 			</>)
 	}
 
@@ -524,10 +502,275 @@ export default class Profile extends Component {
 
 	}
 
-	render() {
+	renderDetailsPrint(){
+		let participatief = Math.round(localStorage.getItem('participatief') * 10) / 10;
+		let afstemmend = Math.round(localStorage.getItem('afstemmend') * 10) / 10;
+		let begeleidend = Math.round(localStorage.getItem('begeleidend') * 10) / 10;
+		let verduidelijkend = Math.round(localStorage.getItem('verduidelijkend') * 10) / 10;
+		let eisend = Math.round(localStorage.getItem('eisend') * 10) / 10;
+		let dominerend = Math.round(localStorage.getItem('dominerend') * 10) / 10;
+		let opgevend = Math.round(localStorage.getItem('opgevend') * 10) / 10;
+		let afwachtend = Math.round(localStorage.getItem('afwachtend') * 10) / 10;
+
+		return(
+			<>
+				<Bouwsteen
+					name={"Participatief"}
+					content={this.getDetailsBouwsteen("Participatief")}
+					color={this.getColor("Participatief")}
+					score={participatief}
+					print={true}
+				/>
+				<Bouwsteen
+					name={"Afstemmend"}
+					content={this.getDetailsBouwsteen("Afstemmend")}
+					color={this.getColor("Afstemmend")}
+					score={afstemmend}
+					print={true}
+				/>
+				<br/><br/><br/><br/><br/>
+				<br/><br/><br/><br/><br/>
+				<br/><br/><br/>
+				<Bouwsteen
+					name={"Begeleidend"}
+					content={this.getDetailsBouwsteen("Begeleidend")}
+					color={this.getColor("Begeleidend")}
+					score={begeleidend}
+					print={true}
+				/>
+				<Bouwsteen
+					name={"Verduidelijkend"}
+					content={this.getDetailsBouwsteen("Verduidelijkend")}
+					color={this.getColor("Verduidelijkend")}
+					score={verduidelijkend}
+					print={true}
+				/>
+				<br/><br/><br/><br/><br/>
+				<br/><br/><br/><br/><br/>
+				<br/><br/><br/><br/><br/>
+				<br/><br/>
+				<Bouwsteen
+					name={"Eisend"}
+					content={this.getDetailsBouwsteen("Eisend")}
+					color={this.getColor("Eisend")}
+					score={eisend}
+					print={true}
+				/>
+				<Bouwsteen
+					name={"Dominerend"}
+					content={this.getDetailsBouwsteen("Dominerend")}
+					color={this.getColor("Dominerend")}
+					score={dominerend}
+					print={true}
+				/>
+				<br/><br/><br/><br/><br/>
+				<br/><br/><br/><br/><br/>
+				<br/><br/><br/>
+				<Bouwsteen
+					name={"Opgevend"}
+					content={this.getDetailsBouwsteen("Opgevend")}
+					color={this.getColor("Opgevend")}
+					score={opgevend}
+					print={true}
+				/>
+				<Bouwsteen
+					name={"Afwachtend"}
+					content={this.getDetailsBouwsteen("Afwachtend")}
+					color={this.getColor("Afwachtend")}
+					score={afwachtend}
+					print={true}
+				/>
+			</>
+		)
+	}
+
+	renderProfilePrint() {
+		let data = this.createData();
+		let dataKwadrant = this.createDataKwadrant()
+		let width = 450;
+		let height = 450;
+
+		const color = d3.scaleOrdinal().range([
+			'#146094',
+			'#1E82CA',
+			'#3BAD4F',
+			'#257435',
+			'#FAB97E',
+			'#A85C23',
+			'#A52624',
+			'#E96E6A',
+
+		]);
+
+		let maxRadiusTotal = Math.min(width, height) / 2 - 1;
+		let widthSVG = 2 * maxRadiusTotal + 10;
+		let heightSVG = 2 * maxRadiusTotal + 10;
+		let innerRadius = maxRadiusTotal * 0.05;
+		let maxRadius = 0.8 * maxRadiusTotal
+		let radius = d3.scaleLinear()
+			.domain([0, 7])
+			.range([innerRadius, maxRadius]);
+
+
+		let arc = d3Arc()
+			.innerRadius(innerRadius)
+			.outerRadius(function (d) {
+				return radius(Math.round(d.data.value * 10) / 10)
+			});
+
+		let arcOuter = d3Arc()
+			.innerRadius(innerRadius)
+			.outerRadius(maxRadius);
+
+		let arcKwadrant = d3Arc()
+			.innerRadius(maxRadius)
+			.outerRadius(maxRadiusTotal);
+
+		const pie = d3Pie()
+			.sort(null)
+			.value(function (d) {
+				return d.number;
+			});
+
+		const dataPie = pie(data);
+		const dataPieKwadrant = pie(dataKwadrant)
+		let styleOuter = classnames(styles.styleOuter);
+		let styleArc = classnames(styles.styleArc);
+		let styleContainer = classnames(styles.styleContainer);
+		let styleContainerProfile = classnames(styles.styleContainerProfile);
+		let styleLabel = classnames(styles.styleLabelPrint)
+		let styleLabelKwadrant = classnames(styles.styleLabelKwadrantPrint)
+		let styleTitle = classnames(styles.titlePrint)
+
 		return (
 			<>
-				{this.state.details ?  this.renderDetails() : this.renderProfile()}
+				<div
+					id="ProfileContainer"
+					className={styleContainer}
+				>
+					<div
+						className={styleContainerProfile}
+					>
+						<h1
+							className={styleTitle}
+						>Persoonlijk Coachprofiel</h1>
+						<br/><br/><br/><br/><br/>
+						<br/><br/><br/>
+						<svg
+							id="svgProfileA4"
+							width={widthSVG}
+							height={heightSVG}>
+							<g transform={`translate(${widthSVG / 2}, ${(heightSVG / 2)} )`}>
+								{dataPie.map(d => (
+									<>
+										<g
+											className="arcOuter"
+											key={d.index + "arcOuter"}
+											id={d.index + "arcOuter"}
+										>
+											<path
+												d={arcOuter(d)}
+												className={styleOuter}
+												key={d.index + "arcOuterPath"}
+											/>
+										</g>
+										<g
+											className="arc"
+											pointerEvents="all"
+											key={d.index + "arcPathGroup"}
+											id={d.index + "arc"}
+										>
+											<path
+												d={arc(d)}
+												className={styleArc}
+												fill={color(d.data.name)}
+												key={d.index + "arcPath"}
+												id={d.index + "arcPath"}
+
+											/>
+										</g>
+									</>
+								))}
+							</g>
+							<g transform={`translate(${widthSVG / 2}, ${(heightSVG / 2)} )`}>
+								{dataPie.map(d => (
+									<text
+										transform={this.calculateLocationLabelOctant(d, maxRadius)}
+										className={styleLabel}
+									>{d.data.name + ": " + Math.round(d.data.value * 10) / 10}</text>
+								))}
+							</g>
+							<g transform={`translate(${widthSVG / 2}, ${(heightSVG / 2)} )`}>
+								{dataPieKwadrant.map(d => (
+									<>
+										<g
+											className="arcKwadrant"
+											key={d.index + "arcOuter"}
+											id={d.index + "arcOuter"}
+										>
+											<path
+												d={arcKwadrant(d)}
+												className={styleArc}
+												key={d.index + "arcKwadrantPath"}
+												fill={this.getColor(d.data.name)}
+											/>
+										</g>
+										<text
+											transform={this.calculateLocationLabelkwadrantPrint(d, maxRadiusTotal)}
+											className={styleLabelKwadrant}
+										>{d.data.name}</text>
+
+									</>
+								))}
+							</g>
+						</svg>
+					</div>
+
+				</div>
+			</>)
+	}
+
+	renderPrint(){
+		return(
+			<>
+
+				{this.renderProfilePrint()}
+				<br/><br/><br/><br/><br/>
+				<br/><br/><br/><br/><br/>
+				<br/><br/><br/><br/><br/>
+
+
+				{this.renderDetailsPrint()}
+			</>
+		)
+	}
+
+	getRenderFunction(){
+		if (this.state.print){
+			return this.renderPrint()
+		}
+		else{
+			if (this.state.details){
+				return this.renderDetails()
+			}
+			else{
+				return this.renderProfile()
+			}
+		}
+	}
+
+	render() {
+		let styleButtonContainer = classnames(styles.styleButtonContainer);
+
+		return (
+			<>
+				{this.getRenderFunction()}
+				{this.state.details ? <div/> :
+					<div className={styleButtonContainer}>
+						<ButtonNext id="printbutton"  handleClick={this.handleDownload} displayName={"Print"}  />
+					</div>
+				}
+
 				<Footer/>
 			</>
 		)

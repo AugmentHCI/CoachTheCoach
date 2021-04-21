@@ -8,7 +8,9 @@ export default class Bouwsteen extends Component {
     render() {
         let styleContainer = classnames(styles.container)
         let styleContent = classnames(styles.content)
+        let styleContentPrint = classnames(styles.contentPrint)
         let styleTitle = classnames(styles.title)
+        let styleTitlePrint = classnames(styles.titlePrint)
         let styleButton = classnames(styles.button)
         let styleScore = classnames(styles.score)
         return (
@@ -16,24 +18,33 @@ export default class Bouwsteen extends Component {
                 <div
                     className={styleContainer}
                 >
-                    <h1
-                        style={{backgroundColor: this.props.color}}
-                        className={styleTitle}
-                    >{this.props.name}</h1>
+                    {this.props.print ?
+                        <h1
+                            style={{color: this.props.color}}
+                            className={styleTitlePrint}
+                        >{this.props.name}</h1>
+                        :
+                        <h1
+
+                            style={{backgroundColor: this.props.color}}
+                            className={styleTitle}
+                        >{this.props.name}</h1>
+                    }
                     <h2
                         style={{color: this.props.color}}
                         className={styleScore}
                     >
-                        Your score: {this.props.score}
+                        Jouw score: {this.props.score}
                     </h2>
                     <p
-                        className={styleContent}
+                        className={this.props.print ? styleContentPrint: styleContent}
                         style={{color: this.props.color}}
 
                     >{this.props.content}</p>
                 </div>
 
                 <button
+                    id="backToProfile"
                     className={styleButton}
                     onClick={this.props.handleGoBackToProfile}
                 >
