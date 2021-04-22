@@ -7,6 +7,9 @@ import styles from '../Styles/Bouwsteen.module.css';
 export default class Bouwsteen extends Component {
     render() {
         let styleContainer = classnames(styles.container)
+        let styleContainerTitle = classnames(styles.containerTitle)
+        let styleLogo = classnames(styles.logo)
+
         let styleContent = classnames(styles.content)
         let styleContentPrint = classnames(styles.contentPrint)
         let styleTitle = classnames(styles.title)
@@ -18,18 +21,26 @@ export default class Bouwsteen extends Component {
                 <div
                     className={styleContainer}
                 >
+
                     {this.props.print ?
                         <h1
                             style={{color: this.props.color}}
                             className={styleTitlePrint}
                         >{this.props.name}</h1>
                         :
-                        <h1
+                        <div
+                            className={styleContainerTitle}
+                        >
+                            <h1
 
-                            style={{backgroundColor: this.props.color}}
-                            className={styleTitle}
-                        >{this.props.name}</h1>
+                                style={{backgroundColor: this.props.color}}
+                                className={styleTitle}
+                            >{this.props.name}</h1>
+                            <img src={this.props.logo} className={styleLogo} alt={this.props.name}/>
+                        </div>
                     }
+
+
                     <h2
                         style={{color: this.props.color}}
                         className={styleScore}
@@ -37,7 +48,7 @@ export default class Bouwsteen extends Component {
                         Jouw score: {this.props.score}
                     </h2>
                     <p
-                        className={this.props.print ? styleContentPrint: styleContent}
+                        className={this.props.print ? styleContentPrint : styleContent}
                         style={{color: this.props.color}}
 
                     >{this.props.content}</p>

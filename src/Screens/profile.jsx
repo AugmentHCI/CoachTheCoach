@@ -8,6 +8,14 @@ import Footer from "../Components/Footer";
 import Bouwsteen from "../Components/Bouwsteen";
 import Title from "../Components/Title";
 import ButtonNext from "../Components/ButtonNext";
+import logo_participatief from "../Images/logo_participatief.png"
+import logo_afstemmend from "../Images/logo_afstemmend.png"
+import logo_begeleidend from "../Images/logo_begeleidend.png"
+import logo_verduidelijkend from "../Images/logo_verduidelijkend.png"
+import logo_eisend from "../Images/logo_eisend.png"
+import logo_dominerend from "../Images/logo_dominerend.png"
+import logo_opgevend from "../Images/logo_opgevend.png"
+import logo_afwachtend from "../Images/logo_afwachtend.png"
 
 
 
@@ -66,6 +74,20 @@ export default class Profile extends Component {
 			'Chaos': '#E6332A',
 		}
 		return colors[bouwsteen]
+	}
+
+	getLogo(bouwsteen){
+		let logos = {
+			'Participatief': logo_participatief,
+			'Afstemmend': logo_afstemmend,
+			'Begeleidend': logo_begeleidend,
+			'Verduidelijkend': logo_verduidelijkend,
+			'Eisend': logo_eisend,
+			'Dominerend': logo_dominerend,
+			'Opgevend': logo_opgevend,
+			'Afwachtend': logo_afwachtend,
+		}
+		return logos[bouwsteen]
 	}
 
 	getDetailsBouwsteen(bouwsteen){
@@ -490,6 +512,7 @@ export default class Profile extends Component {
 		let score = this.state.selectedScore
 		let details = this.getDetailsBouwsteen(bouwsteen)
 		let color = this.getColor(bouwsteen)
+		let logo = this.getLogo(bouwsteen)
 		return(
 			<Bouwsteen
 				name={bouwsteen}
@@ -497,6 +520,7 @@ export default class Profile extends Component {
 				handleGoBackToProfile={this.handleGoBackToProfile}
 				color={color}
 				score={score}
+				logo={logo}
 			/>
 		)
 
@@ -520,6 +544,7 @@ export default class Profile extends Component {
 					color={this.getColor("Participatief")}
 					score={participatief}
 					print={true}
+					logo={this.getLogo("Participatief")}
 				/>
 				<Bouwsteen
 					name={"Afstemmend"}
@@ -527,6 +552,8 @@ export default class Profile extends Component {
 					color={this.getColor("Afstemmend")}
 					score={afstemmend}
 					print={true}
+					logo={this.getLogo("Afstemmend")}
+
 				/>
 				<br/><br/><br/><br/><br/>
 				<br/><br/><br/><br/><br/>
@@ -537,6 +564,8 @@ export default class Profile extends Component {
 					color={this.getColor("Begeleidend")}
 					score={begeleidend}
 					print={true}
+					logo={this.getLogo("Begeleidend")}
+
 				/>
 				<Bouwsteen
 					name={"Verduidelijkend"}
@@ -544,6 +573,8 @@ export default class Profile extends Component {
 					color={this.getColor("Verduidelijkend")}
 					score={verduidelijkend}
 					print={true}
+					logo={this.getLogo("Verduidelijkend")}
+
 				/>
 				<br/><br/><br/><br/><br/>
 				<br/><br/><br/><br/><br/>
@@ -555,6 +586,8 @@ export default class Profile extends Component {
 					color={this.getColor("Eisend")}
 					score={eisend}
 					print={true}
+					logo={this.getLogo("Eisend")}
+
 				/>
 				<Bouwsteen
 					name={"Dominerend"}
@@ -562,6 +595,8 @@ export default class Profile extends Component {
 					color={this.getColor("Dominerend")}
 					score={dominerend}
 					print={true}
+					logo={this.getLogo("Dominerend")}
+
 				/>
 				<br/><br/><br/><br/><br/>
 				<br/><br/><br/><br/><br/>
@@ -572,6 +607,8 @@ export default class Profile extends Component {
 					color={this.getColor("Opgevend")}
 					score={opgevend}
 					print={true}
+					logo={this.getLogo("Opgevend")}
+
 				/>
 				<Bouwsteen
 					name={"Afwachtend"}
@@ -579,6 +616,8 @@ export default class Profile extends Component {
 					color={this.getColor("Afwachtend")}
 					score={afwachtend}
 					print={true}
+					logo={this.getLogo("Afwachtend")}
+
 				/>
 			</>
 		)

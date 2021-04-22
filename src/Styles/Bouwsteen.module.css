@@ -7,6 +7,20 @@
     justify-content: flex-start;
     margin-left: 5%;
 }
+
+.containerTitle{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo{
+    width: 50px;
+    height: 50px;
+}
+
+
 .content{
     height: 100%;
     overflow: auto;
@@ -22,6 +36,7 @@
 .title{
     padding-left: 10px;
     padding-right: 10px;
+    margin-right: 5px;
 }
 
 
