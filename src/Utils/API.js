@@ -1,4 +1,5 @@
 import axios from 'axios'
+import User from '../auth.json'
 
 
 export async function addProfile(id, participatief, afstemmend, begeleidend, verduidelijkend,
@@ -16,14 +17,18 @@ export async function addProfile(id, participatief, afstemmend, begeleidend, ver
 		opgevend: opgevend,
 		afwachtend: afwachtend
 	};
-	const request = [
-		"http://picasso.experiments.cs.kuleuven.be:3038/api/profile",
-	].join('');
-	// const request = [
-	// 	"http://localhost:5000/api/profile",
-	// ].join('');
-	const res = await axios.post(request, data);
-	return res
+	let userName = User.username
+	let passWord = User.password
+	axios({
+		method: 'post',
+		url: 'http://picasso.experiments.cs.kuleuven.be:3038/api/profile',
+		auth: {username: userName, password:passWord},
+		data: data
+	}).then(
+		function (response){
+			return response
+		}
+	)
 }
 
 export async function addDataProfile(id,q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,
@@ -96,14 +101,18 @@ export async function addDataProfile(id,q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,
 		q59: q59,
 		q60: q60,
 	}
-	const request = [
-		"http://picasso.experiments.cs.kuleuven.be:3038/api/profile/data",
-	].join('');
-	// const request = [
-	// 	"http://localhost:5000/api/profile/data",
-	// ].join('');
-	const res = await axios.post(request, data);
-	return res
+	let userName = User.username
+	let passWord = User.password
+	axios({
+		method: 'post',
+		url: 'http://picasso.experiments.cs.kuleuven.be:3038/api/profile/data',
+		auth: {username: userName, password:passWord},
+		data: data
+	}).then(
+		function (response){
+			return response
+		}
+	)
 }
 
 
@@ -119,14 +128,19 @@ export async function addDemographics(id,age,gender,sport,ageSporters,experience
 		nbHours: nbHours,
 		diploma: diploma
 	};
-	const request = [
-		"http://picasso.experiments.cs.kuleuven.be:3038/api/demographics",
-	].join('');
-	// const request = [
-	// 	"http://localhost:5000/api/demographics",
-	// ].join('');
-	const res = await axios.post(request, data);
-	return res
+	let userName = User.username
+	let passWord = User.password
+	axios({
+		method: 'post',
+		url: 'http://picasso.experiments.cs.kuleuven.be:3038/api/demographics',
+		auth: {username: userName, password:passWord},
+		data: data
+	}).then(
+		function (response){
+			return response
+		}
+	)
+
 }
 
 
@@ -144,62 +158,74 @@ export async function addPersonality(id,extravert,kritisch,grondig, angstig, fan
 		kalm: kalm,
 		creatief: creatief
 	};
-	const request = [
-		"http://picasso.experiments.cs.kuleuven.be:3038/api/personality",
-	].join('');
-	// const request = [
-	// 	"http://localhost:5000/api/personality",
-	// ].join('');
-	const res = await axios.post(request, data);
-	return res
+	let userName = User.username
+	let passWord = User.password
+	axios({
+		method: 'post',
+		url: 'http://picasso.experiments.cs.kuleuven.be:3038/api/personality',
+		auth: {username: userName, password:passWord},
+		data: data
+	}).then(
+		function (response){
+			return response
+		}
+	)
 }
 
 export async function getPersonalities(){
-	const request = [
-		"http://picasso.experiments.cs.kuleuven.be:3038/api/personality/135792468",
-	].join('');
-	const res = await axios.get(request);
-	return res.data
+	let userName = User.username
+	let passWord = User.password
+	return axios({
+		method: 'get',
+		url: 'http://picasso.experiments.cs.kuleuven.be:3038/api/personality/135792468',
+		auth: {username: userName, password:passWord},
+	})
+
 }
 
 export async function getProfiles(){
-	const request = [
-		"http://picasso.experiments.cs.kuleuven.be:3038/api/profile/135792468",
-	].join('');
-	const res = await axios.get(request);
-	return res.data
+	let userName = User.username
+	let passWord = User.password
+	return axios({
+		method: 'get',
+		url: 'http://picasso.experiments.cs.kuleuven.be:3038/api/profile/135792468',
+		auth: {username: userName, password:passWord},
+	})
 }
 
 export async function getProfilesRaw(){
-	const request = [
-		"http://picasso.experiments.cs.kuleuven.be:3038/api/profile/Data/135792468",
-	].join('');
-	const res = await axios.get(request);
-	return res.data
+	let userName = User.username
+	let passWord = User.password
+	return axios({
+		method: 'get',
+		url: 'http://picasso.experiments.cs.kuleuven.be:3038/api/profile/Data/135792468',
+		auth: {username: userName, password:passWord},
+	})
 }
 
 export async function getDemographics(){
-	const request = [
-		"http://picasso.experiments.cs.kuleuven.be:3038/api/demographics/135792468",
-	].join('');
-	const res = await axios.get(request);
-	return res.data
+	let userName = User.username
+	let passWord = User.password
+	return axios({
+		method: 'get',
+		url: 'http://picasso.experiments.cs.kuleuven.be:3038/api/demographics/135792468',
+		auth: {username: userName, password:passWord},
+	})
 }
 
-export async function checkCredentials(user, password){
+export async function checkCredentialsAPI(user, password){
 	const data = {
-		user: user,
-		password: password
+		user: "asdf",
+		password: "asdf"
 	};
-	const request = [
-		"http://picasso.experiments.cs.kuleuven.be:3038/api/admin/password",
-	].join('');
-	// const request = [
-	// 	"http://localhost:5000/api/admin/password",
-	// ].join('');
-
-	let res = await axios.post(request, data)
-	return res
+	let userName = User.username
+	let passWord = User.password
+	return axios({
+		method: 'post',
+		url: 'http://picasso.experiments.cs.kuleuven.be:3038/api/admin/password',
+		auth: {username: userName, password: passWord},
+		data: data
+	})
 }
 
 

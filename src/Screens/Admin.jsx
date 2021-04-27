@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {checkCredentials, getDemographics, getPersonalities, getProfiles, getProfilesRaw} from "../Utils/API";
+import {checkCredentialsAPI, getDemographics, getPersonalities, getProfiles, getProfilesRaw} from "../Utils/API";
 import DownloadRow from "../Components/DownloadRow";
 import Login from "../Components/Login";
 
@@ -23,11 +23,8 @@ export default class Admin extends Component {
         let user = sessionStorage.getItem('username')
         let password = sessionStorage.getItem('password')
         if (user !== null && password !== null){
-            console.log("checking credentials")
-            let response = await checkCredentials(user, password)
-            console.log(response)
+            let response = await checkCredentialsAPI(user, password)
             let check = (response !== undefined && response !== null && response.data === 'credentials are ok')
-            console.log(check)
             if (check){
                 this.setState({
                     login: true
@@ -52,10 +49,10 @@ export default class Admin extends Component {
             .then(values => {
                 this.setState({
                     loading: false,
-                    profiles: values[0],
-                    profilesRaw: values[1],
-                    personalities: values[2],
-                    demographics: values[3]
+                    profiles: values[0]['data'],
+                    profilesRaw: values[1]['data'],
+                    personalities: values[2]['data'],
+                    demographics: values[3]['data']
                 })
             })
     }
@@ -89,11 +86,10 @@ export default class Admin extends Component {
         )
     }
 
-    componentWillMount() {
-        this.checkCredentials()
-    }
+
 
     async componentDidMount() {
+        this.checkCredentials()
         this.getAllData()
     }
 
