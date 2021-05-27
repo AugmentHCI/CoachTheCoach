@@ -21,7 +21,7 @@ export default class Questionnaire extends Component {
 	
 	goToProfile(){
 		this.props.history.push({
-			pathname: '/Profile',
+			pathname: '/Personality',
 		})
 	}
 
@@ -310,7 +310,7 @@ export default class Questionnaire extends Component {
 				" veerkrachtig reageert.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"},
 				{"type":"rating","name":"question54","title":"Je geeft aan wat er volgens jou fout liep en geeft aanwijzingen" +
 				" voor hoe dit in de toekomst voorkomen kan worden.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"}
-			],"title":"6/15 In de aanloop naar een belangrijke wedstrijd bereiden jij en jouw sporter samen de wedstrijd voor. Hoewel deze voorbereiding naar wens verliep, draait de wedstrijd helemaal niet uit zoals verwacht. Het gewenste eindresultaat wordt dan ook helemaal niet behaald."},
+			],"title":"5/15 In de aanloop naar een belangrijke wedstrijd bereiden jij en jouw sporter samen de wedstrijd voor. Hoewel deze voorbereiding naar wens verliep, draait de wedstrijd helemaal niet uit zoals verwacht. Het gewenste eindresultaat wordt dan ook helemaal niet behaald."},
 			{"name":"page6","elements":[
 				{"type":"rating","name":"question61","title":"...plant niet te veel. Je wacht af en neemt de dingen zoals ze" +
 				" komen","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"},
@@ -339,7 +339,7 @@ export default class Questionnaire extends Component {
 				" te trainen en zegt dat het stap per stap wel zal lukken.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"},
 				{"type":"rating","name":"question84","title":"Je besteedt er geen tijd meer aan. Er is al genoeg energie" +
 				" verloren gegaan.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"}
-			],"title":"9/15 Ondanks herhaaldelijke bijsturingen de voorbije weken, krijgt één van je sporters een nieuwe techniek maar niet onder de knie. Op training begaat hij steeds opnieuw dezelfde technische fout."},
+			],"title":"8/15 Ondanks herhaaldelijke bijsturingen de voorbije weken, krijgt één van je sporters een nieuwe techniek maar niet onder de knie. Op training begaat hij steeds opnieuw dezelfde technische fout."},
 			{"name":"page9","elements":[
 				{"type":"rating","name":"question91","title":"Je zoekt nieuwe manieren om deze oefening interessanter en" +
 				" aangenamer te brengen voor de sporters.","isRequired":true,"rateMax":7,"minRateDescription":"Helemaal niet van toepassing","maxRateDescription":"Helemaal van toepassing"},

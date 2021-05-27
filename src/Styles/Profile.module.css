@@ -1,19 +1,30 @@
 .styleOuter{
     fill-opacity: 0;
     stroke: #c4c4c4;
+    cursor: pointer;
 }
 
 .styleArc{
     fill-opacity: 0.8;
+    cursor: pointer;
+
+}
+.styleArcKwadrant{
+    fill-opacity: 0.8;
+
 }
 
 .styleArcHover{
     fill-opacity: 1;
+    cursor: pointer;
+
 }
 
 .styleText{
     text-anchor: middle;
     font-weight: bold;
+    cursor: pointer;
+
 }
 
 .styleContainer{
@@ -23,6 +34,7 @@
     align-items: flex-start;
     justify-content: center;
     flex-wrap: wrap;
+
 }
 
 .styleContainerProfile{
@@ -31,6 +43,7 @@
     align-items: center;
     justify-content: flex-start;
     flex-wrap: wrap;
+
 }
 
 .styleContainerText{
@@ -39,47 +52,76 @@
     align-items: flex-start;
     justify-content: flex-start;
     flex-wrap: wrap;
+    cursor: pointer;
+
 }
 
 .styleLabel{
     text-anchor: middle;
     font-size: 15px;
+    cursor: pointer;
+
 }
 
 .styleLabelKwadrant{
     color: white;
-    font-weight: bold;
+    font-weight: 800;
     text-anchor: middle;
-    font-size: 20px;
+    font-size: 25px;
     alignment-baseline: middle;
+
 }
 
 @media screen and (max-height: 1000px) {
     .styleLabelKwadrant{
         color: white;
-        font-weight: bold;
+        font-weight: 800;
         text-anchor: middle;
-        font-size: 10px;
+        font-size: 12px;
         alignment-baseline: middle;
+
     }
 
     .styleLabel{
         text-anchor: middle;
         font-size: 10px;
+        cursor: pointer;
+
     }
 }
+
+@media screen and (max-width: 1000px) {
+    .styleLabelKwadrant{
+        color: white;
+        font-weight: 800;
+        text-anchor: middle;
+        font-size: 20px;
+        alignment-baseline: middle;
+
+    }
+    .styleLabel{
+        text-anchor: middle;
+        font-size: 10px;
+        cursor: pointer;
+
+    }
+}
+
 
 @media screen and (max-width: 500px) {
     .styleLabelKwadrant{
         color: white;
-        font-weight: bold;
+        font-weight: 800;
         text-anchor: middle;
-        font-size: 10px;
+        font-size: 12px;
         alignment-baseline: middle;
+
     }
     .styleLabel{
         text-anchor: middle;
         font-size: 10px;
+        cursor: pointer;
+
     }
 }
 .buttonContainer{
@@ -92,6 +134,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+
 }
 
 .styleLabelPrint{
@@ -101,9 +145,9 @@
 
 .styleLabelKwadrantPrint{
     color: white;
-    font-weight: bold;
+    font-weight: 800;
     text-anchor: middle;
-    font-size: 15px;
+    font-size: 20px;
     alignment-baseline: middle;
 }
 

@@ -42,7 +42,7 @@ export default class Demographics extends Component {
 
     goToPersonality(){
         this.props.history.push({
-            pathname: '/Personality',
+            pathname: '/Questionnaire',
         })
     }
 

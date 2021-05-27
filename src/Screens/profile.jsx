@@ -2,6 +2,8 @@
 import React, {Component} from 'react';
 import * as d3 from 'd3'
 import { arc as d3Arc, pie as d3Pie } from 'd3-shape';
+import {isMobile} from 'react-device-detect';
+
 import styles from '../Styles/Profile.module.css';
 import classnames from 'classnames';
 import Footer from "../Components/Footer";
@@ -343,7 +345,23 @@ export default class Profile extends Component {
 		return translate
 	}
 
+	renderTaskInfo() {
+		if (isMobile) {
+			return "Klik op een zone voor meer info"
+		}
+		else{
+			return "Hover over een zone voor jouw score en klik op een zone voor meer informatie"
+		}
+	}
 
+	renderOctantLabel(d){
+		if (isMobile) {
+			return d.data.name + ": " + Math.round(d.data.value * 10) / 10
+		}
+		else{
+			return d.data.name
+		}
+	}
 
 	renderProfile() {
 		let data = this.createData();
@@ -398,12 +416,14 @@ export default class Profile extends Component {
 		const dataPieKwadrant = pie(dataKwadrant)
 		let styleOuter = classnames(styles.styleOuter);
 		let styleArc = classnames(styles.styleArc);
+		let styleArcKwadrant = classnames(styles.styleArcKwadrant);
 		let styleArcHover = classnames(styles.styleArcHover);
 		let styleText = classnames(styles.styleText);
 		let styleContainer = classnames(styles.styleContainer);
 		let styleContainerProfile = classnames(styles.styleContainerProfile);
 		let styleLabel = classnames(styles.styleLabel)
 		let styleLabelKwadrant = classnames(styles.styleLabelKwadrant)
+
 
 
 		return (
@@ -416,7 +436,7 @@ export default class Profile extends Component {
 						className={styleContainerProfile}
 					>
 						<Title title={"Persoonlijk Coachprofiel"} />
-						<p>Klik op een zone voor jouw score en voor meer informatie</p>
+						<p>{this.renderTaskInfo()}</p>
 						<svg
 							id="svgProfile"
 							width={widthSVG}
@@ -474,7 +494,9 @@ export default class Profile extends Component {
 										onMouseOver={() => this.handleHover(d)}
 										onMouseLeave={() => this.handleLeave()}
 										onMouseDown={()=> this.handleClick(d)}
-									>{d.data.name}</text>
+										key={d.index + "labelOctant"}
+										id={d.index + "labelOctant"}
+									>{this.renderOctantLabel(d)}</text>
 								))}
 							</g>
 							<g transform={`translate(${widthSVG / 2}, ${(heightSVG / 2)} )`}>
@@ -482,12 +504,12 @@ export default class Profile extends Component {
 									<>
 										<g
 											className="arcKwadrant"
-											key={d.index + "arcOuter"}
-											id={d.index + "arcOuter"}
+											key={d.index + "arcOuterKwadrant"}
+											id={d.index + "arcOuterKwadrant"}
 										>
 											<path
 												d={arcKwadrant(d)}
-												className={styleArc}
+												className={styleArcKwadrant}
 												key={d.index + "arcKwadrantPath"}
 												fill={this.getColor(d.data.name)}
 											/>
@@ -495,6 +517,8 @@ export default class Profile extends Component {
 										<text
 											transform={this.calculateLocationLabelkwadrant(d, maxRadiusTotal)}
 											className={styleLabelKwadrant}
+											key={d.index + "labelKwadrant"}
+											id={d.index + "labelKwadrant"}
 										>{d.data.name}</text>
 
 									</>
@@ -556,8 +580,7 @@ export default class Profile extends Component {
 
 				/>
 				<br/><br/><br/><br/><br/>
-				<br/><br/><br/><br/><br/>
-				<br/><br/><br/>
+				<br/><br/><br/><br/>
 				<Bouwsteen
 					name={"Begeleidend"}
 					content={this.getDetailsBouwsteen("Begeleidend")}
@@ -577,9 +600,7 @@ export default class Profile extends Component {
 
 				/>
 				<br/><br/><br/><br/><br/>
-				<br/><br/><br/><br/><br/>
-				<br/><br/><br/><br/><br/>
-				<br/><br/>
+				<br/><br/><br/><br/>
 				<Bouwsteen
 					name={"Eisend"}
 					content={this.getDetailsBouwsteen("Eisend")}
@@ -599,8 +620,7 @@ export default class Profile extends Component {
 
 				/>
 				<br/><br/><br/><br/><br/>
-				<br/><br/><br/><br/><br/>
-				<br/><br/><br/>
+
 				<Bouwsteen
 					name={"Opgevend"}
 					content={this.getDetailsBouwsteen("Opgevend")}
@@ -626,8 +646,8 @@ export default class Profile extends Component {
 	renderProfilePrint() {
 		let data = this.createData();
 		let dataKwadrant = this.createDataKwadrant()
-		let width = 450;
-		let height = 450;
+		let width = 640;
+		let height = 640;
 
 		const color = d3.scaleOrdinal().range([
 			'#146094',
@@ -693,8 +713,7 @@ export default class Profile extends Component {
 						<h1
 							className={styleTitle}
 						>Persoonlijk Coachprofiel</h1>
-						<br/><br/><br/><br/><br/>
-						<br/><br/><br/>
+						<br/><br/><br/><br/>
 						<svg
 							id="svgProfileA4"
 							width={widthSVG}
@@ -772,11 +791,10 @@ export default class Profile extends Component {
 	renderPrint(){
 		return(
 			<>
-
 				{this.renderProfilePrint()}
 				<br/><br/><br/><br/><br/>
 				<br/><br/><br/><br/><br/>
-				<br/><br/><br/><br/><br/>
+				<br/><br/>
 
 
 				{this.renderDetailsPrint()}
@@ -806,7 +824,7 @@ export default class Profile extends Component {
 				{this.getRenderFunction()}
 				{this.state.details ? <div/> :
 					<div className={styleButtonContainer}>
-						<ButtonNext id="printbutton"  handleClick={this.handleDownload} displayName={"Print"}  />
+						<ButtonNext id="printbutton"  handleClick={this.handleDownload} displayName={"Opslaan / Print"}  />
 					</div>
 				}
 
