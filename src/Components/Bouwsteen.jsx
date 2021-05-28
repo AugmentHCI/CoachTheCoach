@@ -16,6 +16,12 @@ export default class Bouwsteen extends Component {
         let styleTitlePrint = classnames(styles.titlePrint)
         let styleButton = classnames(styles.button)
         let styleScore = classnames(styles.score)
+
+        if (this.props.pagebreak){
+            styleContainer = classnames(styles.containerPagebreak)
+        }
+
+
         return (
             <>
                 <div

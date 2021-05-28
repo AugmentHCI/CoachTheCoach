@@ -62,39 +62,39 @@ export default class Profile extends Component {
 
 	getColor(bouwsteen){
 		let colors = {
-			'Participatief': '#146094',
-			'Afstemmend': '#1E82CA',
-			'Begeleidend': '#3BAD4F',
-			'Verduidelijkend': '#257435',
-			'Eisend': '#FAB97E',
-			'Dominerend': '#A85C23',
-			'Opgevend': '#A52624',
-			'Afwachtend': '#E96E6A',
-			'Autonomie': '#006FB7',
-			'Structuur': '#009639',
-			'Controle': '#FF8200',
-			'Chaos': '#E6332A',
+			'PARTICIPATIEF': '#146094',
+			'AFSTEMMEND': '#1E82CA',
+			'BEGELEIDEND': '#3BAD4F',
+			'VERDUIDELIJKEND': '#257435',
+			'EISEND': '#FAB97E',
+			'DOMINEREND': '#A85C23',
+			'OPGEVEND': '#A52624',
+			'AFWACHTEND': '#E96E6A',
+			'AUTONOMIE': '#006FB7',
+			'STRUCTUUR': '#009639',
+			'CONTROLE': '#FF8200',
+			'CHAOS': '#E6332A',
 		}
 		return colors[bouwsteen]
 	}
 
 	getLogo(bouwsteen){
 		let logos = {
-			'Participatief': logo_participatief,
-			'Afstemmend': logo_afstemmend,
-			'Begeleidend': logo_begeleidend,
-			'Verduidelijkend': logo_verduidelijkend,
-			'Eisend': logo_eisend,
-			'Dominerend': logo_dominerend,
-			'Opgevend': logo_opgevend,
-			'Afwachtend': logo_afwachtend,
+			'PARTICIPATIEF': logo_participatief,
+			'AFSTEMMEND': logo_afstemmend,
+			'BEGELEIDEND': logo_begeleidend,
+			'VERDUIDELIJKEND': logo_verduidelijkend,
+			'EISEND': logo_eisend,
+			'DOMINEREND': logo_dominerend,
+			'OPGEVEND': logo_opgevend,
+			'AFWACHTEND': logo_afwachtend,
 		}
 		return logos[bouwsteen]
 	}
 
 	getDetailsBouwsteen(bouwsteen){
 		let data = {
-			'Participatief' : "Wanneer je als coach hoog scoort op de participatieve benadering zullen jouw sporters " +
+			'PARTICIPATIEF' : "Wanneer je als coach hoog scoort op de participatieve benadering zullen jouw sporters " +
 				"het gevoel hebben dat ze aan de basis liggen van hun eigen gedrag, wat dan weer hun motivatie ten " +
 				"goede komt. Door sporters te betrekken in beslissingen en hierover met hen te praten creëer je " +
 				"draagvlak en gaan sporters dus ook op een meer vrijwillige manier gemotiveerd zijn. Je kan als coach" +
@@ -113,7 +113,7 @@ export default class Profile extends Component {
 				"zal dalen. Ze kiezen op vrijwillige basis kiezen om beroep te doen op de coach. Dit hoeft uiteraard " +
 				"niet te betekenen dat in een volgende stap van de ontwikkeling – wanneer ze meer kennis en vaardigheden " +
 				"hebben ontwikkeld - sporters niet zelf meer initiatief  zouden kunnen nemen.",
-			'Afstemmend': "Een afstemmende benadering zorgt ervoor dat sporters het gevoel hebben dat er rekening " +
+			'AFSTEMMEND': "Een afstemmende benadering zorgt ervoor dat sporters het gevoel hebben dat er rekening " +
 				"wordt gehouden met hun perspectief en natuurlijk ontwikkelingsritme. Hierdoor verhoogt de bereidheid " +
 				"en de vrijwillige motivatie van sporters om zich in te zetten. Als coach kan je zorgen voor een " +
 				"maximale aansluiting bij de persoonlijke ontwikkeling en het perspectief van de sporters door het " +
@@ -131,7 +131,7 @@ export default class Profile extends Component {
 				"aansluiting vinden bij de persoonlijke doelen van de sporters vergroten de kans dat atleten zich " +
 				"kunnen vinden in de beslissingen of opdrachten. Dit creëert dan weer draagvlak en zal de bereidheid " +
 				"van sporters om zich in te zetten versterken. \n",
-			'Begeleidend': 'Een begeleidende benadering betekent dat je als coach een procesgerichte houding aanneemt ' +
+			'BEGELEIDEND': 'Een begeleidende benadering betekent dat je als coach een procesgerichte houding aanneemt ' +
 				'door gepaste hulp en begeleiding te geven aan je sporters tijdens hun ontwikkelingsproces. Door middel ' +
 				'van deze hulp en begeleiding weten sporters wat goed gaat, hoe ze nog kunnen verbeteren en kunnen ze ' +
 				'progressie maken. Dit zal helpen om een gevoel van competentie te ervaren, wat op zijn beurt bijdraagt ' +
@@ -149,7 +149,7 @@ export default class Profile extends Component {
 				'het eerste zich zou lijken. In die zin wordt een begeleidende benadering dan ook bij voorkeur ' +
 				'gecombineerd met een afstemmende benadering. Als coach dien je namelijk goed in te schatten welke ' +
 				'en hoeveel hulp een sporter op een bepaald ogenblik nodig heeft. \n',
-			'Verduidelijkend': 'Wanneer je als coach hoog scoort op de verduidelijkende benadering betekent dat dat ' +
+			'VERDUIDELIJKEND': 'Wanneer je als coach hoog scoort op de verduidelijkende benadering betekent dat dat ' +
 				'je sporters ondersteunt door ze een duidelijke structuur mee te geven. Deze structuur biedt een ' +
 				'houvast voor de sporters, zodat ze weten wat er van hen verwacht wordt en welke afspraken er gemaakt ' +
 				'zijn. In een eerste plaats helpt het om een overzicht (bv. indeling van trainingsmaand) te geven met' +
@@ -167,7 +167,7 @@ export default class Profile extends Component {
 				'benadering een coach die te sterk van bovenaf eenzijdig zaken zal opleggen zonder hierbij de ' +
 				'relevantie, bedoeling of het nut ervan te duiden enerzijds, of anderszijds onvoldoende af te' +
 				' stemmen op het ontwikkelingsritme, de noden en mogelijkheden van zijn sporters. \n',
-			'Eisend': 'Bij eisende of dwingende benadering staat de beleving en visie van de coach centraal. Als coach' +
+			'EISEND': 'Bij eisende of dwingende benadering staat de beleving en visie van de coach centraal. Als coach' +
 				' heb je dan ook graag zelf de touwtjes in handen en stuur je sporters in een richting die, volgens jou' +
 				', de juiste is. Vanuit dit idee legt een eisende coach hoge standaarden op en eist hij/zij sporters ' +
 				'aan deze standaarden te voldoen. Bij eisende coaches ligt de nadruk op het opvolgen en voldoen aan ' +
@@ -189,7 +189,7 @@ export default class Profile extends Component {
 				'waarom dat ze bepaalde opdrachten dienen uit te voeren, zal je een stevig draagvlak creëren voor ' +
 				'jouw werkwijze. Dit zorgt ervoor dat eisend gedrag op bepaalde momenten meer aanvaard of begrepen ' +
 				'kan worden en sporters gemotiveerd zullen zijn of blijven.\n',
-			'Dominerend': 'Een hoge score op de dominerende benadering betekent dat je als coach vooral bezig bent ' +
+			'DOMINEREND': 'Een hoge score op de dominerende benadering betekent dat je als coach vooral bezig bent ' +
 				'met je eigen agenda en ambities als coach, zonder daarbij rekening te houden met het perspectief ' +
 				'van de sporter. Wanneer iets mis gaat, lopen dominerende coaches het risico hun frustratie te ' +
 				'reflecteren op de sporter. Vanuit deze frustratie worden sporter binnen de dominerende benadering ' +
@@ -210,7 +210,7 @@ export default class Profile extends Component {
 				'gedrag dat ze daarbij vertonen, kan prestatie evenwel een lange termijn doel (lees: gevolg) zijn. ' +
 				'Een te enge focus op die prestatie zal echter niet alleen jouw sporters een benauwd gevoel geven, ' +
 				'maar jezelf ook sturen richting een bemoeizuchtige, dominerende aanpak.\n',
-			'Opgevend': 'Een hoge score op de opgevende benadering betekent dat je als coach een negatieve, ' +
+			'OPGEVEND': 'Een hoge score op de opgevende benadering betekent dat je als coach een negatieve, ' +
 				'uitgebluste en/of onverschillige houding aanneemt ten opzichte van jouw sporters. Coaches die een ' +
 				'opgevende houding aannemen gaan na herhaaldelijke tussenkomsten de zaken op hun beloop laten. Ze ' +
 				'gaan de sporter niet of nauwelijks bijstaan in hun leerproces en indien ze actie ondernemen, focussen ' +
@@ -229,7 +229,7 @@ export default class Profile extends Component {
 				' is gebleken dat een opgevende benadering als meest frustrerend wordt ervaren door sporters. Daar waar' +
 				' een coach bij een dominerende of eisende benadering nog enige vorm van betrokkenheid toont, voelen' +
 				' sporters zich in de steek gelaten bij een opgevende aanpak.\n',
-			'Afwachtend': 'Coaches die hoog scoren op een afwachtende benadering gaan het initiatief bij de sporters' +
+			'AFWACHTEND': 'Coaches die hoog scoren op een afwachtende benadering gaan het initiatief bij de sporters' +
 				' leggen, zonder daarbij afspraken te maken, doelen of verwachtingen naar voren te schuiven, of ' +
 				'grenzen te stellen. Door geen verwachtingen te communiceren, gaan sporters deze ‘gedwongen’ ' +
 				'zelfstandigheid niet noodzakelijk als motiverend ervaren. Ze weten niet wat ze moeten doen, ' +
@@ -273,14 +273,14 @@ export default class Profile extends Component {
 
 
 		let data = [
-			{"value": participatief, "number": 45, "name": "Participatief"},
-			{"value": afstemmend, "number": 45, "name": "Afstemmend"},
-			{"value": begeleidend, "number": 45, "name": "Begeleidend"},
-			{"value": verduidelijkend, "number": 45, "name": "Verduidelijkend"},
-			{"value": eisend, "number": 45, "name": "Eisend"},
-			{"value": dominerend, "number": 45, "name": "Dominerend"},
-			{"value": opgevend, "number": 45, "name": "Opgevend"},
-			{"value": afwachtend, "number": 45, "name": "Afwachtend"},
+			{"value": participatief, "number": 45, "name": "PARTICIPATIEF"},
+			{"value": afstemmend, "number": 45, "name": "AFSTEMMEND"},
+			{"value": begeleidend, "number": 45, "name": "BEGELEIDEND"},
+			{"value": verduidelijkend, "number": 45, "name": "VERDUIDELIJKEND"},
+			{"value": eisend, "number": 45, "name": "EISEND"},
+			{"value": dominerend, "number": 45, "name": "DOMINEREND"},
+			{"value": opgevend, "number": 45, "name": "OPGEVEND"},
+			{"value": afwachtend, "number": 45, "name": "AFWACHTEND"},
 		];
 
 		return data
@@ -288,10 +288,10 @@ export default class Profile extends Component {
 
 	createDataKwadrant(){
 		return  [
-			{ "number": 90, "name": "Autonomie", "rotate": 45},
-			{ "number": 90, "name": "Structuur","rotate": -45},
-			{ "number": 90, "name": "Controle","rotate": 45},
-			{ "number": 90, "name": "Chaos","rotate": -45}
+			{ "number": 90, "name": "AUTONOMIE", "rotate": 45},
+			{ "number": 90, "name": "STRUCTUUR","rotate": -45},
+			{ "number": 90, "name": "CONTROLE","rotate": 45},
+			{ "number": 90, "name": "CHAOS","rotate": -45}
 		];
 	}
 
@@ -331,8 +331,8 @@ export default class Profile extends Component {
 
 	calculateLocationLabelkwadrant(d, maxRadius){
 		let middleAngle = (d.startAngle + d.endAngle) / 2
-		let x = Math.sin(middleAngle) * maxRadius * 0.95
-		let y = -Math.cos(middleAngle) * maxRadius * 0.95
+		let x = Math.sin(middleAngle) * maxRadius * 0.93
+		let y = -Math.cos(middleAngle) * maxRadius * 0.93
 		let translate = "translate(" + x.toString() + "," + y.toString() + ") rotate(" + d.data.rotate + ")"
 		return translate
 	}
@@ -350,7 +350,7 @@ export default class Profile extends Component {
 			return "Klik op een zone voor meer info"
 		}
 		else{
-			return "Hover over een zone voor jouw score en klik op een zone voor meer informatie"
+			return "Beweeg over een zone voor jouw score en klik op een zone voor meer informatie"
 		}
 	}
 
@@ -563,80 +563,85 @@ export default class Profile extends Component {
 		return(
 			<>
 				<Bouwsteen
-					name={"Participatief"}
-					content={this.getDetailsBouwsteen("Participatief")}
-					color={this.getColor("Participatief")}
+					name={"PARTICIPATIEF"}
+					content={this.getDetailsBouwsteen("PARTICIPATIEF")}
+					color={this.getColor("PARTICIPATIEF")}
 					score={participatief}
 					print={true}
-					logo={this.getLogo("Participatief")}
+					logo={this.getLogo("PARTICIPATIEF")}
+					pagebreak={true}
 				/>
 				<Bouwsteen
-					name={"Afstemmend"}
-					content={this.getDetailsBouwsteen("Afstemmend")}
-					color={this.getColor("Afstemmend")}
+					name={"AFSTEMMEND"}
+					content={this.getDetailsBouwsteen("AFSTEMMEND")}
+					color={this.getColor("AFSTEMMEND")}
 					score={afstemmend}
 					print={true}
-					logo={this.getLogo("Afstemmend")}
+					logo={this.getLogo("AFSTEMMEND")}
+					pagebreak={false}
 
 				/>
-				<br/><br/><br/><br/><br/>
-				<br/><br/><br/><br/>
+
 				<Bouwsteen
-					name={"Begeleidend"}
-					content={this.getDetailsBouwsteen("Begeleidend")}
-					color={this.getColor("Begeleidend")}
+					name={"BEGELEIDEND"}
+					content={this.getDetailsBouwsteen("BEGELEIDEND")}
+					color={this.getColor("BEGELEIDEND")}
 					score={begeleidend}
 					print={true}
-					logo={this.getLogo("Begeleidend")}
+					logo={this.getLogo("BEGELEIDEND")}
+					pagebreak={true}
 
 				/>
 				<Bouwsteen
-					name={"Verduidelijkend"}
-					content={this.getDetailsBouwsteen("Verduidelijkend")}
-					color={this.getColor("Verduidelijkend")}
+					name={"VERDUIDELIJKEND"}
+					content={this.getDetailsBouwsteen("VERDUIDELIJKEND")}
+					color={this.getColor("VERDUIDELIJKEND")}
 					score={verduidelijkend}
 					print={true}
-					logo={this.getLogo("Verduidelijkend")}
+					logo={this.getLogo("VERDUIDELIJKEND")}
+					pagebreak={false}
 
 				/>
-				<br/><br/><br/><br/><br/>
-				<br/><br/><br/><br/>
+
 				<Bouwsteen
-					name={"Eisend"}
-					content={this.getDetailsBouwsteen("Eisend")}
-					color={this.getColor("Eisend")}
+					name={"EISEND"}
+					content={this.getDetailsBouwsteen("EISEND")}
+					color={this.getColor("EISEND")}
 					score={eisend}
 					print={true}
-					logo={this.getLogo("Eisend")}
+					logo={this.getLogo("EISEND")}
+					pagebreak={true}
 
 				/>
 				<Bouwsteen
-					name={"Dominerend"}
-					content={this.getDetailsBouwsteen("Dominerend")}
-					color={this.getColor("Dominerend")}
+					name={"DOMINEREND"}
+					content={this.getDetailsBouwsteen("DOMINEREND")}
+					color={this.getColor("DOMINEREND")}
 					score={dominerend}
 					print={true}
-					logo={this.getLogo("Dominerend")}
+					logo={this.getLogo("DOMINEREND")}
+					pagebreak={false}
 
 				/>
-				<br/><br/><br/><br/><br/>
 
 				<Bouwsteen
-					name={"Opgevend"}
-					content={this.getDetailsBouwsteen("Opgevend")}
-					color={this.getColor("Opgevend")}
+					name={"OPGEVEND"}
+					content={this.getDetailsBouwsteen("OPGEVEND")}
+					color={this.getColor("OPGEVEND")}
 					score={opgevend}
 					print={true}
-					logo={this.getLogo("Opgevend")}
+					logo={this.getLogo("OPGEVEND")}
+					pagebreak={true}
 
 				/>
 				<Bouwsteen
-					name={"Afwachtend"}
-					content={this.getDetailsBouwsteen("Afwachtend")}
-					color={this.getColor("Afwachtend")}
+					name={"AFWACHTEND"}
+					content={this.getDetailsBouwsteen("AFWACHTEND")}
+					color={this.getColor("AFWACHTEND")}
 					score={afwachtend}
 					print={true}
-					logo={this.getLogo("Afwachtend")}
+					logo={this.getLogo("AFWACHTEND")}
+					pagebreak={false}
 
 				/>
 			</>
@@ -792,11 +797,6 @@ export default class Profile extends Component {
 		return(
 			<>
 				{this.renderProfilePrint()}
-				<br/><br/><br/><br/><br/>
-				<br/><br/><br/><br/><br/>
-				<br/><br/>
-
-
 				{this.renderDetailsPrint()}
 			</>
 		)

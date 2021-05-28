@@ -36,13 +36,18 @@
 
     .container{
         position: fixed;
-        bottom: 0%;
+        bottom: 2px;
         left: 5%;
         width: 90%;
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
+        flex-wrap: nowrap;
     }
+}
+
+@media print {
+
 }
 

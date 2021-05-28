@@ -6,10 +6,22 @@
 }
 
 .title{
+    font-size: 15px;
     padding-left: 20px;
     padding-right: 20px;
     color: white;
     box-shadow: 4px 4px 2px grey;
     background: #3c3b40;
 
+}
+
+@media only screen and (min-height: 800px) {
+    .title{
+        font-size: 18px;
+    }
+}
+@media only screen and (min-width: 800px) {
+    .title{
+        font-size: 20px;
+    }
 }

@@ -8,6 +8,17 @@
     margin-left: 5%;
 }
 
+.containerPagebreak{
+    max-height: 90vh;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 5%;
+    page-break-before: always;
+}
+
 .containerTitle{
     display: flex;
     flex-direction: row;
@@ -40,14 +51,6 @@
 }
 
 
-.contentPrint{
-    height: 100%;
-    overflow: auto;
-    white-space:pre-wrap;
-    font-size: 12px;
-}
-
-
 .score{
     width: 100%;
 }
@@ -63,6 +66,13 @@
     min-width: 100px;
     padding: 0 2em 0 2em;
     line-height: 2em;
+}
+
+.contentPrint{
+    height: 100%;
+    overflow: auto;
+    white-space:pre-wrap;
+    font-size: 12px;
 }
 
 

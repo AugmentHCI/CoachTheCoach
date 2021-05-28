@@ -3,7 +3,6 @@
     stroke: #c4c4c4;
     cursor: pointer;
 }
-
 .styleArc{
     fill-opacity: 0.8;
     cursor: pointer;
@@ -11,22 +10,16 @@
 }
 .styleArcKwadrant{
     fill-opacity: 0.8;
-
 }
-
 .styleArcHover{
     fill-opacity: 1;
     cursor: pointer;
-
 }
-
 .styleText{
     text-anchor: middle;
     font-weight: bold;
     cursor: pointer;
-
 }
-
 .styleContainer{
     width: 100%;
     display: flex;
@@ -36,16 +29,13 @@
     flex-wrap: wrap;
 
 }
-
 .styleContainerProfile{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     flex-wrap: wrap;
-
 }
-
 .styleContainerText{
     display: flex;
     flex-direction: column;
@@ -53,77 +43,292 @@
     justify-content: flex-start;
     flex-wrap: wrap;
     cursor: pointer;
-
 }
+
+
 
 .styleLabel{
     text-anchor: middle;
-    font-size: 15px;
+    font-size: 7px;
     cursor: pointer;
 
 }
 
 .styleLabelKwadrant{
-    color: white;
+    fill: white;
     font-weight: 800;
     text-anchor: middle;
-    font-size: 25px;
+    font-size: 14px;
     alignment-baseline: middle;
 
 }
 
-@media screen and (max-height: 1000px) {
+@media screen and (min-height: 700px) and (min-width: 400px) and (orientation: portrait)  {
+    .styleLabel{
+        text-anchor: middle;
+        font-size: 8px;
+        cursor: pointer;
+
+    }
+
     .styleLabelKwadrant{
-        color: white;
+        fill: white;
+        font-weight: 800;
+        text-anchor: middle;
+        font-size: 10px;
+        alignment-baseline: middle;
+
+    }
+}
+@media screen and (min-height: 830px) and (min-width: 500px) and (orientation: portrait) {
+    .styleLabel{
+        text-anchor: middle;
+        font-size: 9px;
+        cursor: pointer;
+
+    }
+
+    .styleLabelKwadrant{
+        fill: white;
         font-weight: 800;
         text-anchor: middle;
         font-size: 12px;
         alignment-baseline: middle;
 
     }
+}
+@media screen and (min-height: 1000px) and (min-width: 600px) and (orientation: portrait) {
+    .styleLabel{
+        text-anchor: middle;
+        font-size: 11px;
+        cursor: pointer;
 
+    }
+
+    .styleLabelKwadrant{
+        fill: white;
+        font-weight: 800;
+        text-anchor: middle;
+        font-size: 15px;
+        alignment-baseline: middle;
+
+    }
+}
+@media screen and (min-height: 1167px) and (min-width: 700px) and (orientation: portrait) {
+    .styleLabel{
+        text-anchor: middle;
+        font-size: 14px;
+        cursor: pointer;
+
+    }
+
+    .styleLabelKwadrant{
+        fill: white;
+        font-weight: 800;
+        text-anchor: middle;
+        font-size: 17px;
+        alignment-baseline: middle;
+
+    }
+}
+@media screen and (min-height: 1333px) and (min-width: 800px) and (orientation: portrait) {
+    .styleLabel{
+        text-anchor: middle;
+        font-size: 14px;
+        cursor: pointer;
+
+    }
+
+    .styleLabelKwadrant{
+        fill: white;
+        font-weight: 800;
+        text-anchor: middle;
+        font-size: 17px;
+        alignment-baseline: middle;
+
+    }
+}
+@media screen and (min-height: 1500px) and (min-width: 900px) and (orientation: portrait) {
+    .styleLabel{
+        text-anchor: middle;
+        font-size: 19px;
+        cursor: pointer;
+
+    }
+
+    .styleLabelKwadrant{
+        fill: white;
+        font-weight: 800;
+        text-anchor: middle;
+        font-size: 25px;
+        alignment-baseline: middle;
+
+    }
+}
+
+@media screen and (min-height: 300px) and (min-width: 600px) and (orientation: landscape)  {
+    .styleLabel{
+        text-anchor: middle;
+        font-size: 6px;
+        cursor: pointer;
+
+    }
+
+    .styleLabelKwadrant{
+        fill: white;
+        font-weight: 800;
+        text-anchor: middle;
+        font-size: 8px;
+        alignment-baseline: middle;
+
+    }
+}
+@media screen and (min-height: 625px) and (min-width: 1000px) and (orientation: landscape) {
     .styleLabel{
         text-anchor: middle;
         font-size: 10px;
         cursor: pointer;
 
     }
-}
 
-@media screen and (max-width: 1000px) {
     .styleLabelKwadrant{
-        color: white;
+        fill: white;
+        font-weight: 800;
+        text-anchor: middle;
+        font-size: 14px;
+        alignment-baseline: middle;
+
+    }
+}
+@media screen and (min-height: 800px) and (min-width: 1200px) and (orientation: landscape) {
+    .styleLabel{
+        text-anchor: middle;
+        font-size: 11px;
+        cursor: pointer;
+
+    }
+
+    .styleLabelKwadrant{
+        fill: white;
+        font-weight: 800;
+        text-anchor: middle;
+        font-size: 14px;
+        alignment-baseline: middle;
+
+    }
+}
+@media screen and (min-height: 875px) and (min-width: 1400px) and (orientation: landscape) {
+    .styleLabel{
+        text-anchor: middle;
+        font-size: 13px;
+        cursor: pointer;
+
+    }
+
+    .styleLabelKwadrant{
+        fill: white;
+        font-weight: 800;
+        text-anchor: middle;
+        font-size: 17px;
+        alignment-baseline: middle;
+
+    }
+}
+@media screen and (min-height: 1000px) and (min-width: 1600px) and (orientation: landscape) {
+    .styleLabel{
+        text-anchor: middle;
+        font-size: 15px;
+        cursor: pointer;
+
+    }
+
+    .styleLabelKwadrant{
+        fill: white;
         font-weight: 800;
         text-anchor: middle;
         font-size: 20px;
         alignment-baseline: middle;
 
     }
+}
+@media screen and (min-height: 1125px) and (min-width: 1800px) and (orientation: landscape) {
     .styleLabel{
         text-anchor: middle;
-        font-size: 10px;
+        font-size: 18px;
         cursor: pointer;
 
     }
-}
 
-
-@media screen and (max-width: 500px) {
     .styleLabelKwadrant{
-        color: white;
+        fill: white;
         font-weight: 800;
         text-anchor: middle;
-        font-size: 12px;
+        font-size: 25px;
         alignment-baseline: middle;
 
     }
-    .styleLabel{
-        text-anchor: middle;
-        font-size: 10px;
-        cursor: pointer;
-
-    }
 }
+
+
+
+
+
+
+
+
+
+/*@media screen and (max-height: 1000px) {*/
+/*    .styleLabelKwadrant{*/
+/*        color: white;*/
+/*        font-weight: 800;*/
+/*        text-anchor: middle;*/
+/*        font-size: 12px;*/
+/*        alignment-baseline: middle;*/
+
+/*    }*/
+
+/*    .styleLabel{*/
+/*        text-anchor: middle;*/
+/*        font-size: 10px;*/
+/*        cursor: pointer;*/
+
+/*    }*/
+/*}*/
+
+/*@media screen and (max-width: 1000px) {*/
+/*    .styleLabelKwadrant{*/
+/*        color: white;*/
+/*        font-weight: 800;*/
+/*        text-anchor: middle;*/
+/*        font-size: 20px;*/
+/*        alignment-baseline: middle;*/
+
+/*    }*/
+/*    .styleLabel{*/
+/*        text-anchor: middle;*/
+/*        font-size: 10px;*/
+/*        cursor: pointer;*/
+
+/*    }*/
+/*}*/
+
+/*@media screen and (max-width: 500px) {*/
+/*    .styleLabelKwadrant{*/
+/*        color: white;*/
+/*        font-weight: 800;*/
+/*        text-anchor: middle;*/
+/*        font-size: 12px;*/
+/*        alignment-baseline: middle;*/
+
+/*    }*/
+/*    .styleLabel{*/
+/*        text-anchor: middle;*/
+/*        font-size: 10px;*/
+/*        cursor: pointer;*/
+
+/*    }*/
+/*}*/
+
 .buttonContainer{
     margin-left: 10%;
     margin-top:2%;
@@ -138,22 +343,41 @@
 
 }
 
-.styleLabelPrint{
-    text-anchor: middle;
-    font-size: 10px;
+@media print {
+    .styleLabelPrint{
+        text-anchor: middle;
+        font-size: 12px;
+    }
+
+    .styleLabelKwadrantPrint{
+        fill: white;
+        font-weight: 500;
+        text-anchor: middle;
+        font-size: 20px;
+        alignment-baseline: middle;
+    }
+
+    .titlePrint{
+        color: #3b3b3b;
+    }
+
+    .styleLabelKwadrantPrint{
+         fill: white;
+         font-weight: 500;
+         text-anchor: middle;
+         font-size: 20px;
+         alignment-baseline: middle;
+     }
+
+    .titlePrint{
+        color: #3b3b3b;
+    }
+
 }
 
-.styleLabelKwadrantPrint{
-    color: white;
-    font-weight: 800;
-    text-anchor: middle;
-    font-size: 20px;
-    alignment-baseline: middle;
-}
 
-.titlePrint{
-    color: #3b3b3b;
-}
+
+
 
 
 
