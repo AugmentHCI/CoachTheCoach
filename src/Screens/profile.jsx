@@ -429,105 +429,100 @@ export default class Profile extends Component {
 		return (
 			<>
 				<div
-					id="ProfileContainer"
-					className={styleContainer}
+					className={styleContainerProfile}
 				>
-					<div
-						className={styleContainerProfile}
-					>
-						<Title title={"Persoonlijk Coachprofiel"} />
-						<p>{this.renderTaskInfo()}</p>
-						<svg
-							id="svgProfile"
-							width={widthSVG}
-							height={heightSVG}>
-							<text
-								transform={`translate(${widthSVG / 2}, ${(heightSVG / 2) + (fontSize / 2.2)})`}
-								className={styleText}
-								style={{fontSize: fontSize}}
-							>
-								{this.state.hoverValue}
-							</text>
-							<g transform={`translate(${widthSVG / 2}, ${(heightSVG / 2)} )`}>
-								{dataPie.map(d => (
-									<>
-										<g
-											className="arcOuter"
-											key={d.index + "arcOuter"}
-											id={d.index + "arcOuter"}
-										>
-											<path
-												d={arcOuter(d)}
-												className={styleOuter}
-												key={d.index + "arcOuterPath"}
-												onMouseOver={() => this.handleHover(d)}
-												onMouseLeave={() => this.handleLeave()}
-												onMouseDown={()=> this.handleClick(d)}
-											/>
-										</g>
-										<g
-											className="arc"
-											pointerEvents="all"
-											key={d.index + "arcPathGroup"}
-											id={d.index + "arc"}
-										>
-											<path
-												d={arc(d)}
-												className={this.checkHover(d.data.name) ? styleArcHover : styleArc}
-												fill={color(d.data.name)}
-												key={d.index + "arcPath"}
-												id={d.index + "arcPath"}
-												onMouseOver={() => this.handleHover(d)}
-												onMouseLeave={() => this.handleLeave()}
-												onMouseDown={()=> this.handleClick(d)}
+					<Title title={"Persoonlijk Coachprofiel"} />
+					<p>{this.renderTaskInfo()}</p>
+					<svg
+						id="svgProfile"
+						width={widthSVG}
+						height={heightSVG}>
+						<text
+							transform={`translate(${widthSVG / 2}, ${(heightSVG / 2) + (fontSize / 2.2)})`}
+							className={styleText}
+							style={{fontSize: fontSize}}
+						>
+							{this.state.hoverValue}
+						</text>
+						<g transform={`translate(${widthSVG / 2}, ${(heightSVG / 2)} )`}>
+							{dataPie.map(d => (
+								<>
+									<g
+										className="arcOuter"
+										key={d.index + "arcOuter"}
+										id={d.index + "arcOuter"}
+									>
+										<path
+											d={arcOuter(d)}
+											className={styleOuter}
+											key={d.index + "arcOuterPath"}
+											onMouseOver={() => this.handleHover(d)}
+											onMouseLeave={() => this.handleLeave()}
+											onMouseDown={()=> this.handleClick(d)}
+										/>
+									</g>
+									<g
+										className="arc"
+										pointerEvents="all"
+										key={d.index + "arcPathGroup"}
+										id={d.index + "arc"}
+									>
+										<path
+											d={arc(d)}
+											className={this.checkHover(d.data.name) ? styleArcHover : styleArc}
+											fill={color(d.data.name)}
+											key={d.index + "arcPath"}
+											id={d.index + "arcPath"}
+											onMouseOver={() => this.handleHover(d)}
+											onMouseLeave={() => this.handleLeave()}
+											onMouseDown={()=> this.handleClick(d)}
 
-											/>
-										</g>
-									</>
-								))}
-							</g>
-							<g transform={`translate(${widthSVG / 2}, ${(heightSVG / 2)} )`}>
-								{dataPie.map(d => (
+										/>
+									</g>
+								</>
+							))}
+						</g>
+						<g transform={`translate(${widthSVG / 2}, ${(heightSVG / 2)} )`}>
+							{dataPie.map(d => (
+								<text
+									transform={this.calculateLocationLabelOctant(d, maxRadius)}
+									className={styleLabel}
+									onMouseOver={() => this.handleHover(d)}
+									onMouseLeave={() => this.handleLeave()}
+									onMouseDown={()=> this.handleClick(d)}
+									key={d.index + "labelOctant"}
+									id={d.index + "labelOctant"}
+								>{this.renderOctantLabel(d)}</text>
+							))}
+						</g>
+						<g transform={`translate(${widthSVG / 2}, ${(heightSVG / 2)} )`}>
+							{dataPieKwadrant.map(d => (
+								<>
+									<g
+										className="arcKwadrant"
+										key={d.index + "arcOuterKwadrant"}
+										id={d.index + "arcOuterKwadrant"}
+									>
+										<path
+											d={arcKwadrant(d)}
+											className={styleArcKwadrant}
+											key={d.index + "arcKwadrantPath"}
+											fill={this.getColor(d.data.name)}
+										/>
+									</g>
 									<text
-										transform={this.calculateLocationLabelOctant(d, maxRadius)}
-										className={styleLabel}
-										onMouseOver={() => this.handleHover(d)}
-										onMouseLeave={() => this.handleLeave()}
-										onMouseDown={()=> this.handleClick(d)}
-										key={d.index + "labelOctant"}
-										id={d.index + "labelOctant"}
-									>{this.renderOctantLabel(d)}</text>
-								))}
-							</g>
-							<g transform={`translate(${widthSVG / 2}, ${(heightSVG / 2)} )`}>
-								{dataPieKwadrant.map(d => (
-									<>
-										<g
-											className="arcKwadrant"
-											key={d.index + "arcOuterKwadrant"}
-											id={d.index + "arcOuterKwadrant"}
-										>
-											<path
-												d={arcKwadrant(d)}
-												className={styleArcKwadrant}
-												key={d.index + "arcKwadrantPath"}
-												fill={this.getColor(d.data.name)}
-											/>
-										</g>
-										<text
-											transform={this.calculateLocationLabelkwadrant(d, maxRadiusTotal)}
-											className={styleLabelKwadrant}
-											key={d.index + "labelKwadrant"}
-											id={d.index + "labelKwadrant"}
-										>{d.data.name}</text>
+										transform={this.calculateLocationLabelkwadrant(d, maxRadiusTotal)}
+										className={styleLabelKwadrant}
+										key={d.index + "labelKwadrant"}
+										id={d.index + "labelKwadrant"}
+									>{d.data.name}</text>
 
-									</>
-								))}
-							</g>
-						</svg>
-					</div>
-
+								</>
+							))}
+						</g>
+					</svg>
 				</div>
+
 			</>)
 	}
 
@@ -782,13 +777,11 @@ export default class Profile extends Component {
 											transform={this.calculateLocationLabelkwadrantPrint(d, maxRadiusTotal)}
 											className={styleLabelKwadrant}
 										>{d.data.name}</text>
-
 									</>
 								))}
 							</g>
 						</svg>
 					</div>
-
 				</div>
 			</>)
 	}
@@ -827,7 +820,6 @@ export default class Profile extends Component {
 						<ButtonNext id="printbutton"  handleClick={this.handleDownload} displayName={"Opslaan / Print"}  />
 					</div>
 				}
-
 				<Footer/>
 			</>
 		)
