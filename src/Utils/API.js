@@ -137,6 +137,7 @@ export async function addDemographics(id,age,gender,sport,ageSporters,experience
 		data: data
 	}).then(
 		function (response){
+			console.log(response)
 			return response
 		}
 	)
