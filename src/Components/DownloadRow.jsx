@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import CsvDownload from 'react-json-to-csv'
 import classnames from 'classnames';
 import styles from '../Styles/DownloadRow.module.css';
+import { CSVLink} from "react-csv";
+
 
 export default class DownloadRow extends Component {
     render() {
@@ -10,8 +11,14 @@ export default class DownloadRow extends Component {
             <div
                 className={styleContainer}
             >
-                {this.props.name} :  <CsvDownload data={this.props.data} filename={this.props.file} />
+                {this.props.name} : <CSVLink
+                                        data={this.props.data}
+                                        separator=";"
+                                        enclosingCharacter={`"`}
+                                        filename={this.props.file}
+                                    >Download</CSVLink>
             </div>
         )
     }
+
 }
