@@ -18,6 +18,11 @@ import logo_eisend from "../Images/logo_eisend.png"
 import logo_dominerend from "../Images/logo_dominerend.png"
 import logo_opgevend from "../Images/logo_opgevend.png"
 import logo_afwachtend from "../Images/logo_afwachtend.png"
+import logo_autonomie from "../Images/logo_autonomie.png"
+import logo_structuur from "../Images/logo_structuur.png"
+import logo_controle from "../Images/logo_controle.png"
+import logo_chaos from "../Images/logo_chaos.png"
+
 
 
 
@@ -28,7 +33,7 @@ export default class Profile extends Component {
 			hoverElement: null,
 			hoverValue: '',
 			details: false,
-			selectedBouwsteen: null,
+			selectedKwadrant: null,
 			selectedScore: 0,
 			print: false
 		};
@@ -88,168 +93,93 @@ export default class Profile extends Component {
 			'DOMINEREND': logo_dominerend,
 			'OPGEVEND': logo_opgevend,
 			'AFWACHTEND': logo_afwachtend,
+			'AUTONOMIE': logo_autonomie,
+			'STRUCTUUR': logo_structuur,
+			'CONTROLE': logo_controle,
+			'CHAOS': logo_chaos
 		}
 		return logos[bouwsteen]
 	}
 
-	getDetailsBouwsteen(bouwsteen){
+	getDetailsKwadrant(bouwsteen){
 		let data = {
-			'PARTICIPATIEF' : "Wanneer je als coach hoog scoort op de participatieve benadering zullen jouw sporters " +
-				"het gevoel hebben dat ze aan de basis liggen van hun eigen gedrag, wat dan weer hun motivatie ten " +
-				"goede komt. Door sporters te betrekken in beslissingen en hierover met hen te praten creëer je " +
-				"draagvlak en gaan sporters dus ook op een meer vrijwillige manier gemotiveerd zijn. Je kan als coach" +
-				" in dialoog te gaan met de sporters, initiatief geven, en door ze toelaten om input te geven. " +
-				"Let wel, diverse factoren zoals tijdsdruk, groepsgrootte, leeftijd, beperkte voorkennis en/of " +
-				"vaardigheden kunnen het gebruik van een participatieve benadering bemoeilijken. \n\n" +
-				"De participatieve benadering is geen wondermiddel om de motivatie te bevorderen. Er zijn namelijk " +
-				"ook valkuilen: Wanneer coaches sporters aanzetten tot zelfstandigheid, maar sporters over onvoldoende" +
-				" mogelijkheden beschikken om hiermee goed om te gaan, kan dit een averechts effect hebben. Dit kan" +
-				" resulteren in chaos waarbij sporters ervaren dat ze alleen of aan hun lot overgelaten worden. " +
-				"Bovendien kan zo maar iedereen keuzevrijheid geven in groepen ook zorgen voor onrealistische " +
-				"verwachtingen. In zo’n situatie is het namelijk heel moeilijk om met de keuze van iedere sporter " +
-				"rekening houden. \n\n" +
-				"Verder willen sporters soms ook gewoon kunnen terugvallen op hun coach voor raad, advies of " +
-				"oplossingen. Dat ze de coach in dit geval volgen, betekent niet dat hun motivatie per se " +
-				"zal dalen. Ze kiezen op vrijwillige basis kiezen om beroep te doen op de coach. Dit hoeft uiteraard " +
-				"niet te betekenen dat in een volgende stap van de ontwikkeling – wanneer ze meer kennis en vaardigheden " +
-				"hebben ontwikkeld - sporters niet zelf meer initiatief  zouden kunnen nemen.",
-			'AFSTEMMEND': "Een afstemmende benadering zorgt ervoor dat sporters het gevoel hebben dat er rekening " +
-				"wordt gehouden met hun perspectief en natuurlijk ontwikkelingsritme. Hierdoor verhoogt de bereidheid " +
-				"en de vrijwillige motivatie van sporters om zich in te zetten. Als coach kan je zorgen voor een " +
-				"maximale aansluiting bij de persoonlijke ontwikkeling en het perspectief van de sporters door het " +
-				"tempo van de sporter te respecteren. Hierdoor gaat de sporter het gevoel hebben dat er rekening " +
-				"wordt gehouden met zijn persoonlijke ontwikkeling en zal hij/zij opnieuw op een meer vrijwillige " +
-				"manier gemotiveerd zijn.\n" +
-				"\n" +
-				"Daarnaast kan je als coach weerstand of frustratie van sporter erkennen. Je respecteert en luistert " +
-				"eventueel naar de mening van de sporter, en gaat hier als coach mee aan de slag. Dit betekent " +
-				"uiteraard niet dat je er mee akkoord dient te gaan. Afstemmen betekent immers ook het geven van " +
-				"een betekenisvolle uitleg voor de verwachtingen die je als coach hebt en de beslissingen die je " +
-				"neemt. Het is namelijk niet realistisch om over alles inbreng toe te staan. Daarom is het cruciaal " +
-				"voor coaches om voldoende onderbouw te geven aan gemaakte keuzes, beslissingen en opgedragen " +
-				"opdrachten. Coaches die erin slagen een concrete en zinvolle uitleg af te stemmen op de situatie en " +
-				"aansluiting vinden bij de persoonlijke doelen van de sporters vergroten de kans dat atleten zich " +
-				"kunnen vinden in de beslissingen of opdrachten. Dit creëert dan weer draagvlak en zal de bereidheid " +
-				"van sporters om zich in te zetten versterken. \n",
-			'BEGELEIDEND': 'Een begeleidende benadering betekent dat je als coach een procesgerichte houding aanneemt ' +
-				'door gepaste hulp en begeleiding te geven aan je sporters tijdens hun ontwikkelingsproces. Door middel ' +
-				'van deze hulp en begeleiding weten sporters wat goed gaat, hoe ze nog kunnen verbeteren en kunnen ze ' +
-				'progressie maken. Dit zal helpen om een gevoel van competentie te ervaren, wat op zijn beurt bijdraagt ' +
-				'tot de motivatie, engagement en doorzettingsvermogen van sporters. Deze hulp kan diverse vormen ' +
-				'aannemen gaande van materiële hulpmiddelen (bv. zwemgordels), fysieke hulmiddelen (bv. begeleiden ' +
-				'van beweging in gymnastiek), tot procesgerichte, correctieve feedback. Je hoeft als coach niet alles ' +
-				'voor te kauwen. Via een leergesprek sporters laten reflecteren over wat nog verbeterd kan worden, zal ' +
-				'hun zelfinzicht en zelfontplooiing ten goede zal komen. \n' +
-				'\n' +
-				'Je dient als coach een moeilijk evenwicht te vinden tussen opdrachten die haalbaar zijn, maar toch v' +
-				'oldoende uitdaging bieden. Je dient dus oefenstof te voorzien op maat van de sporter. Het gevaar ' +
-				'bestaat erin dat coaches teveel hulp bieden bij een relatief makkelijke opdracht, wat eerder zal ' +
-				'leiden tot frustratie bij de sporters. Het omgekeerde, te weinig hulp bij een te moeilijke opdracht, ' +
-				'zal evenwel ook leiden tot een laag competentiegevoel. Passende hulp bieden is dus moeilijker dan op ' +
-				'het eerste zich zou lijken. In die zin wordt een begeleidende benadering dan ook bij voorkeur ' +
-				'gecombineerd met een afstemmende benadering. Als coach dien je namelijk goed in te schatten welke ' +
-				'en hoeveel hulp een sporter op een bepaald ogenblik nodig heeft. \n',
-			'VERDUIDELIJKEND': 'Wanneer je als coach hoog scoort op de verduidelijkende benadering betekent dat dat ' +
-				'je sporters ondersteunt door ze een duidelijke structuur mee te geven. Deze structuur biedt een ' +
-				'houvast voor de sporters, zodat ze weten wat er van hen verwacht wordt en welke afspraken er gemaakt ' +
-				'zijn. In een eerste plaats helpt het om een overzicht (bv. indeling van trainingsmaand) te geven met' +
-				'tussenstappen of –doelen zodat sporters het grotere plaatje zien en specifieke verwachtingen ook ' +
-				'beter kunnen plaatsen. Daarnaast zal je als verduidelijkende coach duidelijke verwachtingen, ' +
-				'afspraken en opdrachten communiceren naar je sporters. Dit gaat niet enkel over duidelijke ' +
-				'sporttechnische of –tactische zaken, maar even goed over normen en regels. Als het voor sporters ' +
-				'duidelijk is wat de coach voor ogen heeft, kunnen zij hun focus beter richten en prikkelt/motiveert ' +
-				'dit hen om een inspanning te leveren. Om tot een duidelijke en volgbare structuur te komen is het ' +
-				'belangrijk dat al deze verwachtingen en afspraken ook consequent opgevolgd worden\n' +
-				'\n' +
-				'Als coach dien je er evenwel op toe te zien dat je niet verzandt in een  te rigide aanpak. ' +
-				'Deze kan er namelijk voor zorgen dat sporters te afhankelijk worden van de coach en de autonomie, ' +
-				'creativiteit en initiatief van de sporters ondermijnd wordt. Zo is de valkuil van een verduidelijkende ' +
-				'benadering een coach die te sterk van bovenaf eenzijdig zaken zal opleggen zonder hierbij de ' +
-				'relevantie, bedoeling of het nut ervan te duiden enerzijds, of anderszijds onvoldoende af te' +
-				' stemmen op het ontwikkelingsritme, de noden en mogelijkheden van zijn sporters. \n',
-			'EISEND': 'Bij eisende of dwingende benadering staat de beleving en visie van de coach centraal. Als coach' +
-				' heb je dan ook graag zelf de touwtjes in handen en stuur je sporters in een richting die, volgens jou' +
-				', de juiste is. Vanuit dit idee legt een eisende coach hoge standaarden op en eist hij/zij sporters ' +
-				'aan deze standaarden te voldoen. Bij eisende coaches ligt de nadruk op het opvolgen en voldoen aan ' +
-				'de vooropgestelde verwachtingen en opdrachten, die in de ogen van de coach leiden tot een maximale ' +
-				'progressie en prestatie. Wanneer coaches dus eenzijdig beroep doen op deze benadering zullen atleten ' +
-				'voortdurend het gevoel hebben dat ze aan heel wat eisen moeten voldoen of alleen maar dingen moeten ' +
-				'doen die hen opgelegd worden.\n' +
-				'\n' +
-				'Hoewel een eisende benadering er wel voor zorgt dat coaches heel wat gedaan krijgen van hun ' +
-				'sporters op korte termijn, is er een gebrek aan duurzame motivatie en dus minder positieve effecten ' +
-				'op langere termijn. Coaches die van nature uit graag een meer sturende rol opnemen en zich vooral ' +
-				'eisend gedragen wordt aangeraden om dit te combineren met een structurerende of ' +
-				'autonomie-ondersteunend stijl. Dit kan door gebruik te maken van meer verduidelijkende ' +
-				'strategieën (cf. verduidelijkende benadering) of door op voldoende momenten zaken af te stemmen op ' +
-				'de noden, mogelijkheden en het ontwikkelingsritme van de sporter (cf. afstemmende benadering). ' +
-				'Meer nog, uit onderzoek blijkt dat de combinatie van een eisende benadering en een afstemmende ' +
-				'benadering door sporters niet per se als negatief ervaren wordt, wel integendeel. Wanneer je ' +
-				'voldoende duiding geeft over jouw aanpak of beslissingen en sporters voldoende uitlegt over het ' +
-				'waarom dat ze bepaalde opdrachten dienen uit te voeren, zal je een stevig draagvlak creëren voor ' +
-				'jouw werkwijze. Dit zorgt ervoor dat eisend gedrag op bepaalde momenten meer aanvaard of begrepen ' +
-				'kan worden en sporters gemotiveerd zullen zijn of blijven.\n',
-			'DOMINEREND': 'Een hoge score op de dominerende benadering betekent dat je als coach vooral bezig bent ' +
-				'met je eigen agenda en ambities als coach, zonder daarbij rekening te houden met het perspectief ' +
-				'van de sporter. Wanneer iets mis gaat, lopen dominerende coaches het risico hun frustratie te ' +
-				'reflecteren op de sporter. Vanuit deze frustratie worden sporter binnen de dominerende benadering ' +
-				'eerder persoonlijk aangevallen of schuld- en schaamtegevoelens gegeven. Bij tegenspraak raak je als ' +
-				'dominerende coach sneller geïrriteerd en ervaar je dit als een aanval op jouw (machts)positie als' +
-				' coach.\n' +
-				'\n' +
-				'Het hoeft weinig betoog dat een dominerende benadering sporters niet ten goede komt. Ze gaan ' +
-				'zelden plezier of vrijwilligheid ervaren en gaan ook weinig succeservaring beleven. Meer nog, ' +
-				'sporters gaan problematisch functioneren, uit angst om te voldoen aan de verwachtingen van de coach. ' +
-				'Dit kan zo ver gaan dat sporters immoreel gedrag zullen vertonen onder de vorm van onsportief gedrag ' +
-				'of valsspelen. Wanneer ze hun coach veelvuldig als dominerend ervaren, zal dit in verdere stadia ' +
-				'leiden tot angst, stress of zelfs opgeven (drop-out). Het is menselijk dat coaches soms emotioneel ' +
-				'reageren en daardoor hun kalmte weleens verliezen. Wees daarvan bewust en zorg dat je bij veelvuldig ' +
-				'gebruik van deze aanpak meer tracht te denken vanuit de leefwereld van de sporter. In plaats van een ' +
-				'focus op resultaat wordt de progressie en persoonlijke ontwikkeling van de sporter centraal geplaatst. ' +
-				'Binnen deze meer procesgerichte aanpak, waar de aandacht gaat naar de taak die ze uitvoeren en het ' +
-				'gedrag dat ze daarbij vertonen, kan prestatie evenwel een lange termijn doel (lees: gevolg) zijn. ' +
-				'Een te enge focus op die prestatie zal echter niet alleen jouw sporters een benauwd gevoel geven, ' +
-				'maar jezelf ook sturen richting een bemoeizuchtige, dominerende aanpak.\n',
-			'OPGEVEND': 'Een hoge score op de opgevende benadering betekent dat je als coach een negatieve, ' +
-				'uitgebluste en/of onverschillige houding aanneemt ten opzichte van jouw sporters. Coaches die een ' +
-				'opgevende houding aannemen gaan na herhaaldelijke tussenkomsten de zaken op hun beloop laten. Ze ' +
-				'gaan de sporter niet of nauwelijks bijstaan in hun leerproces en indien ze actie ondernemen, focussen ' +
-				'ze vooral op wat fout kan gaan. Enerzijds door op voorhand te waarschuwen voor alle zaken die fout ' +
-				'kunnen gaan of niet mogen gebeuren, of anderzijds door achteraf enkel aan te geven wat misliep ' +
-				'(negatieve feedback) in plaats van hulp of strategieën aan te reiken om zaken te verbeteren of te ' +
-				'leren uit de fouten. \n' +
-				'\n' +
-				'De sporter wordt met andere woorden niet geholpen in het leerproces, wat hun gevoelens van ' +
-				'competentie danig ondermijnt. Op die manier worden faalangstige sporters gecreëerd die het ' +
-				'tegenovergestelde doen van wat een opgevende coach lijkt te wensen; namelijk atleten die zelfstandig ' +
-				'problemen zullen oplossen. Aangezien ze niet weten wat van hen verwacht wordt of hoe zij zichzelf' +
-				' kunnen verbeteren, voelen ze zich aan hun lot overgelaten en zullen ze net een gebrek aan vertrouwen ' +
-				'tonen om initiatief te ondernemen. Sporters hebben het gevoel dat de coach niet beschikbaar is op het' +
-				' moment dat ze hem nodig hebben, hetgeen gevoelens van frustratie en kwaadheid uitlokt. Uit onderzoek' +
-				' is gebleken dat een opgevende benadering als meest frustrerend wordt ervaren door sporters. Daar waar' +
-				' een coach bij een dominerende of eisende benadering nog enige vorm van betrokkenheid toont, voelen' +
-				' sporters zich in de steek gelaten bij een opgevende aanpak.\n',
-			'AFWACHTEND': 'Coaches die hoog scoren op een afwachtende benadering gaan het initiatief bij de sporters' +
-				' leggen, zonder daarbij afspraken te maken, doelen of verwachtingen naar voren te schuiven, of ' +
-				'grenzen te stellen. Door geen verwachtingen te communiceren, gaan sporters deze ‘gedwongen’ ' +
-				'zelfstandigheid niet noodzakelijk als motiverend ervaren. Ze weten niet wat ze moeten doen, ' +
-				'wat er van hen verwacht wordt en waar de grenzen liggen. Hoewel je als coach er misschien vanuit ' +
-				'gaat dat afspraken en verwachtingen duidelijk genoeg zijn en niet uitgesproken hoeven te worden, ' +
-				'is dit vaak niet het geval voor de sporter.\n' +
-				'\n' +
-				'Uiteraard kan je als coach soms bewust de kat uit de boom kijken door het initiatief bij ' +
-				'sporters te leggen en te kijken hoe ze reageren. Wees je er in dat geval wel van bewust dat ' +
-				'sporters een minimum aan houvast nodig hebben, waarin hun zelfstandigheid tot hun recht kan komen. ' +
-				'Wanneer je namelijk te pas en te onpas ingrijpt kunnen sporters gefrustreerd of verontwaardigd reageren' +
-				' wanneer ze aangesproken worden op zaken die niet op voorhand doorgesproken zijn. In dat opzicht is' +
-				' het beter om preventief een duidelijk kader van afspraken en verwachtingen te communiceren waarop' +
-				' sporters kunnen terugvallen en jij als coach op kan terugkomen. Door inconsequent op te treden ' +
-				'veroorzaak je als coach niet alleen onvoorspelbaarheid en verwarring, maar ook gevoelens van ' +
-				'onrechtvaardigheid. Bijvoorbeeld wanneer je als coach een sporter die te laat komt de ene keer er ' +
-				'wel en de andere keer niet op aanspreekt. Dit is niet alleen frustrerend voor de sporters, maar ' +
-				'tast je geloofwaardigheid als coach ook aan en leidt tot sporters die zich zullen verzetten en ' +
-				'moeilijker laten bijsturen, wat dan waar nefast is voor de persoonlijke competentieontwikkeling ' +
-				'van de sporter.\n'
+			'AUTONOMIE' : "Wanneer je als coach hoog scoort op de autonomie-ondersteunende benadering zullen jouw " +
+				"sporters het gevoel hebben dat ze aan de basis liggen van hun eigen gedrag. Je houdt namelijk " +
+				"rekening met het perspectief van de sporters, en dit zal hen motiveren. " +
+				"Als autonomie-ondersteunende coach betrek je je sporters actief in het denkproces " +
+				"en moedig je hen aan om zelf keuzes te maken. Je gaat met hen in dialoog, zodat je beter kan inspelen " +
+				"op hun verwachtingen, interesses en noden. Door sporters te betrekken in beslissingen en " +
+				"hierover met hen te praten is de kans groter dat ze jouw standpunten als coach ook meer begrijpen " +
+				"en er meer draagvlak is voor uiteindelijke beslissingen. " +
+				"Let wel, diverse factoren zoals tijdsdruk, groepsgrootte, leeftijd, beperkte voorkennis en/of vaardigheden " +
+				"kunnen het bieden van inspraak bemoeilijken. " +
+				"Wanneer coaches sporters aanzetten tot zelfstandigheid, " +
+				"maar sporters over onvoldoende mogelijkheden beschikken om hiermee goed om te gaan, " +
+				"kan dit bijvoorbeeld ook een averechts effect hebben. \n\n" +
+				"Dit kan resulteren in chaos waarbij sporters ervaren dat ze alleen of aan hun lot overgelaten worden." +
+				"Autonomie-ondersteuning betekent niet dat je alles plots moet overlaten aan jouw sporters. " +
+				"Als coach neem je nog steeds heel wat beslissingen en maak je zelf bepaalde keuzes voor jouw sporters. " +
+				"Dat sporters in dit geval de coach volgen, betekent niet dat hun motivatie per se zal dalen. " +
+				"Autonomie-ondersteunende coaches kunnen opgelegde taken en regels namelijk goed onderbouwen. " +
+				"Ze geven een zinvolle uitleg of reden voor zelfgenomen beslissingen, " +
+				"zodat sporters weten waarom bepaalde dingen van hen verwacht worden. " +
+				"Ook wanneer sporters een afwijkende visie of mening hebben, zal je als afstemmende coach rekening " +
+				"houden met hun perspectief. Het feit dat je sporters hun mening laat geven, " +
+				"hoeft niet te betekenen dat je akkoord moet gaan met hun standpunten, " +
+				"maar het kan wel de basis vormen voor een verhelderend gesprek of extra duiding.",
+			'STRUCTUUR': 'Structuur  betekent dat je als coach vooral heel erg duidelijk bent en sporters helpt bij ' +
+				'hun ontwikkeling. Door bijvoorbeeld feedback te geven wanneer nodig, door op tijd en stond te helpen, ' +
+				'maar ook door ze net voldoende uit te dagen. Je zal er als coach voor zorgen dat je het niveau aanpast' +
+				' aan de mogelijkheden van de sporter. Je biedt uitdagingen die haalbaar maar moeilijk genoeg zijn om ' +
+				'hem of haar te prikkelen. Daarnaast geef je als coach uiteraard feedback. Die kan positief zijn, maar' +
+				' is best ook correctief en concreet. Je kan aangeven wat goed is, maar geef zeker ook tips en ' +
+				'suggesties van hoe het beter kan. Zo zullen sporters zich kunnen ontwikkeling, waardoor ze zich ' +
+				'ook meer bekwaam zullen gaan voelen, wat dan weer motiverend werkt. Je hoeft als coach niet alles ' +
+				'voor te kauwen: sporters zelf laten nadenken over wat beter kan, dingen laten ontdekken of ' +
+				'oplossingen laten zoeken, zal hun zelfinzicht stimuleren. \n\n' +
+				'Je zorgt ook voor houvast: je bent als coach vooral duidelijk naar je sporters en communiceert heel ' +
+				'helder jouw verwachtingen. Je biedt als coach zo overzicht op de lange en korte termijn. Laat ' +
+				'duidelijk en expliciet weten wat op het terrein verwacht wordt maar ook welke regels en normen ' +
+				'er zijn. Op die manier weten sporters wat van hen verwacht wordt en wat ze kunnen doen om een ' +
+				'bepaald doel te bereiken. Het is belangrijk om die dingen ook nauwgezet op te volgen en na te gaan ' +
+				'of bepaalde verwachtingen ingevuld en doelstellingen behaald worden.',
+			'CONTROLE': 'Wanneer je hoog scoort op controle heb je als coach de touwtjes strak in handen, ' +
+				'en dat op een dwingende en verplichtende manier. Hierbij staat jouw visie als coach ' +
+				'voornamelijk centraal en laat je minder ruimte voor de mening van de sporters. ' +
+				'Door te veel en te eenzijdig beroep te doen op deze controlerende stijl, zullen sporters ' +
+				'het gevoel krijgen dat ze aan heel wat eisen en verplichtingen moeten voldoen. ' +
+				'Dat leidt tot een gevoel van druk bij de sporters, wat er dan weer voor zal zorgen dat sporters op ' +
+				'de lange termijn gedemotiveerd zullen zijn. \n\n' +
+				'Uiteraard zal elke coach wel eens streng optreden naar zijn sporter, kordaat ingrijpen of sporters ' +
+				'tot hun sportieve limiet trachten te pushen. Zulke beperkte vormen van controle zullen, ' +
+				'zeker op de korte termijn, niet meteen schade berokkenen bij de sporter. ' +
+				'Wees jezelf in de eerste plaats als coach bewust van dit gedrag en probeer hier niet verder in te' +
+				' verglijden. We zien namelijk dat een lang aangehouden, en vooral zeer doorgedreven vormen van ' +
+				'controle, niet wenselijk is in functie van de motivatie van sporters. ' +
+				'Hierbij denken we dan voornamelijk aan vormen die de sporter als persoon tot het uiterste drijven; ' +
+				'onderdrukken van de mening van de sporters, jezelf als coach niet verantwoorden, ' +
+				'gebruik maken van machtspositie als coach, persoonlijk aanvallen of ' +
+				'geven van gevoelens van schuld of schaamte. Deze categorie van gedragingen worden uiteraard ' +
+				'afgeraden om sporters op een duurzame manier te motiveren.',
+			'CHAOS': 'Een hoge score op de chaotische stijl betekent dat je als coach heel wat sturing overlaat aan ' +
+				'de sporter, maar er onvoldoende structuur is. Dit kan zeer demotiverend werken voor sporters.' +
+				' Chaotische coaches zijn echter onberekenbaar voor sporters en slagen er onvoldoende in om hen ' +
+				'te begeleiden en duidelijkheid te scheppen. Vaak helpen ze ook onvoldoende: ze wachten te lang ' +
+				'om in te grijpen en gaan ervan uit dat problemen zichzelf zullen oplossen. ' +
+				'Er is met andere woorden een gebrek aan houvast, waardoor sporters het gevoel hebben dat ze ' +
+				'aan hun lot worden overgelaten. Uiteraard kan je als coach het initiatief soms bewust bij de ' +
+				'sporter leggen, om hen zo nieuwe ervaringen op te laten doen. Wees je er echter wel van bewust ' +
+				'dat dit enkel zal werken bij een minimum aan sturing én dat in sommige situaties sporters ' +
+				'gefrustreerd of verontwaardigd zullen zijn bij té veel vrijheid. \n\n' +
+				'Een gebrek aan sturing zal vaak het gevolg zijn van het niet goed aanvoelen van wanneer sporters' +
+				' ondersteuning nodig hebben. Bijgevolg kan chaos zich niet alleen uiten in het gebrek aan ' +
+				'structuur maar ook in het overladen van sporters met teveel aan informatie. Te veel of een ' +
+				'overdosis aan (tegenstrijdige) informatie en hulp kan frustrerend of beklemmend overkomen ' +
+				'voor sporters. Ook hier geldt: overdaad schaadt. Soms geven coaches het ook helemaal op en ' +
+				'geven ze een uitgebluste indruk. Ze steken geen energie meer in sporters en reageren onverschillig. ' +
+				'Ze laten de zaken op hun beloop en sporters staan er alleen voor. ' +
+				'Doordat ze zich niet geholpen voelen in hun leerproces, blijkt zulke chaotische stijl ' +
+				'het meest frustrerend voor sporters.'
 		}
 		let details = data[bouwsteen]
 		if (details !== undefined){
@@ -270,29 +200,20 @@ export default class Profile extends Component {
 		let dominerend = localStorage.getItem('dominerend');
 		let opgevend = localStorage.getItem('opgevend');
 		let afwachtend = localStorage.getItem('afwachtend');
+		let autonomie = Math.round(((parseFloat(participatief) + parseFloat(afstemmend)) / 2) *10) / 10
+		let structuur =  Math.round(((parseFloat(begeleidend) + parseFloat(verduidelijkend)) / 2) *10) / 10
+		let controle =  Math.round(((parseFloat(eisend) + parseFloat(dominerend)) / 2) *10) / 10
+		let chaos =  Math.round(((parseFloat(opgevend) + parseFloat(afwachtend)) / 2) *10) / 10
 
 
 		let data = [
-			{"value": participatief, "number": 45, "name": "PARTICIPATIEF"},
-			{"value": afstemmend, "number": 45, "name": "AFSTEMMEND"},
-			{"value": begeleidend, "number": 45, "name": "BEGELEIDEND"},
-			{"value": verduidelijkend, "number": 45, "name": "VERDUIDELIJKEND"},
-			{"value": eisend, "number": 45, "name": "EISEND"},
-			{"value": dominerend, "number": 45, "name": "DOMINEREND"},
-			{"value": opgevend, "number": 45, "name": "OPGEVEND"},
-			{"value": afwachtend, "number": 45, "name": "AFWACHTEND"},
+			{"value": autonomie, "number": 90, "name": "AUTONOMIE"},
+			{"value": structuur, "number": 90, "name": "STRUCTUUR"},
+			{"value": controle, "number": 90, "name": "CONTROLE"},
+			{"value": chaos, "number": 90, "name": "CHAOS"}
 		];
 
 		return data
-	}
-
-	createDataKwadrant(){
-		return  [
-			{ "number": 90, "name": "AUTONOMIE", "rotate": 45},
-			{ "number": 90, "name": "STRUCTUUR","rotate": -45},
-			{ "number": 90, "name": "CONTROLE","rotate": 45},
-			{ "number": 90, "name": "CHAOS","rotate": -45}
-		];
 	}
 
 	checkHover(name) {
@@ -316,7 +237,7 @@ export default class Profile extends Component {
 	handleClick(d){
 		this.setState({
 			details: true,
-			selectedBouwsteen: d.data.name,
+			selectedKwadrant: d.data.name,
 			selectedScore: Math.round(d.data.value * 10) / 10
 		})
 	}
@@ -331,17 +252,9 @@ export default class Profile extends Component {
 
 	calculateLocationLabelkwadrant(d, maxRadius){
 		let middleAngle = (d.startAngle + d.endAngle) / 2
-		let x = Math.sin(middleAngle) * maxRadius * 0.93
-		let y = -Math.cos(middleAngle) * maxRadius * 0.93
-		let translate = "translate(" + x.toString() + "," + y.toString() + ") rotate(" + d.data.rotate + ")"
-		return translate
-	}
-
-	calculateLocationLabelkwadrantPrint(d, maxRadius){
-		let middleAngle = (d.startAngle + d.endAngle) / 2
-		let x = Math.sin(middleAngle) * maxRadius * 0.9
-		let y = -Math.cos(middleAngle) * maxRadius * 0.9
-		let translate = "translate(" + x.toString() + "," + y.toString() + ") rotate(" + d.data.rotate + ")"
+		let x = Math.sin(middleAngle) * maxRadius * 0.8
+		let y = -Math.cos(middleAngle) * maxRadius * 0.8
+		let translate = "translate(" + x.toString() + "," + y.toString() + ")"
 		return translate
 	}
 
@@ -354,7 +267,7 @@ export default class Profile extends Component {
 		}
 	}
 
-	renderOctantLabel(d){
+	renderKwadrantLabel(d){
 		if (isMobile) {
 			return d.data.name + ": " + Math.round(d.data.value * 10) / 10
 		}
@@ -365,27 +278,14 @@ export default class Profile extends Component {
 
 	renderProfile() {
 		let data = this.createData();
-		let dataKwadrant = this.createDataKwadrant()
 		let width = window.screen.availWidth;
 		let height = window.screen.availHeight * 0.6;
-
-		const color = d3.scaleOrdinal().range([
-			'#146094',
-			'#1E82CA',
-			'#3BAD4F',
-			'#257435',
-			'#FAB97E',
-			'#A85C23',
-			'#A52624',
-			'#E96E6A',
-
-		]);
 
 		let maxRadiusTotal = Math.min(width, height) / 2 - 1;
 		let widthSVG = 2 * maxRadiusTotal + 10;
 		let heightSVG = 2 * maxRadiusTotal + 10;
 		let innerRadius = maxRadiusTotal * 0.15;
-		let maxRadius = 0.88 * maxRadiusTotal
+		let maxRadius = 0.99 * maxRadiusTotal
 		let fontSize = innerRadius / 1.2
 		let radius = d3.scaleLinear()
 			.domain([0, 7])
@@ -402,10 +302,6 @@ export default class Profile extends Component {
 			.innerRadius(innerRadius)
 			.outerRadius(maxRadius);
 
-		let arcKwadrant = d3Arc()
-			.innerRadius(maxRadius)
-			.outerRadius(maxRadiusTotal);
-
 		const pie = d3Pie()
 			.sort(null)
 			.value(function (d) {
@@ -413,16 +309,13 @@ export default class Profile extends Component {
 			});
 
 		const dataPie = pie(data);
-		const dataPieKwadrant = pie(dataKwadrant)
 		let styleOuter = classnames(styles.styleOuter);
 		let styleArc = classnames(styles.styleArc);
-		let styleArcKwadrant = classnames(styles.styleArcKwadrant);
 		let styleArcHover = classnames(styles.styleArcHover);
 		let styleText = classnames(styles.styleText);
 		let styleContainer = classnames(styles.styleContainer);
 		let styleContainerProfile = classnames(styles.styleContainerProfile);
 		let styleLabel = classnames(styles.styleLabel)
-		let styleLabelKwadrant = classnames(styles.styleLabelKwadrant)
 
 
 
@@ -470,7 +363,7 @@ export default class Profile extends Component {
 										<path
 											d={arc(d)}
 											className={this.checkHover(d.data.name) ? styleArcHover : styleArc}
-											fill={color(d.data.name)}
+											fill={this.getColor(d.data.name)}
 											key={d.index + "arcPath"}
 											id={d.index + "arcPath"}
 											onMouseOver={() => this.handleHover(d)}
@@ -485,39 +378,14 @@ export default class Profile extends Component {
 						<g transform={`translate(${widthSVG / 2}, ${(heightSVG / 2)} )`}>
 							{dataPie.map(d => (
 								<text
-									transform={this.calculateLocationLabelOctant(d, maxRadius)}
+									transform={this.calculateLocationLabelkwadrant(d, maxRadius)}
 									className={styleLabel}
 									onMouseOver={() => this.handleHover(d)}
 									onMouseLeave={() => this.handleLeave()}
 									onMouseDown={()=> this.handleClick(d)}
 									key={d.index + "labelOctant"}
 									id={d.index + "labelOctant"}
-								>{this.renderOctantLabel(d)}</text>
-							))}
-						</g>
-						<g transform={`translate(${widthSVG / 2}, ${(heightSVG / 2)} )`}>
-							{dataPieKwadrant.map(d => (
-								<>
-									<g
-										className="arcKwadrant"
-										key={d.index + "arcOuterKwadrant"}
-										id={d.index + "arcOuterKwadrant"}
-									>
-										<path
-											d={arcKwadrant(d)}
-											className={styleArcKwadrant}
-											key={d.index + "arcKwadrantPath"}
-											fill={this.getColor(d.data.name)}
-										/>
-									</g>
-									<text
-										transform={this.calculateLocationLabelkwadrant(d, maxRadiusTotal)}
-										className={styleLabelKwadrant}
-										key={d.index + "labelKwadrant"}
-										id={d.index + "labelKwadrant"}
-									>{d.data.name}</text>
-
-								</>
+								>{this.renderKwadrantLabel(d)}</text>
 							))}
 						</g>
 					</svg>
@@ -527,14 +395,14 @@ export default class Profile extends Component {
 	}
 
 	renderDetails(){
-		let bouwsteen = this.state.selectedBouwsteen
+		let kwadrant = this.state.selectedKwadrant
 		let score = this.state.selectedScore
-		let details = this.getDetailsBouwsteen(bouwsteen)
-		let color = this.getColor(bouwsteen)
-		let logo = this.getLogo(bouwsteen)
+		let details = this.getDetailsKwadrant(kwadrant)
+		let color = this.getColor(kwadrant)
+		let logo = this.getLogo(kwadrant)
 		return(
 			<Bouwsteen
-				name={bouwsteen}
+				name={kwadrant}
 				content={details}
 				handleGoBackToProfile={this.handleGoBackToProfile}
 				color={color}
@@ -546,96 +414,48 @@ export default class Profile extends Component {
 	}
 
 	renderDetailsPrint(){
-		let participatief = Math.round(localStorage.getItem('participatief') * 10) / 10;
-		let afstemmend = Math.round(localStorage.getItem('afstemmend') * 10) / 10;
-		let begeleidend = Math.round(localStorage.getItem('begeleidend') * 10) / 10;
-		let verduidelijkend = Math.round(localStorage.getItem('verduidelijkend') * 10) / 10;
-		let eisend = Math.round(localStorage.getItem('eisend') * 10) / 10;
-		let dominerend = Math.round(localStorage.getItem('dominerend') * 10) / 10;
-		let opgevend = Math.round(localStorage.getItem('opgevend') * 10) / 10;
-		let afwachtend = Math.round(localStorage.getItem('afwachtend') * 10) / 10;
+		let data = this.createData();
+
 
 		return(
 			<>
 				<Bouwsteen
-					name={"PARTICIPATIEF"}
-					content={this.getDetailsBouwsteen("PARTICIPATIEF")}
-					color={this.getColor("PARTICIPATIEF")}
-					score={participatief}
+					name={"AUTONOMIE"}
+					content={this.getDetailsKwadrant("AUTONOMIE")}
+					color={this.getColor("AUTONOMIE")}
+					score={data[0].value}
 					print={true}
-					logo={this.getLogo("PARTICIPATIEF")}
+					logo={this.getLogo("AUTONOMIE")}
 					pagebreak={true}
 				/>
 				<Bouwsteen
-					name={"AFSTEMMEND"}
-					content={this.getDetailsBouwsteen("AFSTEMMEND")}
-					color={this.getColor("AFSTEMMEND")}
-					score={afstemmend}
+					name={"STRUCTUUR"}
+					content={this.getDetailsKwadrant("STRUCTUUR")}
+					color={this.getColor("STRUCTUUR")}
+					score={data[1].value}
 					print={true}
-					logo={this.getLogo("AFSTEMMEND")}
+					logo={this.getLogo("STRUCTUUR")}
 					pagebreak={false}
 
 				/>
 
 				<Bouwsteen
-					name={"BEGELEIDEND"}
-					content={this.getDetailsBouwsteen("BEGELEIDEND")}
-					color={this.getColor("BEGELEIDEND")}
-					score={begeleidend}
+					name={"CONTROLE"}
+					content={this.getDetailsKwadrant("CONTROLE")}
+					color={this.getColor("CONTROLE")}
+					score={data[2].value}
 					print={true}
-					logo={this.getLogo("BEGELEIDEND")}
+					logo={this.getLogo("CONTROLE")}
 					pagebreak={true}
 
 				/>
 				<Bouwsteen
-					name={"VERDUIDELIJKEND"}
-					content={this.getDetailsBouwsteen("VERDUIDELIJKEND")}
-					color={this.getColor("VERDUIDELIJKEND")}
-					score={verduidelijkend}
+					name={"CHAOS"}
+					content={this.getDetailsKwadrant("CHAOS")}
+					color={this.getColor("CHAOS")}
+					score={data[3].value}
 					print={true}
-					logo={this.getLogo("VERDUIDELIJKEND")}
-					pagebreak={false}
-
-				/>
-
-				<Bouwsteen
-					name={"EISEND"}
-					content={this.getDetailsBouwsteen("EISEND")}
-					color={this.getColor("EISEND")}
-					score={eisend}
-					print={true}
-					logo={this.getLogo("EISEND")}
-					pagebreak={true}
-
-				/>
-				<Bouwsteen
-					name={"DOMINEREND"}
-					content={this.getDetailsBouwsteen("DOMINEREND")}
-					color={this.getColor("DOMINEREND")}
-					score={dominerend}
-					print={true}
-					logo={this.getLogo("DOMINEREND")}
-					pagebreak={false}
-
-				/>
-
-				<Bouwsteen
-					name={"OPGEVEND"}
-					content={this.getDetailsBouwsteen("OPGEVEND")}
-					color={this.getColor("OPGEVEND")}
-					score={opgevend}
-					print={true}
-					logo={this.getLogo("OPGEVEND")}
-					pagebreak={true}
-
-				/>
-				<Bouwsteen
-					name={"AFWACHTEND"}
-					content={this.getDetailsBouwsteen("AFWACHTEND")}
-					color={this.getColor("AFWACHTEND")}
-					score={afwachtend}
-					print={true}
-					logo={this.getLogo("AFWACHTEND")}
+					logo={this.getLogo("CHAOS")}
 					pagebreak={false}
 
 				/>
@@ -645,27 +465,14 @@ export default class Profile extends Component {
 
 	renderProfilePrint() {
 		let data = this.createData();
-		let dataKwadrant = this.createDataKwadrant()
 		let width = 640;
 		let height = 640;
-
-		const color = d3.scaleOrdinal().range([
-			'#146094',
-			'#1E82CA',
-			'#3BAD4F',
-			'#257435',
-			'#FAB97E',
-			'#A85C23',
-			'#A52624',
-			'#E96E6A',
-
-		]);
 
 		let maxRadiusTotal = Math.min(width, height) / 2 - 1;
 		let widthSVG = 2 * maxRadiusTotal + 10;
 		let heightSVG = 2 * maxRadiusTotal + 10;
 		let innerRadius = maxRadiusTotal * 0.05;
-		let maxRadius = 0.8 * maxRadiusTotal
+		let maxRadius = 0.99 * maxRadiusTotal
 		let radius = d3.scaleLinear()
 			.domain([0, 7])
 			.range([innerRadius, maxRadius]);
@@ -692,13 +499,11 @@ export default class Profile extends Component {
 			});
 
 		const dataPie = pie(data);
-		const dataPieKwadrant = pie(dataKwadrant)
 		let styleOuter = classnames(styles.styleOuter);
 		let styleArc = classnames(styles.styleArc);
 		let styleContainer = classnames(styles.styleContainer);
 		let styleContainerProfile = classnames(styles.styleContainerProfile);
 		let styleLabel = classnames(styles.styleLabelPrint)
-		let styleLabelKwadrant = classnames(styles.styleLabelKwadrantPrint)
 		let styleTitle = classnames(styles.titlePrint)
 
 		return (
@@ -741,7 +546,7 @@ export default class Profile extends Component {
 											<path
 												d={arc(d)}
 												className={styleArc}
-												fill={color(d.data.name)}
+												fill={this.getColor(d.data.name)}
 												key={d.index + "arcPath"}
 												id={d.index + "arcPath"}
 
@@ -756,28 +561,6 @@ export default class Profile extends Component {
 										transform={this.calculateLocationLabelOctant(d, maxRadius)}
 										className={styleLabel}
 									>{d.data.name + ": " + Math.round(d.data.value * 10) / 10}</text>
-								))}
-							</g>
-							<g transform={`translate(${widthSVG / 2}, ${(heightSVG / 2)} )`}>
-								{dataPieKwadrant.map(d => (
-									<>
-										<g
-											className="arcKwadrant"
-											key={d.index + "arcOuter"}
-											id={d.index + "arcOuter"}
-										>
-											<path
-												d={arcKwadrant(d)}
-												className={styleArc}
-												key={d.index + "arcKwadrantPath"}
-												fill={this.getColor(d.data.name)}
-											/>
-										</g>
-										<text
-											transform={this.calculateLocationLabelkwadrantPrint(d, maxRadiusTotal)}
-											className={styleLabelKwadrant}
-										>{d.data.name}</text>
-									</>
 								))}
 							</g>
 						</svg>
