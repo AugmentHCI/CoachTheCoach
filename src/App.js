@@ -20,7 +20,6 @@ export default function App() {
 		  <Route path="/Personality" component={Personality}/>
 
 		  <Route path="/Profile" component={Profile}/>
-		  <Route path="/Admin" component={Admin}/>
 		  <Route path="/Questionnaire" component={Questionnaire}/>
 	      <Route path="/" component={Welcome}/>
 
