@@ -17,7 +17,7 @@ export async function addProfile(id, participatief, afstemmend, begeleidend, ver
 		opgevend: opgevend,
 		afwachtend: afwachtend
 	};
-	let userName = User.username
+	let userName = User.user
 	let passWord = User.password
 	axios({
 		method: 'post',
@@ -101,7 +101,7 @@ export async function addDataProfile(id,q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,
 		q59: q59,
 		q60: q60,
 	}
-	let userName = User.username
+	let userName = User.user
 	let passWord = User.password
 	axios({
 		method: 'post',
@@ -128,7 +128,7 @@ export async function addDemographics(id,age,gender,sport,ageSporters,experience
 		nbHours: nbHours,
 		diploma: diploma
 	};
-	let userName = User.username
+	let userName = User.user
 	let passWord = User.password
 	axios({
 		method: 'post',
@@ -158,7 +158,7 @@ export async function addPersonality(id,extravert,kritisch,grondig, angstig, fan
 		kalm: kalm,
 		creatief: creatief
 	};
-	let userName = User.username
+	let userName = User.user
 	let passWord = User.password
 	axios({
 		method: 'post',
@@ -173,7 +173,7 @@ export async function addPersonality(id,extravert,kritisch,grondig, angstig, fan
 }
 
 export async function getPersonalities(){
-	let userName = User.username
+	let userName = User.user
 	let passWord = User.password
 	return axios({
 		method: 'get',
@@ -184,7 +184,7 @@ export async function getPersonalities(){
 }
 
 export async function getProfiles(){
-	let userName = User.username
+	let userName = User.user
 	let passWord = User.password
 	return axios({
 		method: 'get',
@@ -194,7 +194,7 @@ export async function getProfiles(){
 }
 
 export async function getProfilesRaw(){
-	let userName = User.username
+	let userName = User.user
 	let passWord = User.password
 	return axios({
 		method: 'get',
@@ -204,7 +204,7 @@ export async function getProfilesRaw(){
 }
 
 export async function getDemographics(){
-	let userName = User.username
+	let userName = User.user
 	let passWord = User.password
 	return axios({
 		method: 'get',
@@ -215,10 +215,10 @@ export async function getDemographics(){
 
 export async function checkCredentialsAPI(user, password){
 	const data = {
-		user: "asdf",
-		password: "asdf"
+		user: user,
+		password: password
 	};
-	let userName = User.username
+	let userName = User.user
 	let passWord = User.password
 	return axios({
 		method: 'post',
