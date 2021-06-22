@@ -9,9 +9,9 @@ This branch shows the "coachkompas" without octant
 3. cd CoachTheCoach
 4. git pull
 5. Add src>auth.json   
-5. podman build -t coachthecoach:dev .
-6. podman stop/rm coachthecoach   
-7. podman run -dit --name coachthecoach -p 3049:3000 coachthecoach:dev
+5. podman build -t coachthecoach:vts .
+6. podman stop/rm coachthecoachvts   
+7. podman run -dit --name coachthecoachvts -p 3049:3000 coachthecoach:vts
 8. test on picasso.experiments.cs.kuleuven.be:3049
 
 ## Prerequisites
