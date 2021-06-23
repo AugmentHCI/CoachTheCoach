@@ -207,10 +207,10 @@ export default class Profile extends Component {
 
 
 		let data = [
-			{"value": autonomie, "number": 90, "name": "AUTONOMIE"},
-			{"value": structuur, "number": 90, "name": "STRUCTUUR"},
-			{"value": controle, "number": 90, "name": "CONTROLE"},
-			{"value": chaos, "number": 90, "name": "CHAOS"}
+			{"value": autonomie, "number": 90, "name": "AUTONOMIE", "rotate": 45},
+			{"value": structuur, "number": 90, "name": "STRUCTUUR", "rotate": -45},
+			{"value": controle, "number": 90, "name": "CONTROLE", "rotate": 45},
+			{"value": chaos, "number": 90, "name": "CHAOS", "rotate": -45}
 		];
 
 		return data
@@ -252,9 +252,9 @@ export default class Profile extends Component {
 
 	calculateLocationLabelkwadrant(d, maxRadius){
 		let middleAngle = (d.startAngle + d.endAngle) / 2
-		let x = Math.sin(middleAngle) * maxRadius * 0.8
-		let y = -Math.cos(middleAngle) * maxRadius * 0.8
-		let translate = "translate(" + x.toString() + "," + y.toString() + ")"
+		let x = Math.sin(middleAngle) * maxRadius * 0.9
+		let y = -Math.cos(middleAngle) * maxRadius * 0.9
+		let translate = "translate(" + x.toString() + "," + y.toString() + ")rotate(" + d.data.rotate + ")"
 		return translate
 	}
 
@@ -267,25 +267,21 @@ export default class Profile extends Component {
 		}
 	}
 
-	renderKwadrantLabel(d){
-		if (isMobile) {
-			return d.data.name + ": " + Math.round(d.data.value * 10) / 10
+	renderKwadrantLabel(d, print){
+		if (isMobile || print) {
+			return Math.round(d.data.value * 10) / 10
 		}
 		else{
-			return d.data.name
+			return null
 		}
 	}
 
-	renderProfile() {
-		let data = this.createData();
-		let width = window.screen.availWidth;
-		let height = window.screen.availHeight * 0.6;
-
+	renderProfileHTML(data, width, height, print){
 		let maxRadiusTotal = Math.min(width, height) / 2 - 1;
 		let widthSVG = 2 * maxRadiusTotal + 10;
 		let heightSVG = 2 * maxRadiusTotal + 10;
 		let innerRadius = maxRadiusTotal * 0.15;
-		let maxRadius = 0.99 * maxRadiusTotal
+		let maxRadius = 0.8 * maxRadiusTotal
 		let fontSize = innerRadius / 1.2
 		let radius = d3.scaleLinear()
 			.domain([0, 7])
@@ -302,6 +298,10 @@ export default class Profile extends Component {
 			.innerRadius(innerRadius)
 			.outerRadius(maxRadius);
 
+		let arcKwadrant = d3.arc()
+			.innerRadius(maxRadius)
+			.outerRadius(maxRadiusTotal)
+
 		const pie = d3Pie()
 			.sort(null)
 			.value(function (d) {
@@ -316,15 +316,19 @@ export default class Profile extends Component {
 		let styleContainer = classnames(styles.styleContainer);
 		let styleContainerProfile = classnames(styles.styleContainerProfile);
 		let styleLabel = classnames(styles.styleLabel)
-
-
-
+		let styleArcKwadrant = classnames(styles.styleArcKwadrant)
+		let styleLabelKwadrant = classnames(styles.styleLabelKwadrant)
+		let styleTitle = classnames(styles.title)
 		return (
 			<>
 				<div
 					className={styleContainerProfile}
 				>
-					<Title title={"Persoonlijk Coachprofiel"} />
+					{print ?
+						<h1 className={styleTitle}>Persoonlijk Coachprofiel</h1>
+						:
+						<Title title={"Persoonlijk Coachprofiel"}/>
+					}
 					<p>{this.renderTaskInfo()}</p>
 					<svg
 						id="svgProfile"
@@ -337,6 +341,7 @@ export default class Profile extends Component {
 						>
 							{this.state.hoverValue}
 						</text>
+						{/*The inner pie*/}
 						<g transform={`translate(${widthSVG / 2}, ${(heightSVG / 2)} )`}>
 							{dataPie.map(d => (
 								<>
@@ -375,23 +380,58 @@ export default class Profile extends Component {
 								</>
 							))}
 						</g>
+						The labels
 						<g transform={`translate(${widthSVG / 2}, ${(heightSVG / 2)} )`}>
 							{dataPie.map(d => (
 								<text
-									transform={this.calculateLocationLabelkwadrant(d, maxRadius)}
+									transform={this.calculateLocationLabelOctant(d, maxRadius)}
 									className={styleLabel}
 									onMouseOver={() => this.handleHover(d)}
 									onMouseLeave={() => this.handleLeave()}
 									onMouseDown={()=> this.handleClick(d)}
 									key={d.index + "labelOctant"}
 									id={d.index + "labelOctant"}
-								>{this.renderKwadrantLabel(d)}</text>
+								>{this.renderKwadrantLabel(d, print)}</text>
+							))}
+						</g>
+						{/*The outer donut pie*/}
+						<g transform={`translate(${widthSVG / 2}, ${(heightSVG / 2)} )`}>
+							{dataPie.map(dp => (
+								<>
+									<g
+										className="arcKwadrant"
+										key={dp.index + "arcOuterKwadrant"}
+										id={dp.index + "arcOuterKwadrant"}
+									>
+										<path
+											d={arcKwadrant(dp)}
+											className={styleArcKwadrant}
+											key={dp.index + "arcKwadrantPath"}
+											id={dp.index + "arcKwadrantPath"}
+											fill={this.getColor(dp.data.name)}
+										/>
+									</g>
+									<text
+										transform={this.calculateLocationLabelkwadrant(dp, maxRadiusTotal)}
+										className={styleLabelKwadrant}
+										key={dp.index + "labelKwadrant"}
+										id={dp.index + "labelKwadrant"}
+
+									>{dp.data.name}</text>
+								</>
 							))}
 						</g>
 					</svg>
 				</div>
 
 			</>)
+	}
+
+	renderProfile() {
+		let data = this.createData();
+		let width = window.screen.availWidth;
+		let height = window.screen.availHeight * 0.6;
+		return this.renderProfileHTML(data, width, height, false)
 	}
 
 	renderDetails(){
@@ -467,106 +507,106 @@ export default class Profile extends Component {
 		let data = this.createData();
 		let width = 640;
 		let height = 640;
-
-		let maxRadiusTotal = Math.min(width, height) / 2 - 1;
-		let widthSVG = 2 * maxRadiusTotal + 10;
-		let heightSVG = 2 * maxRadiusTotal + 10;
-		let innerRadius = maxRadiusTotal * 0.05;
-		let maxRadius = 0.99 * maxRadiusTotal
-		let radius = d3.scaleLinear()
-			.domain([0, 7])
-			.range([innerRadius, maxRadius]);
-
-
-		let arc = d3Arc()
-			.innerRadius(innerRadius)
-			.outerRadius(function (d) {
-				return radius(Math.round(d.data.value * 10) / 10)
-			});
-
-		let arcOuter = d3Arc()
-			.innerRadius(innerRadius)
-			.outerRadius(maxRadius);
-
-		let arcKwadrant = d3Arc()
-			.innerRadius(maxRadius)
-			.outerRadius(maxRadiusTotal);
-
-		const pie = d3Pie()
-			.sort(null)
-			.value(function (d) {
-				return d.number;
-			});
-
-		const dataPie = pie(data);
-		let styleOuter = classnames(styles.styleOuter);
-		let styleArc = classnames(styles.styleArc);
-		let styleContainer = classnames(styles.styleContainer);
-		let styleContainerProfile = classnames(styles.styleContainerProfile);
-		let styleLabel = classnames(styles.styleLabelPrint)
-		let styleTitle = classnames(styles.titlePrint)
-
-		return (
-			<>
-				<div
-					id="ProfileContainer"
-					className={styleContainer}
-				>
-					<div
-						className={styleContainerProfile}
-					>
-						<h1
-							className={styleTitle}
-						>Persoonlijk Coachprofiel</h1>
-						<br/><br/><br/><br/>
-						<svg
-							id="svgProfileA4"
-							width={widthSVG}
-							height={heightSVG}>
-							<g transform={`translate(${widthSVG / 2}, ${(heightSVG / 2)} )`}>
-								{dataPie.map(d => (
-									<>
-										<g
-											className="arcOuter"
-											key={d.index + "arcOuter"}
-											id={d.index + "arcOuter"}
-										>
-											<path
-												d={arcOuter(d)}
-												className={styleOuter}
-												key={d.index + "arcOuterPath"}
-											/>
-										</g>
-										<g
-											className="arc"
-											pointerEvents="all"
-											key={d.index + "arcPathGroup"}
-											id={d.index + "arc"}
-										>
-											<path
-												d={arc(d)}
-												className={styleArc}
-												fill={this.getColor(d.data.name)}
-												key={d.index + "arcPath"}
-												id={d.index + "arcPath"}
-
-											/>
-										</g>
-									</>
-								))}
-							</g>
-							<g transform={`translate(${widthSVG / 2}, ${(heightSVG / 2)} )`}>
-								{dataPie.map(d => (
-									<text
-										transform={this.calculateLocationLabelOctant(d, maxRadius)}
-										className={styleLabel}
-									>{d.data.name + ": " + Math.round(d.data.value * 10) / 10}</text>
-								))}
-							</g>
-						</svg>
-					</div>
-				</div>
-			</>)
+		return this.renderProfileHTML(data, width, height, true)
+		// let maxRadiusTotal = Math.min(width, height) / 2 - 1;
+		// let widthSVG = 2 * maxRadiusTotal + 10;
+		// let heightSVG = 2 * maxRadiusTotal + 10;
+		// let innerRadius = maxRadiusTotal * 0.05;
+		// let maxRadius = 0.99 * maxRadiusTotal
+		// let radius = d3.scaleLinear()
+		// 	.domain([0, 7])
+		// 	.range([innerRadius, maxRadius]);
+		//
+		//
+		// let arc = d3Arc()
+		// 	.innerRadius(innerRadius)
+		// 	.outerRadius(function (d) {
+		// 		return radius(Math.round(d.data.value * 10) / 10)
+		// 	});
+		//
+		// let arcOuter = d3Arc()
+		// 	.innerRadius(innerRadius)
+		// 	.outerRadius(maxRadius);
+		//
+		// let arcKwadrant = d3Arc()
+		// 	.innerRadius(maxRadius)
+		// 	.outerRadius(maxRadiusTotal);
+		//
+		// const pie = d3Pie()
+		// 	.sort(null)
+		// 	.value(function (d) {
+		// 		return d.number;
+		// 	});
+		//
+		// const dataPie = pie(data);
+		// let styleOuter = classnames(styles.styleOuter);
+		// let styleArc = classnames(styles.styleArc);
+		// let styleContainer = classnames(styles.styleContainer);
+		// let styleContainerProfile = classnames(styles.styleContainerProfile);
+		// let styleLabel = classnames(styles.styleLabelPrint)
+		// let styleTitle = classnames(styles.titlePrint)
+		//
+		// return (
+		// 	<>
+		// 		<div
+		// 			id="ProfileContainer"
+		// 			className={styleContainer}
+		// 		>
+		// 			<div
+		// 				className={styleContainerProfile}
+		// 			>
+		// 				<h1
+		// 					className={styleTitle}
+		// 				>Persoonlijk Coachprofiel</h1>
+		// 				<br/><br/><br/><br/>
+		// 				<svg
+		// 					id="svgProfileA4"
+		// 					width={widthSVG}
+		// 					height={heightSVG}>
+		// 					<g transform={`translate(${widthSVG / 2}, ${(heightSVG / 2)} )`}>
+		// 						{dataPie.map(d => (
+		// 							<>
+		// 								<g
+		// 									className="arcOuter"
+		// 									key={d.index + "arcOuter"}
+		// 									id={d.index + "arcOuter"}
+		// 								>
+		// 									<path
+		// 										d={arcOuter(d)}
+		// 										className={styleOuter}
+		// 										key={d.index + "arcOuterPath"}
+		// 									/>
+		// 								</g>
+		// 								<g
+		// 									className="arc"
+		// 									pointerEvents="all"
+		// 									key={d.index + "arcPathGroup"}
+		// 									id={d.index + "arc"}
+		// 								>
+		// 									<path
+		// 										d={arc(d)}
+		// 										className={styleArc}
+		// 										fill={this.getColor(d.data.name)}
+		// 										key={d.index + "arcPath"}
+		// 										id={d.index + "arcPath"}
+		//
+		// 									/>
+		// 								</g>
+		// 							</>
+		// 						))}
+		// 					</g>
+		// 					<g transform={`translate(${widthSVG / 2}, ${(heightSVG / 2)} )`}>
+		// 						{dataPie.map(d => (
+		// 							<text
+		// 								transform={this.calculateLocationLabelOctant(d, maxRadius)}
+		// 								className={styleLabel}
+		// 							>{d.data.name + ": " + Math.round(d.data.value * 10) / 10}</text>
+		// 						))}
+		// 					</g>
+		// 				</svg>
+		// 			</div>
+		// 		</div>
+		// 	</>)
 	}
 
 	renderPrint(){
