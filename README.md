@@ -7,12 +7,14 @@ This branch shows the "coachkompas" without octant
 1. ssh to server (putty)
 2. [optional] git clone
 3. cd CoachTheCoach
+4. git checkout VTS   
 4. git pull
 5. Add src>auth.json   
 5. podman build -t coachthecoach:vts .
 6. podman stop/rm coachthecoachvts   
 7. podman run -dit --name coachthecoachvts -p 3049:3000 coachthecoach:vts
 8. test on picasso.experiments.cs.kuleuven.be:3049
+9. start everything automatically (crontab -e)
 
 ## Prerequisites
 1: mongodb
@@ -27,3 +29,4 @@ Host: picasso.experiments.cs.kuleuven.be:3037
 AuthenticationDB: admin
 Username: admin
 password: secret: ask person from faber
+
