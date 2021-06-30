@@ -634,11 +634,14 @@ export default class Profile extends Component {
 
 	render() {
 		let styleButtonContainer = classnames(styles.styleButtonContainer);
-
+		let hidePrintbutton = false
+		if (this.state.details || isMobile){
+			hidePrintbutton = true
+		}
 		return (
 			<>
 				{this.getRenderFunction()}
-				{this.state.details ? <div/> :
+				{hidePrintbutton ? <div/> :
 					<div className={styleButtonContainer}>
 						<ButtonNext id="printbutton"  handleClick={this.handleDownload} displayName={"Opslaan / Print"}  />
 					</div>
