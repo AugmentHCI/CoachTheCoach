@@ -1,7 +1,7 @@
 .container{
     position: fixed;
     bottom: 20px;
-    left: 10px;
+    left: 5%;
     width: 90%;
     display: flex;
     flex-direction: row;
@@ -13,21 +13,15 @@
     height: 15px;
 }
 
-@media only screen  and (min-width : 300px) {
-    .logo{
-        height: 20px;
-    }
-}
+
 
 @media only screen  and (min-width : 400px) {
-    .logo{
-        height: 30px;
+    .container{
+        min-height: 15px;
+        height: 5%;
     }
-}
-
-@media only screen  and (min-width : 500px) {
     .logo{
-        height: 45px;
+        height: 100%;
     }
 }
 
