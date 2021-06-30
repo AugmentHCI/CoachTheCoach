@@ -813,7 +813,7 @@ export default class Profile extends Component {
 		let styleButtonContainer = classnames(styles.styleButtonContainer);
 		let hidePrintbutton = false
 		if (this.state.details || isMobile){
-			hidePrintbutton = false
+			hidePrintbutton = true
 		}
 		return (
 			<>
