@@ -1,0 +1,313 @@
+.styleOuter{
+    fill-opacity: 0;
+    stroke: #c4c4c4;
+    cursor: pointer;
+}
+.styleArc{
+    fill-opacity: 0.8;
+    cursor: pointer;
+
+}
+.styleArcKwadrant{
+    fill-opacity: 0.8;
+}
+.styleArcHover{
+    fill-opacity: 1;
+    cursor: pointer;
+}
+.styleText{
+    text-anchor: middle;
+    font-weight: bold;
+    cursor: pointer;
+}
+.styleContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+.styleContainerProfile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+.styleContainerText{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    cursor: pointer;
+}
+.buttonContainer{
+    margin-left: 10%;
+    margin-top:2%;
+    margin-bottom: 50px;
+    width: 80%;
+    min-height: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+}
+
+
+.styleLabel{
+    text-anchor: middle;
+    font-size: 7px;
+    cursor: pointer;
+
+}
+
+.styleLabelKwadrant{
+    fill: white;
+    font-weight: 500;
+    text-anchor: middle;
+    font-size: 14px;
+    alignment-baseline: middle;
+
+}
+
+
+/*ipad*/
+@media screen and (min-height: 1024px) and (min-width: 768px) and (orientation: portrait) {
+    /*ipad mini*/
+    .styleLabel{
+        text-anchor: middle;
+        font-size: 20px;
+        cursor: pointer;
+
+    }
+
+    .styleLabelKwadrant{
+        fill: white;
+        font-weight: 500;
+        text-anchor: middle;
+        font-size: 24px;
+        alignment-baseline: middle;
+
+    }
+}
+/*ipad pro*/
+@media screen and (min-height: 1366px) and (min-width: 1024px) and (orientation: portrait) {
+    .styleLabel{
+        text-anchor: middle;
+        font-size: 30px;
+        cursor: pointer;
+
+    }
+
+    .styleLabelKwadrant{
+        fill: white;
+        font-weight: 500;
+        text-anchor: middle;
+        font-size: 35px;
+        alignment-baseline: middle;
+
+    }
+}
+/*Galaxy S5*/
+@media screen and (min-height: 640px) and (min-width: 360px) and (orientation: portrait)  {
+    .styleLabel{
+        text-anchor: middle;
+        font-size: 12px;
+        cursor: pointer;
+
+    }
+
+    .styleLabelKwadrant{
+        fill: white;
+        font-weight: 500;
+        text-anchor: middle;
+        font-size: 15px;
+        alignment-baseline: middle;
+
+    }
+}
+/*Iphone 5*/
+@media screen and (min-height: 568px) and (min-width: 320px) and (orientation: portrait)  {
+    .styleLabel{
+        text-anchor: middle;
+        font-size: 15px;
+        cursor: pointer;
+
+    }
+
+    .styleLabelKwadrant{
+        fill: white;
+        font-weight: 500;
+        text-anchor: middle;
+        font-size: 15px;
+        alignment-baseline: middle;
+
+    }
+}
+
+
+
+
+@media screen and (min-height: 300px) and (min-width: 600px) and (orientation: landscape)  {
+    .styleLabel{
+        text-anchor: middle;
+        font-size: 6px;
+        cursor: pointer;
+
+    }
+
+    .styleLabelKwadrant{
+        fill: white;
+        font-weight: 500;
+        text-anchor: middle;
+        font-size: 8px;
+        alignment-baseline: middle;
+
+    }
+}
+@media screen and (min-height: 400px) and (min-width: 800px) and (orientation: landscape)  {
+    .styleLabel{
+        text-anchor: middle;
+        font-size: 8px;
+        cursor: pointer;
+
+    }
+
+    .styleLabelKwadrant{
+        fill: white;
+        font-weight: 500;
+        text-anchor: middle;
+        font-size: 12px;
+        alignment-baseline: middle;
+
+    }
+}
+@media screen and (min-height: 625px) and (min-width: 1000px) and (orientation: landscape) {
+    .styleLabel{
+        text-anchor: middle;
+        font-size: 14px;
+        cursor: pointer;
+
+    }
+
+    .styleLabelKwadrant{
+        fill: white;
+        font-weight: 500;
+        text-anchor: middle;
+        font-size: 14px;
+        alignment-baseline: middle;
+
+    }
+}
+@media screen and (min-height: 800px) and (min-width: 1200px) and (orientation: landscape) {
+    .styleLabel{
+        text-anchor: middle;
+        font-size: 11px;
+        cursor: pointer;
+
+    }
+
+    .styleLabelKwadrant{
+        fill: white;
+        font-weight: 500;
+        text-anchor: middle;
+        font-size: 14px;
+        alignment-baseline: middle;
+
+    }
+}
+@media screen and (min-height: 875px) and (min-width: 1400px) and (orientation: landscape) {
+    .styleLabel{
+        text-anchor: middle;
+        font-size: 13px;
+        cursor: pointer;
+
+    }
+
+    .styleLabelKwadrant{
+        fill: white;
+        font-weight: 500;
+        text-anchor: middle;
+        font-size: 17px;
+        alignment-baseline: middle;
+
+    }
+}
+@media screen and (min-height: 1000px) and (min-width: 1600px) and (orientation: landscape) {
+    .styleLabel{
+        text-anchor: middle;
+        font-size: 15px;
+        cursor: pointer;
+
+    }
+
+    .styleLabelKwadrant{
+        fill: white;
+        font-weight: 500;
+        text-anchor: middle;
+        font-size: 20px;
+        alignment-baseline: middle;
+
+    }
+}
+@media screen and (min-height: 1125px) and (min-width: 1800px) and (orientation: landscape) {
+    .styleLabel{
+        text-anchor: middle;
+        font-size: 18px;
+        cursor: pointer;
+
+    }
+
+    .styleLabelKwadrant{
+        fill: white;
+        font-weight: 500;
+        text-anchor: middle;
+        font-size: 25px;
+        alignment-baseline: middle;
+
+    }
+}
+
+
+
+
+@media print {
+    .styleLabel{
+        text-anchor: middle;
+        font-size: 20px;
+    }
+
+    .styleLabelKwadrant{
+        fill: white;
+        font-weight: 500;
+        text-anchor: middle;
+        font-size: 20px;
+        alignment-baseline: middle;
+    }
+
+    .title{
+        color: #3b3b3b;
+    }
+
+    .styleLabelKwadrant{
+        fill: white;
+        font-weight: 500;
+        text-anchor: middle;
+        font-size: 20px;
+        alignment-baseline: middle;
+    }
+
+}
+
+
+
+
+
+
+
+
