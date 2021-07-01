@@ -6,7 +6,7 @@ import classnames from 'classnames';
 import {addDemographics} from "../Utils/API";
 import Footer from "../Components/Footer";
 import Title from "../Components/Title";
-
+import Config from "../config.json"
 
 
 
@@ -22,7 +22,8 @@ export default class Demographics extends Component {
         const data = survey.data;
         let random = Math.floor(Math.random() * 99) + 1
         let time = new Date().getTime();
-        let id = time + random;
+        let version = Config.version
+        let id = version + time + random;
         localStorage.setItem('id', id );
         let age = data['question1']
         let gender = data['question2']
