@@ -3,7 +3,7 @@ import User from '../auth.json'
 
 
 export async function addProfile(id, participatief, afstemmend, begeleidend, verduidelijkend,
-                                 eisend, dominerend, opgevend, afwachtend){
+                                 eisend, dominerend, opgevend, afwachtend, autonomie, structuur, controle, chaos){
 	const time = new Date().getTime();
 	const data = {
 		id: id,
@@ -15,7 +15,11 @@ export async function addProfile(id, participatief, afstemmend, begeleidend, ver
 		eisend: eisend,
 		dominerend: dominerend,
 		opgevend: opgevend,
-		afwachtend: afwachtend
+		afwachtend: afwachtend,
+		autonomie: autonomie,
+		structuur: structuur,
+		controle: controle,
+		chaos: chaos
 	};
 	let userName = User.user
 	let passWord = User.password

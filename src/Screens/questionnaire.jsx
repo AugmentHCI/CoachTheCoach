@@ -16,10 +16,10 @@ export default class Questionnaire extends Component {
 		super(props);
 		this.calculateProfile = this.calculateProfile.bind(this)
 		this.addRawData = this.addRawData.bind(this)
-		this.goToProfile = this.goToProfile.bind(this)
+		this.goToNextPage = this.goToNextPage.bind(this)
 	}
 	
-	goToProfile(){
+	goToNextPage(){
 		this.props.history.push({
 			pathname: '/Personality',
 		})
@@ -96,21 +96,25 @@ export default class Questionnaire extends Component {
 			q51,q52,q53,q54,q55,q56,q57,q58,q59,q60)
 
 		promiseAddProfileData.then(
-			this.goToProfile()
+			this.goToNextPage()
 		);
 	}
 	
 	calculateProfile(survey){
 		const data = survey.data;
 		let id = localStorage.getItem('id');
-		let participatief = this.calculateParticipatief(data);
-		let afstemmend = this.calculateAfstemmend(data);
-		let begeleidend = this.calculateBegeleidend(data);
-		let verduidelijkend = this.calculateVerduidelijkend(data);
-		let eisend = this.calculateEisend(data);
-		let dominerend = this.calculateDominerend(data);
-		let opgevend = this.calculateOpgevend(data);
-		let afwachtend = this.calculateAfwachtend(data);
+		let participatief = Math.round(this.calculateParticipatief(data) *10 ) / 10;
+		let afstemmend = Math.round(this.calculateAfstemmend(data)*10 ) / 10;
+		let begeleidend = Math.round(this.calculateBegeleidend(data) *10 ) / 10;
+		let verduidelijkend = Math.round(this.calculateVerduidelijkend(data) *10 ) / 10;
+		let eisend = Math.round(this.calculateEisend(data) *10 ) / 10;
+		let dominerend = Math.round(this.calculateDominerend(data) *10 ) / 10;
+		let opgevend = Math.round(this.calculateOpgevend(data) *10 ) / 10;
+		let afwachtend = Math.round(this.calculateAfwachtend(data) *10 ) / 10;
+		let autonomie = (participatief + afstemmend) /2;
+		let stuctuur = (begeleidend + verduidelijkend) /2;
+		let controle = (dominerend + eisend) /2;
+		let chaos = (opgevend + afwachtend) /2;
 		
 		localStorage.setItem('participatief', participatief );
 		localStorage.setItem('afstemmend', afstemmend );
@@ -120,9 +124,13 @@ export default class Questionnaire extends Component {
 		localStorage.setItem('dominerend', dominerend );
 		localStorage.setItem('opgevend', opgevend );
 		localStorage.setItem('afwachtend', afwachtend );
+		localStorage.setItem('autonomie', autonomie);
+		localStorage.setItem('structuur', stuctuur);
+		localStorage.setItem('controle', controle);
+		localStorage.setItem('chaos', chaos)
 		
 		let promiseAddProfile = addProfile(id, participatief, afstemmend, begeleidend, verduidelijkend,
-			eisend, dominerend, opgevend, afwachtend);
+			eisend, dominerend, opgevend, afwachtend, autonomie, stuctuur, controle, chaos);
 		
 		promiseAddProfile.then(
 			this.addRawData(data)

@@ -6,6 +6,8 @@ import '../Styles/Survey.css'
 import {addPersonality} from "../Utils/API";
 import Footer from "../Components/Footer";
 import Title from "../Components/Title";
+import Config from '../config.json'
+
 
 
 
@@ -15,7 +17,7 @@ export default class Personality extends Component {
     constructor(props) {
         super(props);
         this.sendPersonality = this.sendPersonality.bind(this);
-        this.goToQuestionnaire = this.goToQuestionnaire.bind(this);
+        this.goToProfile = this.goToProfile.bind(this);
     }
 
     sendPersonality(survey){
@@ -36,14 +38,21 @@ export default class Personality extends Component {
 
         let promiseAddProfile = addPersonality(id,extravert, kritisch, grondig, angstig, fantasie, gereserveerd, sympathiek, lui, kalm, creatief)
         promiseAddProfile.then(
-            this.goToQuestionnaire()
+            this.goToProfile()
         );
     }
 
-    goToQuestionnaire(){
-        this.props.history.push({
-            pathname: '/Profile',
-        })
+    goToProfile(){
+        if (Config.version === 'VTS'){
+            this.props.history.push({
+                pathname: '/ProfileVTS',
+            })
+        }
+        else{
+            this.props.history.push({
+                pathname: '/Profile',
+            })
+        }
     }
 
     render() {
