@@ -156,7 +156,7 @@
 @media screen and (min-height: 300px) and (min-width: 600px) and (orientation: landscape)  {
     .styleLabel{
         text-anchor: middle;
-        font-size: 6px;
+        font-size: 10px;
         cursor: pointer;
 
     }
@@ -165,7 +165,7 @@
         fill: white;
         font-weight: 500;
         text-anchor: middle;
-        font-size: 8px;
+        font-size: 10px;
         alignment-baseline: middle;
 
     }
@@ -173,7 +173,7 @@
 @media screen and (min-height: 400px) and (min-width: 800px) and (orientation: landscape)  {
     .styleLabel{
         text-anchor: middle;
-        font-size: 8px;
+        font-size: 12px;
         cursor: pointer;
 
     }
