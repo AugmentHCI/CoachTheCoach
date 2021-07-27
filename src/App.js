@@ -10,13 +10,15 @@ import ProfileVTS from "./Screens/profileVTS"
 import Admin from "./Screens/Admin";
 
 import Error from "./Screens/error"
-
+import Error500 from "./Screens/Error500";
 
 export default function App() {
 	return (
     <Router>
       <Switch>
 	      <Route path="/Error" component={Error}/>
+		  <Route path="/Error500" component={Error500}/>
+
 		  <Route path="/Demographics" component={Demographics}/>
 		  <Route path="/Personality" component={Personality}/>
 

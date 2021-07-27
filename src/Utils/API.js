@@ -229,7 +229,8 @@ export async function checkCredentialsAPI(user, password){
 		url: 'http://picasso.experiments.cs.kuleuven.be:3038/api/admin/password',
 		auth: {username: userName, password: passWord},
 		data: data
-	})
+	}).then((res) => {return res}).catch((error) => {
+		return error.response.status})
 }
 
 

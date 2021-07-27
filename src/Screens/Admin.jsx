@@ -2,18 +2,27 @@ import React, {Component} from 'react';
 import {checkCredentialsAPI, getDemographics, getPersonalities, getProfiles, getProfilesRaw} from "../Utils/API";
 import DownloadRow from "../Components/DownloadRow";
 import Login from "../Components/Login";
+import styles from '../Styles/Admin.module.css';
+import classnames from 'classnames';
 
 
 export default class Admin extends Component {
     constructor(props) {
         super(props);
+        let nb_incorrect = 0
+        let nb_incorrect_session = sessionStorage.getItem('nb_incorrect')
+        if (nb_incorrect_session !== null){
+            nb_incorrect = parseInt(nb_incorrect_session)
+        }
         this.state = {
             loading: true,
             profiles: [],
             profilesRaw: [],
             personalities:[],
             demographics: [],
-            login: false
+            login: false,
+            wrong_credentials: false,
+            nb_incorrect: nb_incorrect
         };
         this.getAllData = this.getAllData.bind(this)
         this.checkCredentials = this.checkCredentials.bind(this)
@@ -24,16 +33,26 @@ export default class Admin extends Component {
         let password = sessionStorage.getItem('password')
         if (user !== null && password !== null){
             let response = await checkCredentialsAPI(user, password)
-            let check = (response !== undefined && response !== null && response.data === 'credentials are ok')
-            if (check){
+            if (response.data === 'credentials are ok' ){
                 this.setState({
                     login: true
                 })
             }
             else{
-                this.setState({
-                    login: false
-                })
+                console.log(response)
+                if (response === 401) {
+                    sessionStorage.setItem('nb_incorrect', parseInt(this.state.nb_incorrect) + 1)
+                    this.setState({
+                        login: false,
+                        wrong_credentials: true,
+                    })
+                }
+                else{
+                    this.props.history.push({
+                        pathname: '/Error500',
+                    })
+                }
+
             }
         }
     }
@@ -86,6 +105,28 @@ export default class Admin extends Component {
         )
     }
 
+    renderWrongCredentials(){
+        let styleWarning = classnames(styles.warning)
+        let styleContainer = classnames(styles.container)
+        return(
+            <div className={styleContainer}>
+                <p className={styleWarning}>Wrong combination of username and password. Please try again.</p>
+            </div>
+        )
+    }
+
+    renderMaxNbIncorrect(){
+        let styleError = classnames(styles.error)
+        let styleContainer = classnames(styles.container)
+        return(
+            <div className={styleContainer}>
+                <p className={styleError}>It seems that you forgot your password, please contact augment@cs.kuleuven.be. </p>
+            </div>
+
+        )
+    }
+
+
 
 
     async componentDidMount() {
@@ -95,11 +136,39 @@ export default class Admin extends Component {
 
 
 
+
+
     render() {
-        return (
-            this.state.login ? this.renderData() : <Login handleLogin={this.checkCredentials} />
-
-
+        if (this.state.login){
+            return this.renderData()
+        }
+        if (this.state.nb_incorrect >= 5){
+            return (
+                <>
+                    {this.renderMaxNbIncorrect()}
+                </>
             )
+        }
+        if (this.state.nb_incorrect >= 3){
+            return (
+                <>
+                    {this.renderWrongCredentials()}
+                    {this.renderMaxNbIncorrect()}
+                    <Login handleLogin={this.checkCredentials} />
+                </>
+            )
+        }
+        if (this.state.wrong_credentials){
+            return (
+                <>
+                    <Login handleLogin={this.checkCredentials} />
+                    {this.renderWrongCredentials()}
+
+                </>
+            )
+        }
+        else{
+            return <Login handleLogin={this.checkCredentials} />
+        }
     }
 }

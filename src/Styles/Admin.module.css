@@ -1,0 +1,15 @@
+.warning{
+    color: #b27a14;
+}
+
+.error{
+    color: #d32121;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    width: 100%;
+    flex-direction: column;
+}

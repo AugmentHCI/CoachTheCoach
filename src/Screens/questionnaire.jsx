@@ -111,10 +111,10 @@ export default class Questionnaire extends Component {
 		let dominerend = Math.round(this.calculateDominerend(data) *10 ) / 10;
 		let opgevend = Math.round(this.calculateOpgevend(data) *10 ) / 10;
 		let afwachtend = Math.round(this.calculateAfwachtend(data) *10 ) / 10;
-		let autonomie = (participatief + afstemmend) /2;
-		let stuctuur = (begeleidend + verduidelijkend) /2;
-		let controle = (dominerend + eisend) /2;
-		let chaos = (opgevend + afwachtend) /2;
+		let autonomie = Math.round(this.calculateAutonomie(data) * 10) / 10;
+		let stuctuur = Math.round(this.calculateStructuur(data) * 10) / 10;
+		let controle = Math.round(this.calculateControle(data) * 10) / 10
+		let chaos = Math.round(this.calculateChaos(data) * 10) / 10;
 		
 		localStorage.setItem('participatief', participatief );
 		localStorage.setItem('afstemmend', afstemmend );
@@ -168,6 +168,28 @@ export default class Questionnaire extends Component {
 		let normalized = sum / 9.0;
 		return normalized
 	}
+
+	calculateAutonomie(data){
+		let v1 = data['question33'];
+		let v2 = data['question43'];
+		let v3 = data['question62'];
+		let v4 = data['question101'];
+		let v5 = data['question114'];
+		let v6 = data['question124'];
+		let v7 = data['question12'];
+		let v8 = data['question23'];
+		let v9 = data['question52'];
+		let v10 = data['question72'];
+		let v11 = data['question82'];
+		let v12 = data['question91'];
+		let v13 = data['question132'];
+		let v14 = data['question144'];
+		let v15 = data['question151'];
+		let sum = v1 + v2 + v3 + v4 + v5 + v6 + v7 + v8 + v9 + v10 + v11 + v12 + v13 + v14 + v15;
+		let normalized = sum / 15.0;
+		return normalized
+	}
+
 	
 	calculateBegeleidend(data){
 		let v1 = data['question14'];
@@ -193,6 +215,27 @@ export default class Questionnaire extends Component {
 		let v6 = data['question154'];
 		let sum = v1 + v2 + v3 + v4 + v5 + v6;
 		let normalized = sum / 6.0;
+		return normalized
+	}
+
+	calculateStructuur(data){
+		let v1 = data['question14'];
+		let v2 = data['question21'];
+		let v3 = data['question64'];
+		let v4 = data['question83'];
+		let v5 = data['question94'];
+		let v6 = data['question102'];
+		let v7 = data['question121'];
+		let v8 = data['question133'];
+		let v9 = data['question143'];
+		let v10 = data['question32'];
+		let v11 = data['question44'];
+		let v12 = data['question54'];
+		let v13 = data['question71'];
+		let v14 = data['question113'];
+		let v15 = data['question154'];
+		let sum = v1 + v2 + v3 + v4 + v5 + v6 + v7 + v8 + v9 + v10 + v11 + v12 + v13 + v14 + v15;
+		let normalized = sum / 15.0;
 		return normalized
 	}
 	
@@ -223,6 +266,27 @@ export default class Questionnaire extends Component {
 		let normalized = sum / 5.0;
 		return normalized
 	}
+
+	calculateControle(data){
+		let v1 = data['question34'];
+		let v2 = data['question42'];
+		let v3 = data['question63'];
+		let v4 = data['question74'];
+		let v5 = data['question93'];
+		let v6 = data['question104'];
+		let v7 = data['question111'];
+		let v8 = data['question134'];
+		let v9 = data['question141'];
+		let v10 = data['question153'];
+		let v11 = data['question13'];
+		let v12 = data['question24'];
+		let v13 = data['question51'];
+		let v14 = data['question81'];
+		let v15 = data['question123'];
+		let sum = v1 + v2 + v3 + v4 + v5 + v6 + v7 + v8 + v9 + v10 + v11 + v12 + v13 + v14 + v15;
+		let normalized = sum / 15.0;
+		return normalized
+	}
 	
 	calculateOpgevend(data){
 		let v1 = data['question11'];
@@ -248,6 +312,27 @@ export default class Questionnaire extends Component {
 		let v6 = data['question112'];
 		let sum = v1 + v2 + v3 + v4 + v5 + v6;
 		let normalized = sum / 6.0;
+		return normalized
+	}
+
+	calculateChaos(data){
+		let v1 = data['question11'];
+		let v2 = data['question22'];
+		let v3 = data['question84'];
+		let v4 = data['question92'];
+		let v5 = data['question103'];
+		let v6 = data['question122'];
+		let v7 = data['question131'];
+		let v8 = data['question142'];
+		let v9 = data['question152'];
+		let v10 = data['question31'];
+		let v11 = data['question41'];
+		let v12 = data['question53'];
+		let v13 = data['question61'];
+		let v14 = data['question73'];
+		let v15 = data['question112'];
+		let sum = v1 + v2 + v3 + v4 + v5 + v6 + v7 + v8 + v9 + v10 + v11 + v12 + v13 + v14 + v15;
+		let normalized = sum / 15.0;
 		return normalized
 	}
 	
