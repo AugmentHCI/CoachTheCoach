@@ -75,9 +75,44 @@
 
 }
 
+/*Iphone 5*/
+@media screen and (min-height: 568px) and (min-width: 320px) and (orientation: portrait)  {
+    .styleLabel{
+        text-anchor: middle;
+        font-size: 15px;
+        cursor: pointer;
 
+    }
+
+    .styleLabelKwadrant{
+        fill: white;
+        font-weight: 500;
+        text-anchor: middle;
+        font-size: 15px;
+        alignment-baseline: middle;
+
+    }
+}
+/*Galaxy S5*/
+@media screen and (min-height: 640px) and (min-width: 360px) and (orientation: portrait)  {
+    .styleLabel{
+        text-anchor: middle;
+        font-size: 12px;
+        cursor: pointer;
+
+    }
+
+    .styleLabelKwadrant{
+        fill: white;
+        font-weight: 500;
+        text-anchor: middle;
+        font-size: 15px;
+        alignment-baseline: middle;
+
+    }
+}
 /*ipad*/
-@media screen and (min-height: 1024px) and (min-width: 768px) and (orientation: portrait) {
+@media screen and (min-height: 1023px) and (min-width: 767px) and (orientation: portrait) {
     /*ipad mini*/
     .styleLabel{
         text-anchor: middle;
@@ -113,42 +148,8 @@
 
     }
 }
-/*Galaxy S5*/
-@media screen and (min-height: 640px) and (min-width: 360px) and (orientation: portrait)  {
-    .styleLabel{
-        text-anchor: middle;
-        font-size: 12px;
-        cursor: pointer;
 
-    }
 
-    .styleLabelKwadrant{
-        fill: white;
-        font-weight: 500;
-        text-anchor: middle;
-        font-size: 15px;
-        alignment-baseline: middle;
-
-    }
-}
-/*Iphone 5*/
-@media screen and (min-height: 568px) and (min-width: 320px) and (orientation: portrait)  {
-    .styleLabel{
-        text-anchor: middle;
-        font-size: 15px;
-        cursor: pointer;
-
-    }
-
-    .styleLabelKwadrant{
-        fill: white;
-        font-weight: 500;
-        text-anchor: middle;
-        font-size: 15px;
-        alignment-baseline: middle;
-
-    }
-}
 
 
 
