@@ -13,7 +13,7 @@ Depending on the config file, the coach profile has 4 ('VTS') or 8 zones ('octan
 6. podman stop/rm coachthecoachversion
 6. version VTS = port 3049, version octant = port 3039
 7. podman run -dit --name coachthecoachversion -p port:3000 coachthecoach:version
-8. test on picasso.experiments.cs.kuleuven.be:3049
+8. test on picasso.experiments.cs.kuleuven.be:port
 9. add to crontab to start everything automatically (crontab -e)
 
 ## Prerequisites
